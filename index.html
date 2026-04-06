@@ -1,1 +1,393 @@
+<!DOCTYPE html>
 
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>BetreuerPro — Betreuung. Digital. Sicher.</title>
+  <meta name="description" content="Die smarte Lösung für professionelle Betreuer in Deutschland. Dokumente, Berichte, Sicherheit – automatisiert.">
+  <meta property="og:title" content="BetreuerPro — Betreuung. Digital. Sicher.">
+  <meta property="og:description" content="Die smarte Lösung für professionelle Betreuer in Deutschland.">
+  <meta property="og:image" content="https://betreuerpro.io/og-image.png">
+  <meta property="og:url" content="https://betreuerpro.io">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0B1E35;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #FFFFFF;
+      line-height: 1.4;
+      padding: 20px;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #0B1E35;
+      border-radius: 48px;
+      overflow: hidden;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 24px 24px 16px 24px;
+      border-bottom: 1px solid #1E3A5F;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo svg { width: 36px; height: 36px; display: block; }
+    .logo-text { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.3px; color: #F0D080; }
+    .tagline { font-size: 0.7rem; color: #C9A84C; margin-top: 2px; }
+    .lang-buttons { display: flex; gap: 8px; }
+    .lang-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #1E3A5F;
+      border-radius: 40px;
+      padding: 6px 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #FFFFFF;
+    }
+    .lang-btn.active {
+      background: #C9A84C;
+      color: #0B1E35;
+      border-color: #C9A84C;
+    }
+    .hero-image { width: 100%; padding: 0 24px; margin-top: 24px; }
+    .hero-image img { width: 100%; border-radius: 24px; display: block; }
+    .hero { padding: 32px 24px 24px; text-align: center; }
+    .badge {
+      background: rgba(201,168,76,0.12);
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #F0D080;
+      margin-bottom: 20px;
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.1; color: #F0D080; margin-bottom: 12px; }
+    .hero-sub { font-size: 1rem; color: #C9D4E6; max-width: 480px; margin: 0 auto; }
+    .features {
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .feature-card {
+      background: #0F2845;
+      border-radius: 28px;
+      padding: 20px 16px;
+      border: 1px solid #1E3A5F;
+      text-align: center;
+    }
+    .feature-icon { font-size: 2rem; margin-bottom: 10px; }
+    .feature-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: #F0D080; }
+    .feature-desc { font-size: 0.75rem; color: #B8C8E0; line-height: 1.4; }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px 24px;
+      justify-content: center;
+    }
+    .stat-card {
+      background: #0F2845;
+      border-radius: 24px;
+      padding: 20px 12px;
+      flex: 1;
+      min-width: 130px;
+      text-align: center;
+      border: 1px solid #1E3A5F;
+    }
+    .stat-number { font-size: 1.7rem; font-weight: 800; color: #F0D080; }
+    .stat-label { font-size: 0.75rem; color: #C9D4E6; margin-top: 6px; }
+    .waitlist {
+      background: #0F2845;
+      margin: 20px 24px 32px;
+      padding: 28px 24px;
+      border-radius: 32px;
+      border: 1px solid #1E3A5F;
+    }
+    .waitlist h3 { font-size: 1.3rem; margin-bottom: 6px; text-align: center; }
+    .waitlist p { text-align: center; font-size: 0.85rem; color: #C9D4E6; margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(11,30,53,0.8);
+      border: 1px solid #1E3A5F;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      color: #FFFFFF;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #C9A84C; }
+    .btn-primary {
+      background: #C9A84C;
+      border: none;
+      border-radius: 60px;
+      padding: 14px 20px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #0B1E35;
+      cursor: pointer;
+      width: 100%;
+    }
+    .form-note { font-size: 0.7rem; text-align: center; color: #8BA0BC; margin-top: 16px; }
+    .footer {
+      padding: 24px 24px 32px;
+      border-top: 1px solid #1E3A5F;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #8BA0BC;
+    }
+    .footer a { color: #F0D080; text-decoration: none; margin: 0 8px; }
+    .ecosystem { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
+    @media (max-width: 540px) {
+      .features { grid-template-columns: 1fr; }
+      .stats { flex-direction: column; }
+      .hero h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L3 6V12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12V6L12 2Z" stroke="url(#grad)" stroke-width="1.5" fill="#0F2845"/>
+        <path d="M12 8L14 12L12 16L10 12L12 8Z" fill="url(#grad)"/>
+        <circle cx="12" cy="12" r="2" fill="#0B1E35"/>
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#F0D080"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div>
+        <div class="logo-text">BetreuerPro</div>
+        <div class="tagline" id="headerTagline">Betreuung. Digital. Sicher.</div>
+      </div>
+    </div>
+    <div class="lang-buttons">
+      <button class="lang-btn" data-lang="de">DE</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="og-image.png" alt="BetreuerPro — Betreuung. Digital. Sicher.">
+  </div>
+
+  <div id="mainContent"></div>
+
+  <div class="footer">
+    <div>© 2026 BetreuerPro — Ein Produkt des PACDI Ökosystems</div>
+    <div style="margin: 8px 0;">
+      <a href="#">Datenschutz</a> | <a href="#">Impressum</a>
+    </div>
+    <div class="ecosystem">
+      <a href="https://navigopro.de" target="_blank">navigopro.de</a>
+      <a href="https://easygov.io" target="_blank">easygov.io</a>
+      <a href="https://silvercompass.world" target="_blank">silvercompass.world</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  var translations = {
+    de: {
+      headerTag: "Betreuung. Digital. Sicher.",
+      badge: "Beta \u00B7 2026",
+      h1: "Betreuung neu gedacht.",
+      sub: "Dokumente. Berichte. Sicher automatisiert.",
+      features: [
+        { icon: "\uD83D\uDCC4", title: "Automatisches Dokumentensystem", desc: "Dokumente automatisch generieren, verwalten und versenden." },
+        { icon: "\uD83C\uDF99\uFE0F", title: "Sprachbasierte Berichterstattung (KI)", desc: "Sprachaufnahmen in professionelle Berichte umwandeln." },
+        { icon: "\uD83D\uDD12", title: "Zero-Knowledge Sicherheit", desc: "Ihre Daten werden ausschlie\u00DFlich lokal verschl\u00FCsselt." },
+        { icon: "\uD83D\uDCCD", title: "GPS-Kilometererfassung", desc: "Fahrten genau dokumentieren \u2013 f\u00FCr korrekte Verg\u00FCtung." }
+      ],
+      stats: [
+        { num: "1,3 Mio+", label: "Personen unter gesetzlicher Betreuung" },
+        { num: "70%", label: "der Betreuungszeit geht f\u00FCr B\u00FCrokratie verloren" },
+        { num: "18.000", label: "Berufsbetreuer f\u00FCr 1,3 Millionen Menschen" }
+      ],
+      waitlistTitle: "Fr\u00FChen Zugang sichern",
+      waitlistDesc: "Werde einer der ersten Anwender von BetreuerPro.",
+      namePlace: "Vor- und Nachname",
+      emailPlace: "E-Mail",
+      roleLabel: "Ich bin...",
+      roleOptions: ["Berufsbetreuer", "Ehrenamtlich", "Betreuungsverein", "Sonstige"],
+      btnText: "Fr\u00FChen Zugang sichern \u2192",
+      note: "Kein Spam. Kein Abo. Nur relevante Updates.",
+      successMsg: "Vielen Dank! Wir melden uns bei dir.",
+      errorMsg: "Bitte alle Felder ausf\u00FCllen."
+    },
+    tr: {
+      headerTag: "Betreuung. Digital. Sicher.",
+      badge: "Beta \u00B7 2026",
+      h1: "Bak\u0131m hizmeti yeniden d\u00FC\u015F\u00FCn\u00FCld\u00FC.",
+      sub: "Evraklar. Raporlar. G\u00FCvenli otomasyon.",
+      features: [
+        { icon: "\uD83D\uDCC4", title: "Otomatik Evrak Motoru", desc: "Belgeleri otomatik olu\u015Ftur, y\u00F6net ve g\u00F6nder." },
+        { icon: "\uD83C\uDF99\uFE0F", title: "Sesli Raporlama (AI)", desc: "Ses kay\u0131tlar\u0131n\u0131 profesyonel raporlara d\u00F6n\u00FC\u015Ft\u00FCr." },
+        { icon: "\uD83D\uDD12", title: "Zero-Knowledge G\u00FCvenlik", desc: "Verileriniz yaln\u0131zca cihaz\u0131n\u0131zda \u015Fifrelenir." },
+        { icon: "\uD83D\uDCCD", title: "GPS Kilometre Takibi", desc: "G\u00FCzergahlar\u0131 kaydet \u2013 do\u011Fru \u00FCcretlendirme i\u00E7in." }
+      ],
+      stats: [
+        { num: "1,3 Milyon+", label: "Ki\u015Fi yasal vasi korumas\u0131 alt\u0131nda" },
+        { num: "%70", label: "Vasi mesaisi b\u00FCrokrasiye gidiyor" },
+        { num: "18.000", label: "Profesyonel vasi \u2014 1,3 milyona bak\u0131yor" }
+      ],
+      waitlistTitle: "Erken eri\u015Fimi garantile",
+      waitlistDesc: "BetreuerPro'yu ilk kullananlardan ol.",
+      namePlace: "Ad Soyad",
+      emailPlace: "E-posta",
+      roleLabel: "Ben...",
+      roleOptions: ["Mesleki Bak\u0131c\u0131", "G\u00F6n\u00FCll\u00FC", "Bak\u0131m Derne\u011Fi", "Di\u011Fer"],
+      btnText: "Erken eri\u015Fimi garantile \u2192",
+      note: "Spam yok. Abonelik yok. Sadece g\u00FCncellemeler.",
+      successMsg: "Te\u015Fekk\u00FCrler! Size ula\u015Faca\u011F\u0131z.",
+      errorMsg: "L\u00FCtfen t\u00FCm alanlar\u0131 doldurun."
+    },
+    en: {
+      headerTag: "Betreuung. Digital. Sicher.",
+      badge: "Beta \u00B7 2026",
+      h1: "Caregiving reimagined.",
+      sub: "Documents. Reports. Securely automated.",
+      features: [
+        { icon: "\uD83D\uDCC4", title: "Document Automation", desc: "Auto-generate, manage and send documents." },
+        { icon: "\uD83C\uDF99\uFE0F", title: "Voice Reporting (AI)", desc: "Turn voice notes into professional reports." },
+        { icon: "\uD83D\uDD12", title: "Zero-Knowledge Security", desc: "Your data is encrypted locally." },
+        { icon: "\uD83D\uDCCD", title: "GPS Mileage Tracking", desc: "Track trips accurately for correct billing." }
+      ],
+      stats: [
+        { num: "1.3M+", label: "People under legal guardianship" },
+        { num: "70%", label: "of guardians' time spent on bureaucracy" },
+        { num: "18,000", label: "professional guardians for 1.3M people" }
+      ],
+      waitlistTitle: "Secure early access",
+      waitlistDesc: "Be among the first to use BetreuerPro.",
+      namePlace: "Full name",
+      emailPlace: "Email",
+      roleLabel: "I am a...",
+      roleOptions: ["Professional Guardian", "Volunteer", "Care Association", "Other"],
+      btnText: "Secure early access \u2192",
+      note: "No spam. No subscription. Only relevant updates.",
+      successMsg: "Thank you! We'll get in touch.",
+      errorMsg: "Please fill all fields."
+    }
+  };
+
+  var currentLang = "de";
+
+  function detectLanguage() {
+    var userLang = navigator.language || navigator.userLanguage;
+    if (userLang.indexOf("tr") === 0) return "tr";
+    if (userLang.indexOf("en") === 0) return "en";
+    return "de";
+  }
+
+  function renderContent(lang) {
+    var t = translations[lang];
+    if (!t) return;
+    document.getElementById("headerTagline").innerText = t.headerTag;
+
+    var featuresHtml = '';
+    for (var i = 0; i < t.features.length; i++) {
+      var f = t.features[i];
+      featuresHtml += '<div class="feature-card">' +
+        '<div class="feature-icon">' + f.icon + '</div>' +
+        '<div class="feature-title">' + f.title + '</div>' +
+        '<div class="feature-desc">' + f.desc + '</div>' +
+        '</div>';
+    }
+
+    var statsHtml = '';
+    for (var j = 0; j < t.stats.length; j++) {
+      var s = t.stats[j];
+      statsHtml += '<div class="stat-card">' +
+        '<div class="stat-number">' + s.num + '</div>' +
+        '<div class="stat-label">' + s.label + '</div>' +
+        '</div>';
+    }
+
+    var roleOptionsHtml = '';
+    for (var k = 0; k < t.roleOptions.length; k++) {
+      roleOptionsHtml += '<option value="' + t.roleOptions[k] + '">' + t.roleOptions[k] + '</option>';
+    }
+
+    var mainHtml =
+      '<div class="hero">' +
+        '<div class="badge">' + t.badge + '</div>' +
+        '<h1>' + t.h1 + '</h1>' +
+        '<div class="hero-sub">' + t.sub + '</div>' +
+      '</div>' +
+      '<div class="features">' + featuresHtml + '</div>' +
+      '<div class="stats">' + statsHtml + '</div>' +
+      '<div class="waitlist">' +
+        '<h3>\uD83D\uDCEC ' + t.waitlistTitle + '</h3>' +
+        '<p>' + t.waitlistDesc + '</p>' +
+        '<form id="waitlistForm" onsubmit="return submitWaitlist(event)">' +
+          '<div class="form-group"><input type="text" id="fullname" placeholder="' + t.namePlace + '" required></div>' +
+          '<div class="form-group"><input type="email" id="email" placeholder="' + t.emailPlace + '" required></div>' +
+          '<div class="form-group"><select id="role" required>' + roleOptionsHtml + '</select></div>' +
+          '<button type="submit" class="btn-primary">' + t.btnText + '</button>' +
+          '<div class="form-note">' + t.note + '</div>' +
+        '</form>' +
+      '</div>';
+
+    document.getElementById("mainContent").innerHTML = mainHtml;
+
+    var btns = document.querySelectorAll('.lang-btn');
+    for (var i = 0; i < btns.length; i++) {
+      if (btns[i].getAttribute('data-lang') === lang) {
+        btns[i].classList.add('active');
+      } else {
+        btns[i].classList.remove('active');
+      }
+    }
+  }
+
+  function submitWaitlist(event) {
+    event.preventDefault();
+    var name = document.getElementById('fullname').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var role = document.getElementById('role').value;
+    if (name === '' || email === '' || role === '') {
+      alert(translations[currentLang].errorMsg);
+      return false;
+    }
+    alert(translations[currentLang].successMsg);
+    document.getElementById('waitlistForm').reset();
+    return false;
+  }
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    renderContent(lang);
+  }
+
+  var detectedLang = detectLanguage();
+  currentLang = detectedLang;
+  renderContent(currentLang);
+
+  var langBtns = document.querySelectorAll('.lang-btn');
+  for (var i = 0; i < langBtns.length; i++) {
+    langBtns[i].addEventListener('click', function() {
+      var langVal = this.getAttribute('data-lang');
+      setLanguage(langVal);
+    });
+  }
+</script>
+
+</body>
+</html>
