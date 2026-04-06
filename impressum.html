@@ -1,1 +1,266 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Impressum | BetreuerPro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #0B1E35;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #FFFFFF;
+      line-height: 1.5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #0B1E35;
+      border-radius: 48px;
+      overflow: hidden;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 24px 24px 16px 24px;
+      border-bottom: 1px solid #1E3A5F;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo svg {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+    .logo-text {
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -0.3px;
+      color: #F0D080;
+    }
+    .tagline {
+      font-size: 0.7rem;
+      color: #C9A84C;
+      margin-top: 2px;
+    }
+    .lang-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .lang-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #1E3A5F;
+      border-radius: 40px;
+      padding: 6px 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #FFFFFF;
+      transition: 0.2s;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, #C9A84C, #F0D080);
+      color: #0B1E35;
+      border-color: #C9A84C;
+    }
+    .content {
+      padding: 32px 24px;
+    }
+    .impressum-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #F0D080;
+    }
+    .impressum-sub {
+      font-size: 0.9rem;
+      color: #C9D4E6;
+      margin-bottom: 32px;
+      border-left: 3px solid #F0D080;
+      padding-left: 16px;
+    }
+    .impressum-section {
+      margin-bottom: 24px;
+    }
+    .impressum-section h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #F0D080;
+      margin-bottom: 6px;
+    }
+    .impressum-section p {
+      font-size: 0.9rem;
+      color: #C9D4E6;
+      line-height: 1.6;
+    }
+    .footer {
+      padding: 24px 24px 32px;
+      border-top: 1px solid #1E3A5F;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #8BA0BC;
+    }
+    .footer a {
+      color: #F0D080;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    .ecosystem {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 540px) {
+      .impressum-title { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L3 6V12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12V6L12 2Z" stroke="url(#grad)" stroke-width="1.5" fill="#0F2845"/>
+        <path d="M12 8L14 12L12 16L10 12L12 8Z" fill="url(#grad)"/>
+        <circle cx="12" cy="12" r="2" fill="#0B1E35"/>
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#F0D080"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div>
+        <div class="logo-text">BetreuerPro</div>
+        <div class="tagline" id="headerTagline">Impressum</div>
+      </div>
+    </div>
+    <div class="lang-buttons">
+      <button class="lang-btn" data-lang="de">DE</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
 
+  <div id="impressumContent" class="content"></div>
+
+  <div class="footer">
+    <div>© 2026 BetreuerPro — Ein Produkt des PACDI Ökosystems</div>
+    <div style="margin: 8px 0;">
+      <a href="datenschutz.html">Datenschutz</a> | <a href="impressum.html">Impressum</a>
+    </div>
+    <div class="ecosystem">
+      <a href="https://navigopro.de" target="_blank">navigopro.de</a>
+      <a href="https://easygov.io" target="_blank">easygov.io</a>
+      <a href="https://silvercompass.world" target="_blank">silvercompass.world</a>
+      <a href="https://cogniroute.de" target="_blank">cogniroute.de</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  var impressumTexts = {
+    de: {
+      title: "Impressum",
+      sub: "Angaben gemäß § 5 DDG",
+      sections: [
+        { title: "Betreiber", text: "Mehmet Aydınlı<br>[Adresse wird nachgetragen]<br>Berlin, Deutschland" },
+        { title: "Kontakt", text: "E-Mail: info@betreuerpro.io" },
+        { title: "Umsatzsteuer-ID", text: "Derzeit in Beantragung." },
+        { title: "Redaktionell Verantwortlicher", text: "Mehmet Aydınlı, Berlin" },
+        { title: "EU-Streitschlichtung", text: "https://ec.europa.eu/consumers/odr/" },
+        { title: "Verbraucherstreitbeilegung", text: "Wir nehmen nicht an Streitbeilegungsverfahren teil." }
+      ]
+    },
+    tr: {
+      title: "Künye",
+      sub: "Yasal Bilgiler (Almanya DDG §5 uyarınca)",
+      sections: [
+        { title: "İşletme Sahibi", text: "Mehmet Aydınlı<br>[Adres daha sonra eklenecek]<br>Berlin, Almanya" },
+        { title: "İletişim", text: "E-posta: info@betreuerpro.io" },
+        { title: "Vergi Numarası (Umsatzsteuer-ID)", text: "Başvuru aşamasında." },
+        { title: "Yazı İşleri Sorumlusu", text: "Mehmet Aydınlı, Berlin" },
+        { title: "AB Tüketici Uyuşmazlıkları", text: "https://ec.europa.eu/consumers/odr/" },
+        { title: "Tüketici Uyuşmazlık Çözümü", text: "Uyuşmazlık çözüm prosedürlerine katılmıyoruz." }
+      ]
+    },
+    en: {
+      title: "Legal Notice",
+      sub: "Information according to § 5 DDG (German Digital Services Act)",
+      sections: [
+        { title: "Operator", text: "Mehmet Aydınlı<br>[Address to be added]<br>Berlin, Germany" },
+        { title: "Contact", text: "Email: info@betreuerpro.io" },
+        { title: "VAT ID (Umsatzsteuer-ID)", text: "Currently being applied for." },
+        { title: "Editorially Responsible", text: "Mehmet Aydınlı, Berlin" },
+        { title: "EU Dispute Resolution", text: "https://ec.europa.eu/consumers/odr/" },
+        { title: "Consumer Dispute Resolution", text: "We do not participate in dispute resolution proceedings." }
+      ]
+    }
+  };
+
+  var currentLang = "de";
+
+  function detectLanguage() {
+    var userLang = navigator.language || navigator.userLanguage;
+    if (userLang.indexOf("tr") === 0) return "tr";
+    if (userLang.indexOf("en") === 0) return "en";
+    return "de";
+  }
+
+  function renderImpressum(lang) {
+    var t = impressumTexts[lang];
+    if (!t) return;
+    var html = '<div class="impressum-title">' + t.title + '</div>' +
+               '<div class="impressum-sub">' + t.sub + '</div>';
+    for (var i = 0; i < t.sections.length; i++) {
+      var s = t.sections[i];
+      html += '<div class="impressum-section">' +
+                '<h3>' + s.title + '</h3>' +
+                '<p>' + s.text + '</p>' +
+              '</div>';
+    }
+    document.getElementById("impressumContent").innerHTML = html;
+    
+    var btns = document.querySelectorAll('.lang-btn');
+    for (var i = 0; i < btns.length; i++) {
+      if (btns[i].getAttribute('data-lang') === lang) {
+        btns[i].classList.add('active');
+      } else {
+        btns[i].classList.remove('active');
+      }
+    }
+    document.getElementById("headerTagline").innerText = t.title === "Impressum" ? "Impressum" : (t.title === "Künye" ? "Künye" : "Legal Notice");
+  }
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    renderImpressum(lang);
+  }
+
+  var detectedLang = detectLanguage();
+  currentLang = detectedLang;
+  renderImpressum(currentLang);
+
+  var langBtns = document.querySelectorAll('.lang-btn');
+  for (var i = 0; i < langBtns.length; i++) {
+    langBtns[i].addEventListener('click', function(e) {
+      var langVal = this.getAttribute('data-lang');
+      setLanguage(langVal);
+    });
+  }
+</script>
+</body>
+</html>
