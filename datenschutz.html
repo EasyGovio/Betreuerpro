@@ -1,1 +1,270 @@
+<!DOCTYPE html>
 
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Datenschutzerklärung | BetreuerPro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #0B1E35;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #FFFFFF;
+      line-height: 1.5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #0B1E35;
+      border-radius: 48px;
+      overflow: hidden;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 24px 24px 16px 24px;
+      border-bottom: 1px solid #1E3A5F;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo svg {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+    .logo-text {
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -0.3px;
+      color: #F0D080;
+    }
+    .tagline {
+      font-size: 0.7rem;
+      color: #C9A84C;
+      margin-top: 2px;
+    }
+    .lang-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .lang-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #1E3A5F;
+      border-radius: 40px;
+      padding: 6px 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #FFFFFF;
+      transition: 0.2s;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, #C9A84C, #F0D080);
+      color: #0B1E35;
+      border-color: #C9A84C;
+    }
+    .content {
+      padding: 32px 24px;
+    }
+    .privacy-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #F0D080;
+    }
+    .privacy-sub {
+      font-size: 0.9rem;
+      color: #C9D4E6;
+      margin-bottom: 32px;
+      border-left: 3px solid #F0D080;
+      padding-left: 16px;
+    }
+    .privacy-section {
+      margin-bottom: 28px;
+    }
+    .privacy-section h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #F0D080;
+      margin-bottom: 8px;
+    }
+    .privacy-section p {
+      font-size: 0.9rem;
+      color: #C9D4E6;
+      line-height: 1.6;
+    }
+    .footer {
+      padding: 24px 24px 32px;
+      border-top: 1px solid #1E3A5F;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #8BA0BC;
+    }
+    .footer a {
+      color: #F0D080;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    .ecosystem {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 540px) {
+      .privacy-title { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L3 6V12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12V6L12 2Z" stroke="url(#grad)" stroke-width="1.5" fill="#0F2845"/>
+        <path d="M12 8L14 12L12 16L10 12L12 8Z" fill="url(#grad)"/>
+        <circle cx="12" cy="12" r="2" fill="#0B1E35"/>
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#F0D080"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div>
+        <div class="logo-text">BetreuerPro</div>
+        <div class="tagline" id="headerTagline">Datenschutz</div>
+      </div>
+    </div>
+    <div class="lang-buttons">
+      <button class="lang-btn" data-lang="de">DE</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+
+  <div id="privacyContent" class="content"></div>
+
+  <div class="footer">
+    <div>© 2026 BetreuerPro — Ein Produkt des PACDI Ökosystems</div>
+    <div style="margin: 8px 0;">
+      <a href="datenschutz.html">Datenschutz</a> | <a href="impressum.html">Impressum</a>
+    </div>
+    <div class="ecosystem">
+      <a href="https://navigopro.de" target="_blank">navigopro.de</a>
+      <a href="https://easygov.io" target="_blank">easygov.io</a>
+      <a href="https://silvercompass.world" target="_blank">silvercompass.world</a>
+      <a href="https://cogniroute.de" target="_blank">cogniroute.de</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  var privacyTexts = {
+    de: {
+      title: "Datenschutzerklärung",
+      sub: "BetreuerPro / PACDI Global – Berlin",
+      sections: [
+        { title: "1. Verantwortlicher", text: "BetreuerPro / PACDI Global, Berlin, Deutschland. Kontakt: info@betreuerpro.io" },
+        { title: "2. Erhobene Daten", text: "Name, E-Mail-Adresse, Rolle (Berufsbetreuer, Ehrenamtlich, Betreuungsverein, Sonstige)." },
+        { title: "3. Zweck der Verarbeitung", text: "Verwaltung der Warteliste für den Beta-Zugang von BetreuerPro." },
+        { title: "4. Rechtsgrundlage", text: "Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)." },
+        { title: "5. Speicherdauer", text: "Maximal 2 Jahre, danach werden die Daten gelöscht, sofern keine Einwilligung zur weiteren Speicherung vorliegt." },
+        { title: "6. Ihre Rechte", text: "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch sowie Datenübertragbarkeit. Kontaktieren Sie uns hierzu." },
+        { title: "7. Kontakt", text: "E-Mail: info@betreuerpro.io" }
+      ]
+    },
+    tr: {
+      title: "Gizlilik Politikası",
+      sub: "BetreuerPro / PACDI Global – Berlin",
+      sections: [
+        { title: "1. Veri Sorumlusu", text: "BetreuerPro / PACDI Global, Berlin, Almanya. İletişim: info@betreuerpro.io" },
+        { title: "2. Toplanan Veriler", text: "Ad, soyad, e-posta adresi, rol (Mesleki Bakıcı, Gönüllü, Bakım Derneği, Diğer)." },
+        { title: "3. İşleme Amacı", text: "BetreuerPro beta erişimi için bekleme listesinin yönetimi." },
+        { title: "4. Hukuki Dayanak", text: "KVKK m.5 (açık rıza)." },
+        { title: "5. Saklama Süresi", text: "En fazla 2 yıl, ardından veriler silinir." },
+        { title: "6. Haklarınız", text: "Verilerinize erişme, düzeltme, silme, işlemenin kısıtlanması ve veri taşınabilirliği haklarınız vardır. Bize ulaşın." },
+        { title: "7. İletişim", text: "E-posta: info@betreuerpro.io" }
+      ]
+    },
+    en: {
+      title: "Privacy Policy",
+      sub: "BetreuerPro / PACDI Global – Berlin",
+      sections: [
+        { title: "1. Data Controller", text: "BetreuerPro / PACDI Global, Berlin, Germany. Contact: info@betreuerpro.io" },
+        { title: "2. Data Collected", text: "Name, email address, role (Professional Guardian, Volunteer, Care Association, Other)." },
+        { title: "3. Purpose of Processing", text: "Managing the waitlist for BetreuerPro beta access." },
+        { title: "4. Legal Basis", text: "Art. 6(1)(a) GDPR (consent)." },
+        { title: "5. Retention Period", text: "Maximum 2 years, after which data will be deleted unless consent for further storage is given." },
+        { title: "6. Your Rights", text: "You have the right to access, rectify, erase, restrict processing, object, and data portability. Contact us." },
+        { title: "7. Contact", text: "Email: info@betreuerpro.io" }
+      ]
+    }
+  };
+
+  var currentLang = "de";
+
+  function detectLanguage() {
+    var userLang = navigator.language || navigator.userLanguage;
+    if (userLang.indexOf("tr") === 0) return "tr";
+    if (userLang.indexOf("en") === 0) return "en";
+    return "de";
+  }
+
+  function renderPrivacy(lang) {
+    var t = privacyTexts[lang];
+    if (!t) return;
+    var html = '<div class="privacy-title">' + t.title + '</div>' +
+               '<div class="privacy-sub">' + t.sub + '</div>';
+    for (var i = 0; i < t.sections.length; i++) {
+      var s = t.sections[i];
+      html += '<div class="privacy-section">' +
+                '<h3>' + s.title + '</h3>' +
+                '<p>' + s.text + '</p>' +
+              '</div>';
+    }
+    document.getElementById("privacyContent").innerHTML = html;
+    
+    var btns = document.querySelectorAll('.lang-btn');
+    for (var i = 0; i < btns.length; i++) {
+      if (btns[i].getAttribute('data-lang') === lang) {
+        btns[i].classList.add('active');
+      } else {
+        btns[i].classList.remove('active');
+      }
+    }
+  }
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    renderPrivacy(lang);
+  }
+
+  var detectedLang = detectLanguage();
+  currentLang = detectedLang;
+  renderPrivacy(currentLang);
+
+  var langBtns = document.querySelectorAll('.lang-btn');
+  for (var i = 0; i < langBtns.length; i++) {
+    langBtns[i].addEventListener('click', function(e) {
+      var langVal = this.getAttribute('data-lang');
+      setLanguage(langVal);
+    });
+  }
+</script>
+
+</body>
+</html>

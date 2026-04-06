@@ -1,16 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>BetreuerPro — Betreuung. Digital. Sicher.</title>
   <meta name="description" content="Die smarte Lösung für professionelle Betreuer in Deutschland. Dokumente, Berichte, Sicherheit – automatisiert.">
-  
+
   <!-- Open Graph / Social -->
+
   <meta property="og:title" content="BetreuerPro — Betreuung. Digital. Sicher.">
   <meta property="og:description" content="Die smarte Lösung für professionelle Betreuer in Deutschland.">
   <meta property="og:image" content="https://betreuerpro.io/og-image.jpg">
-  <meta property="og:url" content="https://betreuerpro.de">
+  <meta property="og:url" content="https://betreuerpro.io">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -239,6 +241,24 @@
       color: #8BA0BC;
       margin-top: 16px;
     }
+    .form-success {
+      font-size: 0.8rem;
+      text-align: center;
+      color: #2ECC71;
+      margin-top: 12px;
+      padding: 8px;
+      background: rgba(46,204,113,0.1);
+      border-radius: 60px;
+    }
+    .form-error {
+      font-size: 0.8rem;
+      text-align: center;
+      color: #E74C3C;
+      margin-top: 12px;
+      padding: 8px;
+      background: rgba(231,76,60,0.1);
+      border-radius: 60px;
+    }
     /* footer */
     .footer {
       padding: 24px 24px 32px;
@@ -271,6 +291,7 @@
       }
     }
   </style>
+
 </head>
 <body>
 <div class="container">
@@ -312,12 +333,13 @@
   <div class="footer">
     <div>© 2026 BetreuerPro — Ein Produkt des PACDI Ökosystems</div>
     <div style="margin: 8px 0;">
-      <a href="#">Datenschutz</a> | <a href="#">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a> | <a href="impressum.html">Impressum</a>
     </div>
     <div class="ecosystem">
       <a href="https://navigopro.de" target="_blank">navigopro.de</a>
       <a href="https://easygov.io" target="_blank">easygov.io</a>
       <a href="https://silvercompass.world" target="_blank">silvercompass.world</a>
+      <a href="https://cogniroute.de" target="_blank">cogniroute.de</a>
     </div>
   </div>
 </div>
@@ -453,12 +475,13 @@
       '<div class="waitlist">' +
         '<h3>📬 ' + t.waitlistTitle + '</h3>' +
         '<p>' + t.waitlistDesc + '</p>' +
-        '<form id="waitlistForm" onsubmit="return submitWaitlist(event)">' +
+        '<form id="waitlistForm" onsubmit="return false">' +
           '<div class="form-group"><input type="text" id="fullname" placeholder="' + t.namePlace + '" required></div>' +
           '<div class="form-group"><input type="email" id="email" placeholder="' + t.emailPlace + '" required></div>' +
           '<div class="form-group"><select id="role" required>' + roleOptionsHtml + '</select></div>' +
-          '<button type="submit" class="btn-primary">' + t.btnText + '</button>' +
+          '<button type="button" class="btn-primary" onclick="submitWaitlist()">' + t.btnText + '</button>' +
           '<div class="form-note">' + t.note + '</div>' +
+          '<div id="formMessage"></div>' +
         '</form>' +
       '</div>';
     
@@ -474,17 +497,23 @@
     }
   }
   
-  function submitWaitlist(event) {
-    event.preventDefault();
+  function submitWaitlist() {
     var name = document.getElementById('fullname').value.trim();
     var email = document.getElementById('email').value.trim();
     var role = document.getElementById('role').value;
+    var t = translations[currentLang];
+    var messageDiv = document.getElementById('formMessage');
+    
     if (name === '' || email === '' || role === '') {
-      alert(translations[currentLang].errorMsg);
+      messageDiv.innerHTML = '<div class="form-error">' + t.errorMsg + '</div>';
       return false;
     }
-    alert(translations[currentLang].successMsg);
-    document.getElementById('waitlistForm').reset();
+    
+    // Success: clear form and show success message
+    document.getElementById('fullname').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('role').selectedIndex = 0;
+    messageDiv.innerHTML = '<div class="form-success">✓ ' + t.successMsg + '</div>';
     return false;
   }
   
@@ -505,5 +534,6 @@
     });
   }
 </script>
+
 </body>
 </html>
