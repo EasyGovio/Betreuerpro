@@ -76,22 +76,26 @@
     .hero h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.1; color: #F0D080; margin-bottom: 12px; }
     .hero-sub { font-size: 1rem; color: #C9D4E6; max-width: 480px; margin: 0 auto; }
     .features { padding: 20px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .feature-card { background: #0F2845; border-radius: 28px; padding: 20px 16px; border: 1px solid #1E3A5F; text-align: center; }
+    .feature-card { background: #0F2845; border-radius: 28px; padding: 20px 16px; border: 1px solid #1E3A5F; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+    .feature-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
     .feature-icon { font-size: 2rem; margin-bottom: 10px; }
     .feature-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: #F0D080; }
     .feature-desc { font-size: 0.75rem; color: #B8C8E0; line-height: 1.4; }
     .stats { display: flex; flex-wrap: wrap; gap: 12px; padding: 20px 24px; justify-content: center; }
-    .stat-card { background: #0F2845; border-radius: 24px; padding: 20px 12px; flex: 1; min-width: 130px; text-align: center; border: 1px solid #1E3A5F; }
+    .stat-card { background: #0F2845; border-radius: 24px; padding: 20px 12px; flex: 1; min-width: 130px; text-align: center; border: 1px solid #1E3A5F; transition: transform 0.2s; }
+    .stat-card:hover { transform: translateY(-3px); }
     .stat-number { font-size: 1.7rem; font-weight: 800; color: #F0D080; }
     .stat-label { font-size: 0.75rem; color: #C9D4E6; margin-top: 6px; }
-    .knowledge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 24px; }
-    .knowledge-card { background: #0F2845; border-radius: 28px; padding: 20px 16px; border: 1px solid #1E3A5F; text-align: left; transition: transform 0.2s; }
-    .knowledge-card:hover { transform: translateY(-4px); }
-    .knowledge-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
-    .knowledge-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: #F0D080; }
-    .knowledge-desc { font-size: 0.75rem; color: #B8C8E0; line-height: 1.4; margin-bottom: 12px; }
-    .knowledge-link { display: inline-block; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); border-radius: 40px; padding: 6px 14px; font-size: 0.7rem; font-weight: 600; color: #F0D080; text-decoration: none; transition: all 0.2s; }
-    .knowledge-link:hover { background: #C9A84C; color: #0B1E35; border-color: #C9A84C; }
+    .blog-section { padding: 20px 24px; }
+    .blog-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; text-align: center; color: #F0D080; }
+    .blog-sub { text-align: center; font-size: 0.85rem; color: #C9D4E6; margin-bottom: 24px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .blog-card { background: #0F2845; border-radius: 20px; padding: 20px; border: 1px solid #1E3A5F; transition: transform 0.2s, box-shadow 0.2s; }
+    .blog-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .blog-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #F0D080; }
+    .blog-card p { font-size: 0.8rem; color: #C9D4E6; margin-bottom: 16px; line-height: 1.5; }
+    .blog-link { display: inline-block; background: rgba(201,168,76,0.2); border: 1px solid #C9A84C; border-radius: 40px; padding: 6px 16px; font-size: 0.75rem; font-weight: 600; color: #F0D080; text-decoration: none; transition: 0.2s; }
+    .blog-link:hover { background: #C9A84C; color: #0B1E35; }
     .waitlist { background: #0F2845; margin: 20px 24px 32px; padding: 28px 24px; border-radius: 32px; border: 1px solid #1E3A5F; }
     .waitlist h3 { font-size: 1.3rem; margin-bottom: 6px; text-align: center; }
     .waitlist p { text-align: center; font-size: 0.85rem; color: #C9D4E6; margin-bottom: 24px; }
@@ -110,8 +114,8 @@
     @media (max-width: 540px) {
       .features { grid-template-columns: 1fr; }
       .stats { flex-direction: column; }
-      .knowledge-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 1.9rem; }
+      .blog-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -181,13 +185,15 @@
         { num: "70%", label: "der Betreuungszeit geht auf Bürokratie" },
         { num: "18.000", label: "Berufsbetreuer für 1,3 Mio. Menschen" }
       ],
-      knowledge: [
-        { icon: "📘", title: "Was ist gesetzliche Betreuung?", desc: "Definition, Ablauf, Voraussetzungen für Betreuer und Betroffene.", link: "/blog/was-ist-gesetzliche-betreuung" },
-        { icon: "📋", title: "Aufgaben & Pflichten eines Betreuers", desc: "Vermögenssorge, Gesundheitssorge, Berichtspflichten im Alltag.", link: "/blog/betreuer-aufgaben-und-pflichten" },
-        { icon: "⚖️", title: "Betreuungsrecht in Deutschland", desc: "Rechtsgrundlagen, Reform 2023, Verfahren vor dem Amtsgericht.", link: "/blog/betreuungsrecht-deutschland" },
-        { icon: "💰", title: "Betreuervergütung & Abrechnung", desc: "Stundensätze, Aufwandspauschalen, Abrechnung beim Amtsgericht.", link: "/blog/betreuervergutung-abrechnung" },
-        { icon: "📝", title: "Betreuungsbericht schreiben", desc: "Aufbau, Inhalte, Muster für den Jahresbericht ans Gericht.", link: "/blog/betreuungsbericht-schreiben" },
-        { icon: "🧠", title: "Demenz & Alzheimer – Betreuung", desc: "Besondere Herausforderungen, Kommunikation, Pflegegrad nutzen.", link: "/blog/betreuung-demenz-alzheimer" }
+      blogTitle: "Wissen & Ratgeber",
+      blogSub: "Kompakt erklärt – für Ihre tägliche Arbeit",
+      articles: [
+        { title: "Was ist gesetzliche Betreuung?", desc: "Definition, Ablauf, Voraussetzungen.", link: "/was-ist-gesetzliche-betreuung.html" },
+        { title: "Aufgaben & Pflichten eines Betreuers", desc: "Vermögenssorge, Gesundheitssorge, Berichtspflichten.", link: "/betreuer-aufgaben-und-pflichten.html" },
+        { title: "Betreuungsrecht in Deutschland", desc: "Grundlagen, Reform 2023, Verfahren.", link: "/betreuungsrecht-deutschland.html" },
+        { title: "Betreuervergütung & Abrechnung", desc: "Stundensätze, Aufwandspauschalen, Abrechnungsverfahren.", link: "/betreuervergutung-abrechnung.html" },
+        { title: "Betreuungsbericht schreiben", desc: "Aufbau, Inhalte, Muster für den Jahresbericht.", link: "/betreuungsbericht-schreiben.html" },
+        { title: "Demenz & Alzheimer", desc: "Besondere Herausforderungen für Betreuer.", link: "/betreuung-demenz-alzheimer.html" }
       ],
       waitlistTitle: "Frühen Zugang sichern",
       waitlistDesc: "Werde einer der ersten Anwender von BetreuerPro.",
@@ -216,13 +222,15 @@
         { num: "%70", label: "Vasi mesaisi bürokrasiye gidiyor" },
         { num: "18.000", label: "Profesyonel vasi — 1,3 milyona bakıyor" }
       ],
-      knowledge: [
-        { icon: "📘", title: "Yasal Vasi Nedir?", desc: "Tanım, süreç, vasi ve ilgili kişi için şartlar.", link: "/blog/was-ist-gesetzliche-betreuung" },
-        { icon: "📋", title: "Vasinin Görev ve Yükümlülükleri", desc: "Mal varlığı, sağlık, raporlama yükümlülükleri.", link: "/blog/betreuer-aufgaben-und-pflichten" },
-        { icon: "⚖️", title: "Almanya'da Vasi Hukuku", desc: "Yasal dayanaklar, 2023 reformu, Sulh Mahkemesi süreci.", link: "/blog/betreuungsrecht-deutschland" },
-        { icon: "💰", title: "Vasi Ücreti ve Faturalama", desc: "Saatlik ücretler, giderler, Sulh Mahkemesi'nde fatura.", link: "/blog/betreuervergutung-abrechnung" },
-        { icon: "📝", title: "Vasi Raporu Yazmak", desc: "Yapısı, içerik, yıllık rapor örneği.", link: "/blog/betreuungsbericht-schreiben" },
-        { icon: "🧠", title: "Demans ve Alzheimer – Vasi", desc: "Özel zorluklar, iletişim, bakım derecesinden yararlanma.", link: "/blog/betreuung-demenz-alzheimer" }
+      blogTitle: "Bilgi & Rehber",
+      blogSub: "Kompakt açıklamalı – günlük işleriniz için",
+      articles: [
+        { title: "Yasal vasi nedir?", desc: "Tanım, süreç, şartlar.", link: "/was-ist-gesetzliche-betreuung.html" },
+        { title: "Vasinin görev ve yükümlülükleri", desc: "Mal varlığı, sağlık, rapor yükümlülükleri.", link: "/betreuer-aufgaben-und-pflichten.html" },
+        { title: "Almanya'da vasi hukuku", desc: "Temeller, reform, süreç.", link: "/betreuungsrecht-deutschland.html" },
+        { title: "Vasi ücreti ve faturalama", desc: "Saatlik ücretler, harcamalar, faturalama.", link: "/betreuervergutung-abrechnung.html" },
+        { title: "Vasi raporu yazmak", desc: "Yapısı, içerik, örnek rapor.", link: "/betreuungsbericht-schreiben.html" },
+        { title: "Demans ve Alzheimer", desc: "Vasiler için özel zorluklar.", link: "/betreuung-demenz-alzheimer.html" }
       ],
       waitlistTitle: "Erken erişimi garantile",
       waitlistDesc: "BetreuerPro'yu ilk kullananlardan ol.",
@@ -251,13 +259,15 @@
         { num: "70%", label: "of guardians' time spent on bureaucracy" },
         { num: "18,000", label: "professional guardians for 1.3M people" }
       ],
-      knowledge: [
-        { icon: "📘", title: "What is legal guardianship?", desc: "Definition, process, requirements for guardians and individuals.", link: "/blog/was-ist-gesetzliche-betreuung" },
-        { icon: "📋", title: "Duties & obligations of a guardian", desc: "Asset management, healthcare, reporting duties.", link: "/blog/betreuer-aufgaben-und-pflichten" },
-        { icon: "⚖️", title: "Guardianship law in Germany", desc: "Legal framework, 2023 reform, court proceedings.", link: "/blog/betreuungsrecht-deutschland" },
-        { icon: "💰", title: "Guardian remuneration & invoicing", desc: "Hourly rates, expenses, billing at local court.", link: "/blog/betreuervergutung-abrechnung" },
-        { icon: "📝", title: "How to write a guardianship report", desc: "Structure, content, template for the annual report.", link: "/blog/betreuungsbericht-schreiben" },
-        { icon: "🧠", title: "Dementia & Alzheimer – guardianship", desc: "Special challenges, communication, using care grade.", link: "/blog/betreuung-demenz-alzheimer" }
+      blogTitle: "Knowledge & Guides",
+      blogSub: "Compactly explained – for your daily work",
+      articles: [
+        { title: "What is legal guardianship?", desc: "Definition, procedure, requirements.", link: "/was-ist-gesetzliche-betreuung.html" },
+        { title: "Guardian's duties & obligations", desc: "Assets, health, reporting.", link: "/betreuer-aufgaben-und-pflichten.html" },
+        { title: "Guardianship law in Germany", desc: "Basics, reform 2023, procedure.", link: "/betreuungsrecht-deutschland.html" },
+        { title: "Remuneration & billing", desc: "Hourly rates, expenses, billing process.", link: "/betreuervergutung-abrechnung.html" },
+        { title: "How to write a care report", desc: "Structure, content, template.", link: "/betreuungsbericht-schreiben.html" },
+        { title: "Dementia & Alzheimer", desc: "Special challenges for guardians.", link: "/betreuung-demenz-alzheimer.html" }
       ],
       waitlistTitle: "Secure early access",
       waitlistDesc: "Be among the first to use BetreuerPro.",
@@ -294,14 +304,18 @@
       return '<div class="stat-card"><div class="stat-number">' + s.num + '</div><div class="stat-label">' + s.label + '</div></div>';
     }).join('');
 
-    var knowledgeHtml = t.knowledge.map(function(k) {
-      return '<div class="knowledge-card">' +
-        '<span class="knowledge-icon">' + k.icon + '</span>' +
-        '<div class="knowledge-title">' + k.title + '</div>' +
-        '<div class="knowledge-desc">' + k.desc + '</div>' +
-        '<a href="' + k.link + '" class="knowledge-link">' + (lang === 'de' ? 'Mehr erfahren →' : (lang === 'tr' ? 'Daha fazla →' : 'Read more →')) + '</a>' +
+    var blogHtml = '<div class="blog-section">' +
+      '<div class="blog-title">📘 ' + t.blogTitle + '</div>' +
+      '<div class="blog-sub">' + t.blogSub + '</div>' +
+      '<div class="blog-grid">';
+    t.articles.forEach(function(article) {
+      blogHtml += '<div class="blog-card">' +
+        '<h4>' + article.title + '</h4>' +
+        '<p>' + article.desc + '</p>' +
+        '<a href="' + article.link + '" class="blog-link">' + (lang === 'de' ? 'Mehr erfahren →' : (lang === 'tr' ? 'Daha fazla →' : 'Read more →')) + '</a>' +
         '</div>';
-    }).join('');
+    });
+    blogHtml += '</div></div>';
 
     var roleOptionsHtml = t.roleOptions.map(function(r) {
       return '<option value="' + r + '">' + r + '</option>';
@@ -315,7 +329,7 @@
       '</div>' +
       '<div class="features">' + featuresHtml + '</div>' +
       '<div class="stats">' + statsHtml + '</div>' +
-      '<div class="knowledge-grid">' + knowledgeHtml + '</div>' +
+      blogHtml +
       '<div class="waitlist">' +
         '<h3>📬 ' + t.waitlistTitle + '</h3>' +
         '<p>' + t.waitlistDesc + '</p>' +
