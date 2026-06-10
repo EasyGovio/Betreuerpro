@@ -1,27 +1,49 @@
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>BetreuerPro — Betreuung. Digital. Sicher.</title>
   <meta name="description" content="Die smarte Lösung für professionelle Betreuer in Deutschland. Dokumente, Berichte, Sicherheit – automatisiert.">
-
-  <!-- Open Graph / Social -->
-
   <meta property="og:title" content="BetreuerPro — Betreuung. Digital. Sicher.">
   <meta property="og:description" content="Die smarte Lösung für professionelle Betreuer in Deutschland.">
   <meta property="og:image" content="https://betreuerpro.io/og-image.jpg">
   <meta property="og:url" content="https://betreuerpro.io">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://betreuerpro.io">
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8426936740213369" crossorigin="anonymous"></script>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BetreuerPro",
+    "url": "https://betreuerpro.io",
+    "description": "Digitale Lösung für professionelle gesetzliche Betreuer in Deutschland.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "19.90",
+      "priceCurrency": "EUR",
+      "billingIncrement": "P1M"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "AskMeAI Teknoloji Ltd. Şti.",
+      "url": "https://betreuerpro.io"
+    },
+    "areaServed": "DE",
+    "availableLanguage": ["German", "Turkish", "English"]
+  }
+  </script>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #0B1E35;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
@@ -29,269 +51,51 @@
       line-height: 1.4;
       padding: 20px;
     }
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-      background: #0B1E35;
-      border-radius: 48px;
-      overflow: hidden;
-    }
-    /* header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      padding: 24px 24px 16px 24px;
-      border-bottom: 1px solid #1E3A5F;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo svg {
-      width: 36px;
-      height: 36px;
-      display: block;
-    }
-    .logo-text {
-      font-weight: 800;
-      font-size: 1.5rem;
-      letter-spacing: -0.3px;
-      color: #F0D080;
-    }
-    .tagline {
-      font-size: 0.7rem;
-      color: #C9A84C;
-      margin-top: 2px;
-    }
-    .lang-buttons {
-      display: flex;
-      gap: 8px;
-    }
-    .lang-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #1E3A5F;
-      border-radius: 40px;
-      padding: 6px 12px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: #FFFFFF;
-      transition: 0.2s;
-    }
-    .lang-btn.active {
-      background: linear-gradient(135deg, #C9A84C, #F0D080);
-      color: #0B1E35;
-      border-color: #C9A84C;
-    }
-    /* hero image */
-    .hero-image {
-      width: 100%;
-      padding: 0 24px 0 24px;
-      margin-top: 24px;
-    }
-    .hero-image img {
-      width: 100%;
-      border-radius: 24px;
-      display: block;
-    }
-    /* hero */
-    .hero {
-      padding: 32px 24px 24px;
-      text-align: center;
-    }
-    .badge {
-      background: rgba(201,168,76,0.12);
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 60px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #F0D080;
-      margin-bottom: 20px;
-      border: 1px solid rgba(201,168,76,0.3);
-    }
-    .hero h1 {
-      font-size: 2.4rem;
-      font-weight: 800;
-      line-height: 1.1;
-      color: #F0D080;
-      margin-bottom: 12px;
-    }
-    .hero-sub {
-      font-size: 1rem;
-      color: #C9D4E6;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    /* features grid */
-    .features {
-      padding: 20px 24px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .feature-card {
-      background: #0F2845;
-      border-radius: 28px;
-      padding: 20px 16px;
-      border: 1px solid #1E3A5F;
-      text-align: center;
-    }
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-    .feature-title {
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 6px;
-      color: #F0D080;
-    }
-    .feature-desc {
-      font-size: 0.75rem;
-      color: #B8C8E0;
-      line-height: 1.4;
-    }
-    /* stats */
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 20px 24px;
-      justify-content: center;
-    }
-    .stat-card {
-      background: #0F2845;
-      border-radius: 24px;
-      padding: 20px 12px;
-      flex: 1;
-      min-width: 130px;
-      text-align: center;
-      border: 1px solid #1E3A5F;
-    }
-    .stat-number {
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: #F0D080;
-    }
-    .stat-label {
-      font-size: 0.75rem;
-      color: #C9D4E6;
-      margin-top: 6px;
-    }
-    /* waitlist form */
-    .waitlist {
-      background: #0F2845;
-      margin: 20px 24px 32px;
-      padding: 28px 24px;
-      border-radius: 32px;
-      border: 1px solid #1E3A5F;
-    }
-    .waitlist h3 {
-      font-size: 1.3rem;
-      margin-bottom: 6px;
-      text-align: center;
-    }
-    .waitlist p {
-      text-align: center;
-      font-size: 0.85rem;
-      color: #C9D4E6;
-      margin-bottom: 24px;
-    }
-    .form-group {
-      margin-bottom: 16px;
-    }
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 14px 18px;
-      background: rgba(11,30,53,0.8);
-      border: 1px solid #1E3A5F;
-      border-radius: 60px;
-      font-size: 0.9rem;
-      color: #FFFFFF;
-      font-family: inherit;
-    }
-    .form-group input:focus, .form-group select:focus {
-      outline: none;
-      border-color: #C9A84C;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #C9A84C, #F0D080);
-      border: none;
-      border-radius: 60px;
-      padding: 14px 20px;
-      font-weight: 700;
-      font-size: 1rem;
-      color: #0B1E35;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.2s;
-    }
-    .btn-primary:hover {
-      opacity: 0.9;
-      transform: scale(0.98);
-    }
-    .form-note {
-      font-size: 0.7rem;
-      text-align: center;
-      color: #8BA0BC;
-      margin-top: 16px;
-    }
-    .form-success {
-      font-size: 0.8rem;
-      text-align: center;
-      color: #2ECC71;
-      margin-top: 12px;
-      padding: 8px;
-      background: rgba(46,204,113,0.1);
-      border-radius: 60px;
-    }
-    .form-error {
-      font-size: 0.8rem;
-      text-align: center;
-      color: #E74C3C;
-      margin-top: 12px;
-      padding: 8px;
-      background: rgba(231,76,60,0.1);
-      border-radius: 60px;
-    }
-    /* footer */
-    .footer {
-      padding: 24px 24px 32px;
-      border-top: 1px solid #1E3A5F;
-      text-align: center;
-      font-size: 0.7rem;
-      color: #8BA0BC;
-    }
-    .footer a {
-      color: #F0D080;
-      text-decoration: none;
-      margin: 0 8px;
-    }
-    .ecosystem {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 12px;
-    }
+    .container { max-width: 680px; margin: 0 auto; background: #0B1E35; border-radius: 48px; overflow: hidden; }
+    .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding: 24px 24px 16px 24px; border-bottom: 1px solid #1E3A5F; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo svg { width: 36px; height: 36px; display: block; }
+    .logo-text { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.3px; color: #F0D080; }
+    .tagline { font-size: 0.7rem; color: #C9A84C; margin-top: 2px; }
+    .lang-buttons { display: flex; gap: 8px; }
+    .lang-btn { background: rgba(255,255,255,0.05); border: 1px solid #1E3A5F; border-radius: 40px; padding: 6px 12px; font-size: 0.7rem; font-weight: 600; cursor: pointer; color: #FFFFFF; transition: 0.2s; }
+    .lang-btn.active { background: linear-gradient(135deg, #C9A84C, #F0D080); color: #0B1E35; border-color: #C9A84C; }
+    .hero-image { width: 100%; padding: 0 24px; margin-top: 24px; }
+    .hero-image img { width: 100%; border-radius: 24px; display: block; }
+    .hero { padding: 32px 24px 24px; text-align: center; }
+    .badge { background: rgba(201,168,76,0.12); display: inline-block; padding: 6px 14px; border-radius: 60px; font-size: 0.7rem; font-weight: 600; color: #F0D080; margin-bottom: 20px; border: 1px solid rgba(201,168,76,0.3); }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.1; color: #F0D080; margin-bottom: 12px; }
+    .hero-sub { font-size: 1rem; color: #C9D4E6; max-width: 480px; margin: 0 auto; }
+    .features { padding: 20px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .feature-card { background: #0F2845; border-radius: 28px; padding: 20px 16px; border: 1px solid #1E3A5F; text-align: center; }
+    .feature-icon { font-size: 2rem; margin-bottom: 10px; }
+    .feature-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: #F0D080; }
+    .feature-desc { font-size: 0.75rem; color: #B8C8E0; line-height: 1.4; }
+    .stats { display: flex; flex-wrap: wrap; gap: 12px; padding: 20px 24px; justify-content: center; }
+    .stat-card { background: #0F2845; border-radius: 24px; padding: 20px 12px; flex: 1; min-width: 130px; text-align: center; border: 1px solid #1E3A5F; }
+    .stat-number { font-size: 1.7rem; font-weight: 800; color: #F0D080; }
+    .stat-label { font-size: 0.75rem; color: #C9D4E6; margin-top: 6px; }
+    .waitlist { background: #0F2845; margin: 20px 24px 32px; padding: 28px 24px; border-radius: 32px; border: 1px solid #1E3A5F; }
+    .waitlist h3 { font-size: 1.3rem; margin-bottom: 6px; text-align: center; }
+    .waitlist p { text-align: center; font-size: 0.85rem; color: #C9D4E6; margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group input, .form-group select { width: 100%; padding: 14px 18px; background: rgba(11,30,53,0.8); border: 1px solid #1E3A5F; border-radius: 60px; font-size: 0.9rem; color: #FFFFFF; font-family: inherit; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #C9A84C; }
+    .form-group select option { background: #0B1E35; }
+    .btn-primary { background: linear-gradient(135deg, #C9A84C, #F0D080); border: none; border-radius: 60px; padding: 14px 20px; font-weight: 700; font-size: 1rem; color: #0B1E35; cursor: pointer; width: 100%; transition: 0.2s; }
+    .btn-primary:hover { opacity: 0.9; transform: scale(0.98); }
+    .form-note { font-size: 0.7rem; text-align: center; color: #8BA0BC; margin-top: 16px; }
+    .form-success { font-size: 0.8rem; text-align: center; color: #2ECC71; margin-top: 12px; padding: 8px; background: rgba(46,204,113,0.1); border-radius: 60px; }
+    .form-error { font-size: 0.8rem; text-align: center; color: #E74C3C; margin-top: 12px; padding: 8px; background: rgba(231,76,60,0.1); border-radius: 60px; }
+    .footer { padding: 24px 24px 32px; border-top: 1px solid #1E3A5F; text-align: center; font-size: 0.7rem; color: #8BA0BC; }
+    .footer a { color: #F0D080; text-decoration: none; margin: 0 8px; }
+    .ecosystem { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
     @media (max-width: 540px) {
-      .features {
-        grid-template-columns: 1fr;
-      }
-      .stats {
-        flex-direction: column;
-      }
-      .hero h1 {
-        font-size: 1.9rem;
-      }
+      .features { grid-template-columns: 1fr; }
+      .stats { flex-direction: column; }
+      .hero h1 { font-size: 1.9rem; }
     }
   </style>
-
 </head>
 <body>
 <div class="container">
@@ -321,11 +125,7 @@
   </div>
 
   <div class="hero-image">
-    <img 
-      src="og-image.jpg" 
-      alt="BetreuerPro — Betreuung. Digital. Sicher." 
-      style="width:100%; border-radius:24px; display:block;"
-    >
+    <img src="og-image.jpg" alt="BetreuerPro — Betreuung. Digital. Sicher.">
   </div>
 
   <div id="mainContent"></div>
@@ -336,15 +136,16 @@
       <a href="datenschutz.html">Datenschutz</a> | <a href="impressum.html">Impressum</a>
     </div>
     <div class="ecosystem">
+      <a href="https://wasstehtmirzu.com" target="_blank">wasstehtmirzu.com</a>
       <a href="https://navigopro.de" target="_blank">navigopro.de</a>
-      <a href="https://easygov.io" target="_blank">easygov.io</a>
       <a href="https://silvercompass.world" target="_blank">silvercompass.world</a>
-      <a href="https://cogniroute.de" target="_blank">cogniroute.de</a>
     </div>
   </div>
 </div>
 
 <script>
+  var FORMSPREE_ENDPOINT = "https://formspree.io/f/xqeobrre";
+
   var translations = {
     de: {
       headerTag: "Betreuung. Digital. Sicher.",
@@ -369,8 +170,9 @@
       roleOptions: ["Berufsbetreuer", "Ehrenamtlich", "Betreuungsverein", "Sonstige"],
       btnText: "Frühen Zugang sichern →",
       note: "Kein Spam. Kein Abo. Nur relevante Updates.",
-      successMsg: "Vielen Dank! Wir melden uns bei dir.",
-      errorMsg: "Bitte alle Felder ausfüllen."
+      successMsg: "Vielen Dank! Wir melden uns bei Ihnen.",
+      errorMsg: "Bitte alle Felder ausfüllen.",
+      sending: "Wird gesendet..."
     },
     tr: {
       headerTag: "Betreuung. Digital. Sicher.",
@@ -396,7 +198,8 @@
       btnText: "Erken erişimi garantile →",
       note: "Spam yok. Abonelik yok. Sadece güncellemeler.",
       successMsg: "Teşekkürler! Size ulaşacağız.",
-      errorMsg: "Lütfen tüm alanları doldurun."
+      errorMsg: "Lütfen tüm alanları doldurun.",
+      sending: "Gönderiliyor..."
     },
     en: {
       headerTag: "Betreuung. Digital. Sicher.",
@@ -404,9 +207,9 @@
       h1: "Caregiving reimagined.",
       sub: "Documents. Reports. Securely automated.",
       features: [
-        { icon: "📄", title: "Document Automation", desc: "Auto‑generate, manage and send documents." },
+        { icon: "📄", title: "Document Automation", desc: "Auto-generate, manage and send documents." },
         { icon: "🎙️", title: "Voice Reporting (AI)", desc: "Turn voice notes into professional reports." },
-        { icon: "🔒", title: "Zero‑Knowledge Security", desc: "Your data is encrypted locally – zero trust." },
+        { icon: "🔒", title: "Zero-Knowledge Security", desc: "Your data is encrypted locally – zero trust." },
         { icon: "📍", title: "GPS Mileage Tracking", desc: "Track trips accurately for correct billing." }
       ],
       stats: [
@@ -422,16 +225,17 @@
       btnText: "Secure early access →",
       note: "No spam. No subscription. Only relevant updates.",
       successMsg: "Thank you! We'll get in touch.",
-      errorMsg: "Please fill all fields."
+      errorMsg: "Please fill all fields.",
+      sending: "Sending..."
     }
   };
 
   var currentLang = "de";
 
   function detectLanguage() {
-    var userLang = navigator.language || navigator.userLanguage;
-    if (userLang.indexOf("tr") === 0) return "tr";
-    if (userLang.indexOf("en") === 0) return "en";
+    var l = navigator.language || navigator.userLanguage || "de";
+    if (l.indexOf("tr") === 0) return "tr";
+    if (l.indexOf("en") === 0) return "en";
     return "de";
   }
 
@@ -439,32 +243,20 @@
     var t = translations[lang];
     if (!t) return;
     document.getElementById("headerTagline").innerText = t.headerTag;
-    
-    var featuresHtml = '';
-    for (var i = 0; i < t.features.length; i++) {
-      var f = t.features[i];
-      featuresHtml += '<div class="feature-card">' +
-        '<div class="feature-icon">' + f.icon + '</div>' +
-        '<div class="feature-title">' + f.title + '</div>' +
-        '<div class="feature-desc">' + f.desc + '</div>' +
-        '</div>';
-    }
-    
-    var statsHtml = '';
-    for (var j = 0; j < t.stats.length; j++) {
-      var s = t.stats[j];
-      statsHtml += '<div class="stat-card">' +
-        '<div class="stat-number">' + s.num + '</div>' +
-        '<div class="stat-label">' + s.label + '</div>' +
-        '</div>';
-    }
-    
-    var roleOptionsHtml = '';
-    for (var k = 0; k < t.roleOptions.length; k++) {
-      roleOptionsHtml += '<option value="' + t.roleOptions[k] + '">' + t.roleOptions[k] + '</option>';
-    }
-    
-    var mainHtml = 
+
+    var featuresHtml = t.features.map(function(f) {
+      return '<div class="feature-card"><div class="feature-icon">' + f.icon + '</div><div class="feature-title">' + f.title + '</div><div class="feature-desc">' + f.desc + '</div></div>';
+    }).join('');
+
+    var statsHtml = t.stats.map(function(s) {
+      return '<div class="stat-card"><div class="stat-number">' + s.num + '</div><div class="stat-label">' + s.label + '</div></div>';
+    }).join('');
+
+    var roleOptionsHtml = t.roleOptions.map(function(r) {
+      return '<option value="' + r + '">' + r + '</option>';
+    }).join('');
+
+    document.getElementById("mainContent").innerHTML =
       '<div class="hero">' +
         '<div class="badge">' + t.badge + '</div>' +
         '<h1>' + t.h1 + '</h1>' +
@@ -475,65 +267,66 @@
       '<div class="waitlist">' +
         '<h3>📬 ' + t.waitlistTitle + '</h3>' +
         '<p>' + t.waitlistDesc + '</p>' +
-        '<form id="waitlistForm" onsubmit="return false">' +
-          '<div class="form-group"><input type="text" id="fullname" placeholder="' + t.namePlace + '" required></div>' +
-          '<div class="form-group"><input type="email" id="email" placeholder="' + t.emailPlace + '" required></div>' +
-          '<div class="form-group"><select id="role" required>' + roleOptionsHtml + '</select></div>' +
-          '<button type="button" class="btn-primary" onclick="submitWaitlist()">' + t.btnText + '</button>' +
+        '<form id="waitlistForm">' +
+          '<div class="form-group"><input type="text" name="name" id="fullname" placeholder="' + t.namePlace + '" required></div>' +
+          '<div class="form-group"><input type="email" name="email" id="email" placeholder="' + t.emailPlace + '" required></div>' +
+          '<div class="form-group"><select name="role" id="role" required>' + roleOptionsHtml + '</select></div>' +
+          '<input type="hidden" name="source" value="betreuerpro.io">' +
+          '<button type="submit" class="btn-primary" id="submitBtn">' + t.btnText + '</button>' +
           '<div class="form-note">' + t.note + '</div>' +
           '<div id="formMessage"></div>' +
         '</form>' +
       '</div>';
-    
-    document.getElementById("mainContent").innerHTML = mainHtml;
-    
-    var btns = document.querySelectorAll('.lang-btn');
-    for (var i = 0; i < btns.length; i++) {
-      if (btns[i].getAttribute('data-lang') === lang) {
-        btns[i].classList.add('active');
-      } else {
-        btns[i].classList.remove('active');
-      }
-    }
+
+    document.getElementById("waitlistForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      submitWaitlist();
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
   }
-  
-  function submitWaitlist() {
-    var name = document.getElementById('fullname').value.trim();
-    var email = document.getElementById('email').value.trim();
-    var role = document.getElementById('role').value;
+
+  async function submitWaitlist() {
     var t = translations[currentLang];
+    var btn = document.getElementById('submitBtn');
     var messageDiv = document.getElementById('formMessage');
-    
-    if (name === '' || email === '' || role === '') {
-      messageDiv.innerHTML = '<div class="form-error">' + t.errorMsg + '</div>';
-      return false;
+    btn.textContent = t.sending;
+    btn.disabled = true;
+    try {
+      var res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(document.getElementById('waitlistForm')),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        messageDiv.innerHTML = '<div class="form-success">✓ ' + t.successMsg + '</div>';
+        document.getElementById('waitlistForm').reset();
+      } else {
+        messageDiv.innerHTML = '<div class="form-error">⚠ ' + t.errorMsg + '</div>';
+        btn.textContent = translations[currentLang].btnText;
+        btn.disabled = false;
+      }
+    } catch(err) {
+      messageDiv.innerHTML = '<div class="form-error">⚠ Verbindungsfehler / Bağlantı hatası</div>';
+      btn.disabled = false;
     }
-    
-    // Success: clear form and show success message
-    document.getElementById('fullname').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('role').selectedIndex = 0;
-    messageDiv.innerHTML = '<div class="form-success">✓ ' + t.successMsg + '</div>';
-    return false;
   }
-  
+
   function setLanguage(lang) {
     currentLang = lang;
     renderContent(lang);
   }
-  
-  var detectedLang = detectLanguage();
-  currentLang = detectedLang;
-  renderContent(currentLang);
-  
-  var langBtns = document.querySelectorAll('.lang-btn');
-  for (var i = 0; i < langBtns.length; i++) {
-    langBtns[i].addEventListener('click', function(e) {
-      var langVal = this.getAttribute('data-lang');
-      setLanguage(langVal);
-    });
-  }
-</script>
 
+  currentLang = detectLanguage();
+  renderContent(currentLang);
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      setLanguage(this.getAttribute('data-lang'));
+    });
+  });
+</script>
 </body>
 </html>

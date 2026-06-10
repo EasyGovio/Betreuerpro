@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://betreuerpro.io/sitemap.xml
