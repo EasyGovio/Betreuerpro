@@ -5,127 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Impressum | BetreuerPro</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: #0B1E35;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      color: #FFFFFF;
-      line-height: 1.5;
-      padding: 20px;
-    }
-    .container {
-      max-width: 780px;
-      margin: 0 auto;
-      background: #0B1E35;
-      border-radius: 48px;
-      overflow: hidden;
-    }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      padding: 24px 24px 16px 24px;
-      border-bottom: 1px solid #1E3A5F;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo svg {
-      width: 36px;
-      height: 36px;
-      display: block;
-    }
-    .logo-text {
-      font-weight: 800;
-      font-size: 1.5rem;
-      letter-spacing: -0.3px;
-      color: #F0D080;
-    }
-    .tagline {
-      font-size: 0.7rem;
-      color: #C9A84C;
-      margin-top: 2px;
-    }
-    .lang-buttons {
-      display: flex;
-      gap: 8px;
-    }
-    .lang-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #1E3A5F;
-      border-radius: 40px;
-      padding: 6px 12px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: #FFFFFF;
-      transition: 0.2s;
-    }
-    .lang-btn.active {
-      background: linear-gradient(135deg, #C9A84C, #F0D080);
-      color: #0B1E35;
-      border-color: #C9A84C;
-    }
-    .content {
-      padding: 32px 24px;
-    }
-    .impressum-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #F0D080;
-    }
-    .impressum-sub {
-      font-size: 0.9rem;
-      color: #C9D4E6;
-      margin-bottom: 32px;
-      border-left: 3px solid #F0D080;
-      padding-left: 16px;
-    }
-    .impressum-section {
-      margin-bottom: 24px;
-    }
-    .impressum-section h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #F0D080;
-      margin-bottom: 6px;
-    }
-    .impressum-section p {
-      font-size: 0.9rem;
-      color: #C9D4E6;
-      line-height: 1.6;
-    }
-    .footer {
-      padding: 24px 24px 32px;
-      border-top: 1px solid #1E3A5F;
-      text-align: center;
-      font-size: 0.7rem;
-      color: #8BA0BC;
-    }
-    .footer a {
-      color: #F0D080;
-      text-decoration: none;
-      margin: 0 8px;
-    }
-    .ecosystem {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    @media (max-width: 540px) {
-      .impressum-title { font-size: 1.4rem; }
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0B1E35; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; color: #FFFFFF; line-height: 1.5; padding: 20px; }
+    .container { max-width: 780px; margin: 0 auto; background: #0B1E35; border-radius: 48px; overflow: hidden; }
+    .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding: 24px 24px 16px 24px; border-bottom: 1px solid #1E3A5F; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-text { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.3px; color: #F0D080; }
+    .tagline { font-size: 0.7rem; color: #C9A84C; margin-top: 2px; }
+    .lang-buttons { display: flex; gap: 8px; }
+    .lang-btn { background: rgba(255,255,255,0.05); border: 1px solid #1E3A5F; border-radius: 40px; padding: 6px 12px; font-size: 0.7rem; font-weight: 600; cursor: pointer; color: #FFFFFF; transition: 0.2s; }
+    .lang-btn.active { background: linear-gradient(135deg, #C9A84C, #F0D080); color: #0B1E35; border-color: #C9A84C; }
+    .content { padding: 32px 24px; }
+    .impressum-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; color: #F0D080; }
+    .impressum-sub { font-size: 0.9rem; color: #C9D4E6; margin-bottom: 32px; border-left: 3px solid #F0D080; padding-left: 16px; }
+    .impressum-section { margin-bottom: 24px; }
+    .impressum-section h3 { font-size: 1.1rem; font-weight: 600; color: #F0D080; margin-bottom: 6px; }
+    .impressum-section p { font-size: 0.9rem; color: #C9D4E6; line-height: 1.8; }
+    .footer { padding: 24px 24px 32px; border-top: 1px solid #1E3A5F; text-align: center; font-size: 0.7rem; color: #8BA0BC; }
+    .footer a { color: #F0D080; text-decoration: none; margin: 0 8px; }
+    .ecosystem { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
+    @media (max-width: 540px) { .impressum-title { font-size: 1.4rem; } }
   </style>
 </head>
 <body>
@@ -163,10 +62,9 @@
       <a href="datenschutz.html">Datenschutz</a> | <a href="impressum.html">Impressum</a>
     </div>
     <div class="ecosystem">
+      <a href="https://wasstehtmirzu.com" target="_blank">wasstehtmirzu.com</a>
       <a href="https://navigopro.de" target="_blank">navigopro.de</a>
-      <a href="https://easygov.io" target="_blank">easygov.io</a>
       <a href="https://silvercompass.world" target="_blank">silvercompass.world</a>
-      <a href="https://cogniroute.de" target="_blank">cogniroute.de</a>
     </div>
   </div>
 </div>
@@ -177,36 +75,90 @@
       title: "Impressum",
       sub: "Angaben gemäß § 5 DDG",
       sections: [
-        { title: "Betreiber", text: "Mehmet Aydınlı<br>[Adresse wird nachgetragen]<br>Berlin, Deutschland" },
-        { title: "Kontakt", text: "E-Mail: info@betreuerpro.io" },
-        { title: "Umsatzsteuer-ID", text: "Derzeit in Beantragung." },
-        { title: "Redaktionell Verantwortlicher", text: "Mehmet Aydınlı, Berlin" },
-        { title: "EU-Streitschlichtung", text: "https://ec.europa.eu/consumers/odr/" },
-        { title: "Verbraucherstreitbeilegung", text: "Wir nehmen nicht an Streitbeilegungsverfahren teil." }
+        {
+          title: "Verantwortlicher",
+          text: "AskMeAI Teknoloji Ltd. Şti.<br>Mehmet Aydınlı, Berlin<br><br>Bernauerstr. 115<br>13507 Berlin<br>Deutschland"
+        },
+        {
+          title: "Unternehmensregistrierung",
+          text: "Eingetragen im türkischen Handelsregister (Ticaret Sicili)<br>Registernummer: 23837 · Manisa TSO, Türkiye<br><br>Dies ist ein reiner Online-Service ohne Niederlassung in Deutschland."
+        },
+        {
+          title: "Kontakt",
+          text: "E-Mail: <a href='mailto:info@betreuerpro.io' style='color:#F0D080;'>info@betreuerpro.io</a>"
+        },
+        {
+          title: "Inhaltlich Verantwortlicher",
+          text: "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:<br>Mehmet Aydınlı, Bernauerstr. 115, 13507 Berlin"
+        },
+        {
+          title: "Haftungsausschluss",
+          text: "BetreuerPro ist ein digitales Hilfsmittel und stellt keine Rechts- oder Steuerberatung dar. Für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte übernehmen wir keine Gewähr."
+        },
+        {
+          title: "EU-Streitschlichtung",
+          text: "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br><a href='https://ec.europa.eu/consumers/odr/' target='_blank' style='color:#F0D080;'>https://ec.europa.eu/consumers/odr/</a><br><br>Wir nehmen nicht an Streitbeilegungsverfahren teil."
+        }
       ]
     },
     tr: {
       title: "Künye",
-      sub: "Yasal Bilgiler (Almanya DDG §5 uyarınca)",
+      sub: "Almanya DDG §5 uyarınca yasal bilgiler",
       sections: [
-        { title: "İşletme Sahibi", text: "Mehmet Aydınlı<br>[Adres daha sonra eklenecek]<br>Berlin, Almanya" },
-        { title: "İletişim", text: "E-posta: info@betreuerpro.io" },
-        { title: "Vergi Numarası (Umsatzsteuer-ID)", text: "Başvuru aşamasında." },
-        { title: "Yazı İşleri Sorumlusu", text: "Mehmet Aydınlı, Berlin" },
-        { title: "AB Tüketici Uyuşmazlıkları", text: "https://ec.europa.eu/consumers/odr/" },
-        { title: "Tüketici Uyuşmazlık Çözümü", text: "Uyuşmazlık çözüm prosedürlerine katılmıyoruz." }
+        {
+          title: "Sorumlu Kişi / Şirket",
+          text: "AskMeAI Teknoloji Ltd. Şti.<br>Mehmet Aydınlı, Berlin<br><br>Bernauerstr. 115<br>13507 Berlin<br>Almanya"
+        },
+        {
+          title: "Şirket Tescili",
+          text: "Türkiye Ticaret Siciline kayıtlıdır.<br>Sicil No: 23837 · Manisa TSO, Türkiye<br><br>Bu hizmet, Almanya'da şubesi bulunmayan tamamen çevrimiçi bir hizmettir."
+        },
+        {
+          title: "İletişim",
+          text: "E-posta: <a href='mailto:info@betreuerpro.io' style='color:#F0D080;'>info@betreuerpro.io</a>"
+        },
+        {
+          title: "İçerik Sorumlusu",
+          text: "Mehmet Aydınlı, Bernauerstr. 115, 13507 Berlin"
+        },
+        {
+          title: "Sorumluluk Reddi",
+          text: "BetreuerPro dijital bir yardım aracıdır ve hukuki veya vergi danışmanlığı niteliği taşımaz. Sağlanan içeriklerin doğruluğu, eksiksizliği ve güncelliği konusunda sorumluluk kabul edilmez."
+        },
+        {
+          title: "AB Tüketici Uyuşmazlıkları",
+          text: "AB Komisyonu çevrimiçi uyuşmazlık çözüm platformu:<br><a href='https://ec.europa.eu/consumers/odr/' target='_blank' style='color:#F0D080;'>https://ec.europa.eu/consumers/odr/</a><br><br>Uyuşmazlık çözüm prosedürlerine katılmıyoruz."
+        }
       ]
     },
     en: {
       title: "Legal Notice",
       sub: "Information according to § 5 DDG (German Digital Services Act)",
       sections: [
-        { title: "Operator", text: "Mehmet Aydınlı<br>[Address to be added]<br>Berlin, Germany" },
-        { title: "Contact", text: "Email: info@betreuerpro.io" },
-        { title: "VAT ID (Umsatzsteuer-ID)", text: "Currently being applied for." },
-        { title: "Editorially Responsible", text: "Mehmet Aydınlı, Berlin" },
-        { title: "EU Dispute Resolution", text: "https://ec.europa.eu/consumers/odr/" },
-        { title: "Consumer Dispute Resolution", text: "We do not participate in dispute resolution proceedings." }
+        {
+          title: "Responsible Person / Company",
+          text: "AskMeAI Teknoloji Ltd. Şti.<br>Mehmet Aydınlı, Berlin<br><br>Bernauerstr. 115<br>13507 Berlin<br>Germany"
+        },
+        {
+          title: "Company Registration",
+          text: "Registered in the Turkish Commercial Registry (Ticaret Sicili)<br>Registration No: 23837 · Manisa TSO, Turkey<br><br>This is a purely online service with no establishment in Germany."
+        },
+        {
+          title: "Contact",
+          text: "Email: <a href='mailto:info@betreuerpro.io' style='color:#F0D080;'>info@betreuerpro.io</a>"
+        },
+        {
+          title: "Editorially Responsible",
+          text: "Mehmet Aydınlı, Bernauerstr. 115, 13507 Berlin"
+        },
+        {
+          title: "Disclaimer",
+          text: "BetreuerPro is a digital assistance tool and does not constitute legal or tax advice. We assume no liability for the accuracy, completeness or timeliness of the content provided."
+        },
+        {
+          title: "EU Dispute Resolution",
+          text: "The European Commission provides an online dispute resolution platform:<br><a href='https://ec.europa.eu/consumers/odr/' target='_blank' style='color:#F0D080;'>https://ec.europa.eu/consumers/odr/</a><br><br>We do not participate in dispute resolution proceedings."
+        }
       ]
     }
   };
@@ -214,9 +166,9 @@
   var currentLang = "de";
 
   function detectLanguage() {
-    var userLang = navigator.language || navigator.userLanguage;
-    if (userLang.indexOf("tr") === 0) return "tr";
-    if (userLang.indexOf("en") === 0) return "en";
+    var l = navigator.language || navigator.userLanguage || "de";
+    if (l.indexOf("tr") === 0) return "tr";
+    if (l.indexOf("en") === 0) return "en";
     return "de";
   }
 
@@ -225,42 +177,24 @@
     if (!t) return;
     var html = '<div class="impressum-title">' + t.title + '</div>' +
                '<div class="impressum-sub">' + t.sub + '</div>';
-    for (var i = 0; i < t.sections.length; i++) {
-      var s = t.sections[i];
-      html += '<div class="impressum-section">' +
-                '<h3>' + s.title + '</h3>' +
-                '<p>' + s.text + '</p>' +
-              '</div>';
-    }
+    t.sections.forEach(function(s) {
+      html += '<div class="impressum-section"><h3>' + s.title + '</h3><p>' + s.text + '</p></div>';
+    });
     document.getElementById("impressumContent").innerHTML = html;
-    
-    var btns = document.querySelectorAll('.lang-btn');
-    for (var i = 0; i < btns.length; i++) {
-      if (btns[i].getAttribute('data-lang') === lang) {
-        btns[i].classList.add('active');
-      } else {
-        btns[i].classList.remove('active');
-      }
-    }
-    document.getElementById("headerTagline").innerText = t.title === "Impressum" ? "Impressum" : (t.title === "Künye" ? "Künye" : "Legal Notice");
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    document.getElementById("headerTagline").innerText = lang === "tr" ? "Künye" : lang === "en" ? "Legal Notice" : "Impressum";
   }
 
-  function setLanguage(lang) {
-    currentLang = lang;
-    renderImpressum(lang);
-  }
+  function setLanguage(lang) { currentLang = lang; renderImpressum(lang); }
 
-  var detectedLang = detectLanguage();
-  currentLang = detectedLang;
+  currentLang = detectLanguage();
   renderImpressum(currentLang);
 
-  var langBtns = document.querySelectorAll('.lang-btn');
-  for (var i = 0; i < langBtns.length; i++) {
-    langBtns[i].addEventListener('click', function(e) {
-      var langVal = this.getAttribute('data-lang');
-      setLanguage(langVal);
-    });
-  }
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { setLanguage(this.getAttribute('data-lang')); });
+  });
 </script>
 </body>
 </html>
