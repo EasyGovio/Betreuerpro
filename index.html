@@ -3,480 +3,916 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>BetreuerPro — Betreuung. Digital. Sicher.</title>
-  <meta name="description" content="Die smarte Lösung für professionelle Betreuer in Deutschland. Dokumente, Berichte, Sicherheit – automatisiert.">
-  <meta property="og:title" content="BetreuerPro — Betreuung. Digital. Sicher.">
-  <meta property="og:description" content="Die smarte Lösung für professionelle Betreuer in Deutschland.">
-  <meta property="og:image" content="https://betreuerpro.io/og-image.jpg">
-  <meta property="og:url" content="https://betreuerpro.io">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://betreuerpro.io">
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTWD29H6PS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HTWD29H6PS');
-  </script>
-
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8426936740213369" crossorigin="anonymous"></script>
-
-  <!-- Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "BetreuerPro",
-    "url": "https://betreuerpro.io",
-    "description": "Digitale Lösung für professionelle gesetzliche Betreuer in Deutschland.",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "19.90",
-      "priceCurrency": "EUR",
-      "billingIncrement": "P1M"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "AskMeAI Teknoloji Ltd. Şti.",
-      "url": "https://betreuerpro.io"
-    },
-    "areaServed": "DE",
-    "availableLanguage": ["German", "Turkish", "English"]
-  }
-  </script>
-
+  <title>BetreuerPro — Dokumenten Generator mit Claude AI</title>
+  <meta name="description" content="Smartes Tool für gesetzliche Betreuer: Berichte, Vermögensverzeichnis, Rechnungen – mit KI-Unterstützung generieren.">
+  <link rel="canonical" href="https://betreuerpro.io/tool">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #0B1E35;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      color: #FFFFFF;
-      line-height: 1.4;
-      padding: 20px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .container { max-width: 680px; margin: 0 auto; background: #0B1E35; border-radius: 48px; overflow: hidden; }
-    .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding: 24px 24px 16px 24px; border-bottom: 1px solid #1E3A5F; }
-    .logo { display: flex; align-items: center; gap: 12px; }
-    .logo svg { width: 36px; height: 36px; display: block; }
-    .logo-text { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.3px; color: #F0D080; }
-    .tagline { font-size: 0.7rem; color: #C9A84C; margin-top: 2px; }
-    .lang-buttons { display: flex; gap: 8px; }
-    .lang-btn { background: rgba(255,255,255,0.05); border: 1px solid #1E3A5F; border-radius: 40px; padding: 6px 12px; font-size: 0.7rem; font-weight: 600; cursor: pointer; color: #FFFFFF; transition: 0.2s; }
-    .lang-btn.active { background: linear-gradient(135deg, #C9A84C, #F0D080); color: #0B1E35; border-color: #C9A84C; }
-    .hero-image { width: 100%; padding: 0 24px; margin-top: 24px; }
-    .hero-image img { width: 100%; border-radius: 24px; display: block; }
-    .hero { padding: 32px 24px 24px; text-align: center; }
-    .badge { background: rgba(201,168,76,0.12); display: inline-block; padding: 6px 14px; border-radius: 60px; font-size: 0.7rem; font-weight: 600; color: #F0D080; margin-bottom: 20px; border: 1px solid rgba(201,168,76,0.3); }
-    .hero h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.1; color: #F0D080; margin-bottom: 12px; }
-    .hero-sub { font-size: 1rem; color: #C9D4E6; max-width: 480px; margin: 0 auto; }
-    .features { padding: 20px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .feature-card { background: #0F2845; border-radius: 28px; padding: 20px 16px; border: 1px solid #1E3A5F; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
-    .feature-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-    .feature-icon { font-size: 2rem; margin-bottom: 10px; }
-    .feature-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: #F0D080; }
-    .feature-desc { font-size: 0.75rem; color: #B8C8E0; line-height: 1.4; }
-    .stats { display: flex; flex-wrap: wrap; gap: 12px; padding: 20px 24px; justify-content: center; }
-    .stat-card { background: #0F2845; border-radius: 24px; padding: 20px 12px; flex: 1; min-width: 130px; text-align: center; border: 1px solid #1E3A5F; transition: transform 0.2s; }
-    .stat-card:hover { transform: translateY(-3px); }
-    .stat-number { font-size: 1.7rem; font-weight: 800; color: #F0D080; }
-    .stat-label { font-size: 0.75rem; color: #C9D4E6; margin-top: 6px; }
-    .blog-section { padding: 20px 24px; }
-    .blog-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; text-align: center; color: #F0D080; }
-    .blog-sub { text-align: center; font-size: 0.85rem; color: #C9D4E6; margin-bottom: 24px; }
-    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-    .blog-card { background: #0F2845; border-radius: 20px; padding: 20px; border: 1px solid #1E3A5F; transition: transform 0.2s, box-shadow 0.2s; }
-    .blog-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-    .blog-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: #F0D080; }
-    .blog-card p { font-size: 0.75rem; color: #C9D4E6; margin-bottom: 16px; line-height: 1.5; }
-    .blog-link { display: inline-block; background: rgba(201,168,76,0.2); border: 1px solid #C9A84C; border-radius: 40px; padding: 6px 16px; font-size: 0.75rem; font-weight: 600; color: #F0D080; text-decoration: none; transition: 0.2s; }
-    .blog-link:hover { background: #C9A84C; color: #0B1E35; }
-    /* Alle Artikel Liste */
-    .all-articles { padding: 0 24px 20px 24px; }
-    .all-articles h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: #F0D080; text-align: center; }
-    .article-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; background: #0F2845; border-radius: 24px; padding: 20px; border: 1px solid #1E3A5F; }
-    .article-list a { color: #C9D4E6; text-decoration: none; font-size: 0.85rem; padding: 6px 0; display: block; border-bottom: 1px dotted rgba(201,168,76,0.2); transition: color 0.2s; }
-    .article-list a:hover { color: #F0D080; border-bottom-color: #F0D080; }
-    .waitlist { background: #0F2845; margin: 20px 24px 32px; padding: 28px 24px; border-radius: 32px; border: 1px solid #1E3A5F; }
-    .waitlist h3 { font-size: 1.3rem; margin-bottom: 6px; text-align: center; }
-    .waitlist p { text-align: center; font-size: 0.85rem; color: #C9D4E6; margin-bottom: 24px; }
-    .form-group { margin-bottom: 16px; }
-    .form-group input, .form-group select { width: 100%; padding: 14px 18px; background: rgba(11,30,53,0.8); border: 1px solid #1E3A5F; border-radius: 60px; font-size: 0.9rem; color: #FFFFFF; font-family: inherit; }
-    .form-group input:focus, .form-group select:focus { outline: none; border-color: #C9A84C; }
-    .form-group select option { background: #0B1E35; }
-    .btn-primary { background: linear-gradient(135deg, #C9A84C, #F0D080); border: none; border-radius: 60px; padding: 14px 20px; font-weight: 700; font-size: 1rem; color: #0B1E35; cursor: pointer; width: 100%; transition: 0.2s; }
-    .btn-primary:hover { opacity: 0.9; transform: scale(0.98); }
-    .form-note { font-size: 0.7rem; text-align: center; color: #8BA0BC; margin-top: 16px; }
-    .form-success { font-size: 0.8rem; text-align: center; color: #2ECC71; margin-top: 12px; padding: 8px; background: rgba(46,204,113,0.1); border-radius: 60px; }
-    .form-error { font-size: 0.8rem; text-align: center; color: #E74C3C; margin-top: 12px; padding: 8px; background: rgba(231,76,60,0.1); border-radius: 60px; }
-    .footer { padding: 24px 24px 32px; border-top: 1px solid #1E3A5F; text-align: center; font-size: 0.7rem; color: #8BA0BC; }
-    .footer a { color: #F0D080; text-decoration: none; margin: 0 8px; }
-    .ecosystem { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
-    @media (max-width: 540px) {
-      .features { grid-template-columns: 1fr; }
-      .stats { flex-direction: column; }
-      .hero h1 { font-size: 1.9rem; }
-      .blog-grid { grid-template-columns: 1fr; }
-      .article-list { grid-template-columns: 1fr; }
+
+    :root {
+      --navy: #0B1E35;
+      --gold: #F0D080;
+      --gold-dark: #C9A84C;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --red-500: #ef4444;
+      --green-600: #16a34a;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      line-height: 1.5;
+      padding: 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      font-size: 1.8rem;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+    }
+
+    .logo-text span {
+      color: var(--gold-dark);
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--gray-200);
+      padding: 0.2rem;
+      border-radius: 2rem;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: system-ui;
+    }
+
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* Steps / Progress */
+    .progress {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .step-indicator {
+      flex: 1;
+      text-align: center;
+      padding: 0.6rem;
+      background: var(--gray-200);
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      transition: all 0.2s;
+    }
+
+    .step-indicator.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .step-indicator.done {
+      background: var(--gold-dark);
+      color: white;
+    }
+
+    /* Panels */
+    .panel {
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--navy);
+      border-left: 5px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--gray-600);
+    }
+
+    input, select, textarea {
+      padding: 0.7rem 0.8rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 0.8rem;
+      font-family: system-ui;
+      font-size: 0.9rem;
+      background: var(--gray-50);
+      transition: 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(240, 208, 128, 0.2);
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: normal;
+      text-transform: none;
+      font-size: 0.85rem;
+      background: var(--gray-100);
+      padding: 0.4rem 0.8rem;
+      border-radius: 2rem;
+    }
+
+    /* Document cards */
+    .doc-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .doc-card {
+      background: var(--gray-100);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      text-align: center;
+    }
+
+    .doc-card.selected {
+      border-color: var(--gold);
+      background: white;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+    }
+
+    .doc-card .doc-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .doc-title {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button.next, button.submit {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    button.next:hover, button.submit:hover {
+      background: var(--gold-dark);
+      transform: translateY(-1px);
+    }
+
+    button.prev {
+      background: var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Preview panel */
+    .preview-panel {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+    }
+
+    .preview-content {
+      max-height: 500px;
+      overflow-y: auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .api-section {
+      background: var(--gray-100);
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .api-row {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .api-row .form-group {
+      flex: 3;
+      min-width: 200px;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(0,0,0,0.2);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-msg {
+      color: var(--red-500);
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+      padding: 0.3rem;
+      background: #fee2e2;
+      border-radius: 0.5rem;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--gray-200);
+      color: var(--gray-600);
+      font-size: 0.75rem;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      .panel { padding: 1.2rem; }
+      .progress { flex-direction: column; gap: 0.5rem; }
+      .step-indicator { text-align: center; }
+      .api-row { flex-direction: column; align-items: stretch; }
     }
   </style>
 </head>
 <body>
 <div class="container">
+  <!-- HEADER -->
   <div class="header">
     <div class="logo">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L3 6V12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12V6L12 2Z" stroke="url(#grad)" stroke-width="1.5" fill="#0F2845"/>
-        <path d="M12 8L14 12L12 16L10 12L12 8Z" fill="url(#grad)"/>
-        <circle cx="12" cy="12" r="2" fill="#0B1E35"/>
-        <defs>
-          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#C9A84C"/>
-            <stop offset="100%" stop-color="#F0D080"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <div>
-        <div class="logo-text">BetreuerPro</div>
-        <div class="tagline" id="headerTagline">Betreuung. Digital. Sicher.</div>
+      <span class="logo-icon">🧭</span>
+      <span class="logo-text">Betreuer<span>Pro</span></span>
+    </div>
+    <div class="lang-toggle" id="langToggle">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+    </div>
+  </div>
+
+  <!-- PROGRESS STEPS -->
+  <div class="progress" id="progressSteps">
+    <div class="step-indicator" data-step="1">1. Betreuer</div>
+    <div class="step-indicator" data-step="2">2. Betreuter</div>
+    <div class="step-indicator" data-step="3">3. Dokument</div>
+    <div class="step-indicator" data-step="4">4. Vorschau & Download</div>
+  </div>
+
+  <!-- STEP 1: Betreuer (Guardian) -->
+  <div id="step1" class="panel step-panel">
+    <h2 id="step1Title">👤 Vasi (Betreuer) Angaben</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label id="lblName">Vollständiger Name *</label>
+        <input type="text" id="guardianName" placeholder="z.B. Max Mustermann">
+      </div>
+      <div class="form-group">
+        <label id="lblAddress">Adresse *</label>
+        <input type="text" id="guardianAddress" placeholder="Straße, Nr., PLZ Ort">
+      </div>
+      <div class="form-group">
+        <label id="lblPhone">Telefon</label>
+        <input type="tel" id="guardianPhone" placeholder="+49 123 456789">
+      </div>
+      <div class="form-group">
+        <label id="lblEmail">E-Mail</label>
+        <input type="email" id="guardianEmail" placeholder="kontakt@example.de">
+      </div>
+      <div class="form-group">
+        <label id="lblBetreuungsnummer">Betreuungsnummer / Aktenzeichen</label>
+        <input type="text" id="betreuungsnummer" placeholder="z.B. XVII 123/24">
       </div>
     </div>
-    <div class="lang-buttons">
-      <button class="lang-btn" data-lang="de">DE</button>
-      <button class="lang-btn" data-lang="tr">TR</button>
-      <button class="lang-btn" data-lang="en">EN</button>
+    <div class="button-group">
+      <button class="next" data-next="2" id="next1">Weiter →</button>
     </div>
   </div>
 
-  <div class="hero-image">
-    <img src="og-image.jpg" alt="BetreuerPro — Betreuung. Digital. Sicher.">
+  <!-- STEP 2: Betreuter (care recipient) -->
+  <div id="step2" class="panel step-panel" style="display:none;">
+    <h2 id="step2Title">🧑‍🦱 Betreute Person</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label id="lblCareName">Name *</label>
+        <input type="text" id="careName" placeholder="Vorname Nachname">
+      </div>
+      <div class="form-group">
+        <label id="lblBirth">Geburtsdatum</label>
+        <input type="date" id="careBirth">
+      </div>
+      <div class="form-group">
+        <label id="lblCareAddress">Adresse</label>
+        <input type="text" id="careAddress" placeholder="Straße, Nr., PLZ Ort">
+      </div>
+      <div class="form-group">
+        <label id="lblBetreuungsbeginn">Betreuungsbeginn</label>
+        <input type="date" id="betreuungsbeginn">
+      </div>
+    </div>
+    <div class="form-group">
+      <label id="lblAufgabenkreise">Aufgabenkreise (mehrere möglich)</label>
+      <div class="checkbox-group" id="aufgabenkreiseGroup">
+        <label><input type="checkbox" value="Gesundheitssorge"> Gesundheitssorge</label>
+        <label><input type="checkbox" value="Vermögenssorge"> Vermögenssorge</label>
+        <label><input type="checkbox" value="Aufenthaltsbestimmung"> Aufenthaltsbestimmung</label>
+        <label><input type="checkbox" value="Behördenangelegenheiten"> Behördenangelegenheiten</label>
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="prev" data-prev="1">← Zurück</button>
+      <button class="next" data-next="3">Weiter →</button>
+    </div>
   </div>
 
-  <div id="mainContent"></div>
+  <!-- STEP 3: Document type selection -->
+  <div id="step3" class="panel step-panel" style="display:none;">
+    <h2 id="step3Title">📄 Dokument auswählen</h2>
+    <div class="doc-cards" id="docCards">
+      <div class="doc-card" data-doc="bericht">
+        <span class="doc-icon">📄</span>
+        <div class="doc-title">Betreuungsbericht</div>
+        <div style="font-size:0.7rem; color:#666;">Jahresbericht ans Gericht</div>
+      </div>
+      <div class="doc-card" data-doc="vermoegen">
+        <span class="doc-icon">💰</span>
+        <div class="doc-title">Vermögensverzeichnis</div>
+        <div style="font-size:0.7rem; color:#666;">Auflistung Einnahmen/Ausgaben</div>
+      </div>
+      <div class="doc-card" data-doc="rechnung">
+        <span class="doc-icon">📊</span>
+        <div class="doc-title">Jahresrechnung</div>
+        <div style="font-size:0.7rem; color:#666;">Übersicht Vergütung</div>
+      </div>
+      <div class="doc-card" data-doc="erstbericht">
+        <span class="doc-icon">📝</span>
+        <div class="doc-title">Erstbericht</div>
+        <div style="font-size:0.7rem; color:#666;">nach Betreuerbestellung</div>
+      </div>
+      <div class="doc-card" data-doc="arztanfrage">
+        <span class="doc-icon">✉️</span>
+        <div class="doc-title">Arztanfrage</div>
+        <div style="font-size:0.7rem; color:#666;">ärztliche Schweigepflichtentbindung</div>
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="prev" data-prev="2">← Zurück</button>
+      <button class="next" data-next="4" id="goToPreview">Vorschau →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Preview + download + AI generation -->
+  <div id="step4" class="panel step-panel preview-panel" style="display:none;">
+    <h2 id="step4Title">📄 Dokumentenvorschau</h2>
+    
+    <!-- API KEY & GENERATE SECTION -->
+    <div class="api-section">
+      <div class="api-row">
+        <div class="form-group" style="flex:3">
+          <label>🔑 Claude API Key (optional – für KI-Erstellung)</label>
+          <input type="password" id="claudeApiKey" placeholder="sk-ant-api03-...">
+          <div style="font-size:0.7rem; color:#666; margin-top:0.2rem;">Wenn kein Key eingegeben wird, wird ein Platzhalterdokument erzeugt.</div>
+        </div>
+        <div>
+          <button id="generateWithAI" class="submit" style="white-space:nowrap;">✨ Mit Claude erstellen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-content" id="previewText">
+      <!-- dynamisch befüllt (Mock oder KI) -->
+    </div>
+    <div class="action-buttons">
+      <button id="newDocBtn" class="prev">🔄 Neues Dokument</button>
+      <button id="downloadPdfBtn" class="submit">📥 PDF / Drucken (Print)</button>
+    </div>
+    <div class="button-group" style="margin-top:1rem;">
+      <button class="prev" data-prev="3">← Bearbeiten</button>
+    </div>
+  </div>
 
   <div class="footer">
-    <div>© 2026 BetreuerPro — Ein Produkt des PACDI Ökosystems</div>
-    <div style="margin: 8px 0;">
-      <a href="datenschutz.html">Datenschutz</a> | <a href="impressum.html">Impressum</a>
-    </div>
-    <div class="ecosystem">
-      <a href="https://wasstehtmirzu.com" target="_blank">wasstehtmirzu.com</a>
-      <a href="https://navigopro.de" target="_blank">navigopro.de</a>
-      <a href="https://silvercompass.world" target="_blank">silvercompass.world</a>
-    </div>
+    © 2026 AskMeAI Teknoloji Ltd. Şti.
   </div>
 </div>
 
 <script>
-  var FORMSPREE_ENDPOINT = "https://formspree.io/f/xqeobrre";
-
-  var translations = {
-    de: {
-      headerTag: "Betreuung. Digital. Sicher.",
-      badge: "Beta · 2026",
-      h1: "Betreuung neu gedacht.",
-      sub: "Dokumente. Berichte. Sicher automatisiert.",
-      features: [
-        { icon: "📄", title: "Automatisches Dokumentensystem", desc: "Dokumente automatisch generieren, verwalten und versenden." },
-        { icon: "🎙️", title: "Sprachbasierte Berichterstattung (KI)", desc: "Sprachaufnahmen in professionelle Berichte umwandeln." },
-        { icon: "🔒", title: "Zero-Knowledge Sicherheit", desc: "Ihre Daten werden ausschließlich lokal verschlüsselt." },
-        { icon: "📍", title: "GPS-Kilometererfassung", desc: "Fahrten genau dokumentieren – für korrekte Vergütung." }
-      ],
-      stats: [
-        { num: "1,3 Mio+", label: "Menschen unter gesetzlicher Betreuung" },
-        { num: "70%", label: "der Betreuungszeit geht auf Bürokratie" },
-        { num: "18.000", label: "Berufsbetreuer für 1,3 Mio. Menschen" }
-      ],
-      blogTitle: "Wissen & Ratgeber",
-      blogSub: "Kompakt erklärt – für Ihre tägliche Arbeit",
-      articles: [
-        { title: "Was ist gesetzliche Betreuung?", desc: "Definition, Ablauf, Voraussetzungen.", link: "/was-ist-gesetzliche-betreuung.html" },
-        { title: "Aufgaben & Pflichten eines Betreuers", desc: "Vermögenssorge, Gesundheitssorge, Berichtspflichten.", link: "/betreuer-aufgaben-und-pflichten.html" },
-        { title: "Betreuungsrecht in Deutschland", desc: "Grundlagen, Reform 2023, Verfahren.", link: "/betreuungsrecht-deutschland.html" },
-        { title: "Betreuervergütung & Abrechnung", desc: "Stundensätze, Aufwandspauschalen, Abrechnungsverfahren.", link: "/betreuervergutung-abrechnung.html" },
-        { title: "Betreuungsbericht schreiben", desc: "Aufbau, Inhalte, Muster für den Jahresbericht.", link: "/betreuungsbericht-schreiben.html" },
-        { title: "Demenz & Alzheimer", desc: "Besondere Herausforderungen für Betreuer.", link: "/betreuung-demenz-alzheimer.html" }
-      ],
-      // Alle 20 Artikel für die vollständige Liste
-      allArticles: [
-        { title: "Was ist gesetzliche Betreuung?", link: "/was-ist-gesetzliche-betreuung.html" },
-        { title: "Aufgaben & Pflichten eines Betreuers", link: "/betreuer-aufgaben-und-pflichten.html" },
-        { title: "Betreuungsrecht in Deutschland", link: "/betreuungsrecht-deutschland.html" },
-        { title: "Betreuervergütung & Abrechnung", link: "/betreuervergutung-abrechnung.html" },
-        { title: "Betreuungsbericht schreiben", link: "/betreuungsbericht-schreiben.html" },
-        { title: "Vormundschaft vs. Betreuung", link: "/vormundschaft-vs-betreuung.html" },
-        { title: "Demenz & Alzheimer", link: "/betreuung-demenz-alzheimer.html" },
-        { title: "Digitale Tools für Betreuer", link: "/digitale-tools-betreuer.html" },
-        { title: "Betreuerwechsel & Ablösung", link: "/betreuerwechsel-abloesung.html" },
-        { title: "Ehrenamtliche Betreuung", link: "/ehrenamtliche-betreuung.html" },
-        { title: "Betreuungsverfügung vs. Vorsorgevollmacht", link: "/betreuungsverfuegung-vorsorgevollmacht.html" },
-        { title: "Betreuungsverfahren vor Gericht", link: "/betreuungsgericht-verfahren.html" },
-        { title: "Selbstbestimmung trotz Betreuung", link: "/selbstbestimmung-betreuung.html" },
-        { title: "Betreuer & Pflegegrad", link: "/betreuer-pflegegrad-zusammenarbeit.html" },
-        { title: "Pflegetestament vs. Betreuung", link: "/betreuung-vs-pflegetestament.html" },
-        { title: "Betreuung behinderter Erwachsener", link: "/betreuer-behinderte-erwachsene.html" },
-        { title: "Betreuer & Patientenverfügung", link: "/betreuer-patientenverfuegung.html" },
-        { title: "Widerspruch gegen Betreuerbestellung", link: "/betreuungsverfahren-widerspruch.html" },
-        { title: "Schweigepflichtentbindung", link: "/betreuer-schweigepflicht-entbindung.html" },
-        { title: "Ethische Grundsätze", link: "/betreuer-ethische-grundsaetze.html" }
-      ],
-      waitlistTitle: "Frühen Zugang sichern",
-      waitlistDesc: "Werde einer der ersten Anwender von BetreuerPro.",
-      namePlace: "Vollständiger Name",
-      emailPlace: "E-Mail",
-      roleOptions: ["Berufsbetreuer", "Ehrenamtlich", "Betreuungsverein", "Sonstige"],
-      btnText: "Frühen Zugang sichern →",
-      note: "Kein Spam. Kein Abo. Nur relevante Updates.",
-      successMsg: "Vielen Dank! Wir melden uns bei Ihnen.",
-      errorMsg: "Bitte alle Felder ausfüllen.",
-      sending: "Wird gesendet..."
-    },
-    tr: {
-      headerTag: "Betreuung. Digital. Sicher.",
-      badge: "Beta · 2026",
-      h1: "Bakım hizmeti yeniden düşünüldü.",
-      sub: "Evraklar. Raporlar. Güvenli otomasyon.",
-      features: [
-        { icon: "📄", title: "Otomatik Evrak Motoru", desc: "Belgeleri otomatik oluştur, yönet ve gönder." },
-        { icon: "🎙️", title: "Sesli Raporlama (AI)", desc: "Ses kayıtlarını profesyonel raporlara dönüştür." },
-        { icon: "🔒", title: "Zero-Knowledge Güvenlik", desc: "Verileriniz yalnızca cihazınızda şifrelenir." },
-        { icon: "📍", title: "GPS Kilometre Takibi", desc: "Güzergahları kaydet – doğru ücretlendirme için." }
-      ],
-      stats: [
-        { num: "1,3 Milyon+", label: "Kişi yasal vasi koruması altında" },
-        { num: "%70", label: "Vasi mesaisi bürokrasiye gidiyor" },
-        { num: "18.000", label: "Profesyonel vasi — 1,3 milyona bakıyor" }
-      ],
-      blogTitle: "Bilgi & Rehber",
-      blogSub: "Kompakt açıklamalı – günlük işleriniz için",
-      articles: [
-        { title: "Yasal vasi nedir?", desc: "Tanım, süreç, şartlar.", link: "/was-ist-gesetzliche-betreuung.html" },
-        { title: "Vasinin görev ve yükümlülükleri", desc: "Mal varlığı, sağlık, rapor yükümlülükleri.", link: "/betreuer-aufgaben-und-pflichten.html" },
-        { title: "Almanya'da vasi hukuku", desc: "Temeller, reform, süreç.", link: "/betreuungsrecht-deutschland.html" },
-        { title: "Vasi ücreti ve faturalama", desc: "Saatlik ücretler, harcamalar, faturalama.", link: "/betreuervergutung-abrechnung.html" },
-        { title: "Vasi raporu yazmak", desc: "Yapısı, içerik, örnek rapor.", link: "/betreuungsbericht-schreiben.html" },
-        { title: "Demans ve Alzheimer", desc: "Vasiler için özel zorluklar.", link: "/betreuung-demenz-alzheimer.html" }
-      ],
-      allArticles: [
-        { title: "Yasal vasi nedir?", link: "/was-ist-gesetzliche-betreuung.html" },
-        { title: "Vasinin görev ve yükümlülükleri", link: "/betreuer-aufgaben-und-pflichten.html" },
-        { title: "Almanya'da vasi hukuku", link: "/betreuungsrecht-deutschland.html" },
-        { title: "Vasi ücreti ve faturalama", link: "/betreuervergutung-abrechnung.html" },
-        { title: "Vasi raporu yazmak", link: "/betreuungsbericht-schreiben.html" },
-        { title: "Vesayet vs. Vasi", link: "/vormundschaft-vs-betreuung.html" },
-        { title: "Demans ve Alzheimer", link: "/betreuung-demenz-alzheimer.html" },
-        { title: "Vasiler için dijital araçlar", link: "/digitale-tools-betreuer.html" },
-        { title: "Vasi değişimi ve görev devri", link: "/betreuerwechsel-abloesung.html" },
-        { title: "Gönüllü vasi", link: "/ehrenamtliche-betreuung.html" },
-        { title: "Betreuungsverfügung vs. Vorsorgevollmacht", link: "/betreuungsverfuegung-vorsorgevollmacht.html" },
-        { title: "Vasi mahkemesinde süreç", link: "/betreuungsgericht-verfahren.html" },
-        { title: "Vasiye rağmen özerklik", link: "/selbstbestimmung-betreuung.html" },
-        { title: "Vasi ve bakım derecesi", link: "/betreuer-pflegegrad-zusammenarbeit.html" },
-        { title: "Bakım vasiyeti vs. vasi", link: "/betreuung-vs-pflegetestament.html" },
-        { title: "Engelli yetişkinlerde vasi", link: "/betreuer-behinderte-erwachsene.html" },
-        { title: "Vasi ve hasta vasiyeti", link: "/betreuer-patientenverfuegung.html" },
-        { title: "Vasi atamasına itiraz", link: "/betreuungsverfahren-widerspruch.html" },
-        { title: "Sır saklama yükümlülüğü", link: "/betreuer-schweigepflicht-entbindung.html" },
-        { title: "Etik ilkeler", link: "/betreuer-ethische-grundsaetze.html" }
-      ],
-      waitlistTitle: "Erken erişimi garantile",
-      waitlistDesc: "BetreuerPro'yu ilk kullananlardan ol.",
-      namePlace: "Ad Soyad",
-      emailPlace: "E-posta",
-      roleOptions: ["Mesleki Bakıcı", "Gönüllü", "Bakım Derneği", "Diğer"],
-      btnText: "Erken erişimi garantile →",
-      note: "Spam yok. Abonelik yok. Sadece güncellemeler.",
-      successMsg: "Teşekkürler! Size ulaşacağız.",
-      errorMsg: "Lütfen tüm alanları doldurun.",
-      sending: "Gönderiliyor..."
-    },
-    en: {
-      headerTag: "Betreuung. Digital. Sicher.",
-      badge: "Beta · 2026",
-      h1: "Caregiving reimagined.",
-      sub: "Documents. Reports. Securely automated.",
-      features: [
-        { icon: "📄", title: "Document Automation", desc: "Auto-generate, manage and send documents." },
-        { icon: "🎙️", title: "Voice Reporting (AI)", desc: "Turn voice notes into professional reports." },
-        { icon: "🔒", title: "Zero-Knowledge Security", desc: "Your data is encrypted locally – zero trust." },
-        { icon: "📍", title: "GPS Mileage Tracking", desc: "Track trips accurately for correct billing." }
-      ],
-      stats: [
-        { num: "1.3M+", label: "People under legal guardianship" },
-        { num: "70%", label: "of guardians' time spent on bureaucracy" },
-        { num: "18,000", label: "professional guardians for 1.3M people" }
-      ],
-      blogTitle: "Knowledge & Guides",
-      blogSub: "Compactly explained – for your daily work",
-      articles: [
-        { title: "What is legal guardianship?", desc: "Definition, procedure, requirements.", link: "/was-ist-gesetzliche-betreuung.html" },
-        { title: "Guardian's duties & obligations", desc: "Assets, health, reporting.", link: "/betreuer-aufgaben-und-pflichten.html" },
-        { title: "Guardianship law in Germany", desc: "Basics, reform 2023, procedure.", link: "/betreuungsrecht-deutschland.html" },
-        { title: "Remuneration & billing", desc: "Hourly rates, expenses, billing process.", link: "/betreuervergutung-abrechnung.html" },
-        { title: "How to write a care report", desc: "Structure, content, template.", link: "/betreuungsbericht-schreiben.html" },
-        { title: "Dementia & Alzheimer", desc: "Special challenges for guardians.", link: "/betreuung-demenz-alzheimer.html" }
-      ],
-      allArticles: [
-        { title: "What is legal guardianship?", link: "/was-ist-gesetzliche-betreuung.html" },
-        { title: "Guardian's duties & obligations", link: "/betreuer-aufgaben-und-pflichten.html" },
-        { title: "Guardianship law in Germany", link: "/betreuungsrecht-deutschland.html" },
-        { title: "Remuneration & billing", link: "/betreuervergutung-abrechnung.html" },
-        { title: "How to write a care report", link: "/betreuungsbericht-schreiben.html" },
-        { title: "Guardianship vs. Custody", link: "/vormundschaft-vs-betreuung.html" },
-        { title: "Dementia & Alzheimer", link: "/betreuung-demenz-alzheimer.html" },
-        { title: "Digital tools for guardians", link: "/digitale-tools-betreuer.html" },
-        { title: "Changing guardians", link: "/betreuerwechsel-abloesung.html" },
-        { title: "Voluntary guardianship", link: "/ehrenamtliche-betreuung.html" },
-        { title: "Advance care directive vs. power of attorney", link: "/betreuungsverfuegung-vorsorgevollmacht.html" },
-        { title: "Court proceedings", link: "/betreuungsgericht-verfahren.html" },
-        { title: "Self‑determination despite guardianship", link: "/selbstbestimmung-betreuung.html" },
-        { title: "Guardian and care grade", link: "/betreuer-pflegegrad-zusammenarbeit.html" },
-        { title: "Care testament vs. guardianship", link: "/betreuung-vs-pflegetestament.html" },
-        { title: "Guardianship for disabled adults", link: "/betreuer-behinderte-erwachsene.html" },
-        { title: "Guardian and advance directive", link: "/betreuer-patientenverfuegung.html" },
-        { title: "Appealing a guardian appointment", link: "/betreuungsverfahren-widerspruch.html" },
-        { title: "Waiver of confidentiality", link: "/betreuer-schweigepflicht-entbindung.html" },
-        { title: "Ethical principles", link: "/betreuer-ethische-grundsaetze.html" }
-      ],
-      waitlistTitle: "Secure early access",
-      waitlistDesc: "Be among the first to use BetreuerPro.",
-      namePlace: "Full name",
-      emailPlace: "Email",
-      roleOptions: ["Professional Guardian", "Volunteer", "Care Association", "Other"],
-      btnText: "Secure early access →",
-      note: "No spam. No subscription. Only relevant updates.",
-      successMsg: "Thank you! We'll get in touch.",
-      errorMsg: "Please fill all fields.",
-      sending: "Sending..."
-    }
-  };
-
-  var currentLang = "de";
-
-  function detectLanguage() {
-    var l = navigator.language || navigator.userLanguage || "de";
-    if (l.indexOf("tr") === 0) return "tr";
-    if (l.indexOf("en") === 0) return "en";
-    return "de";
-  }
-
-  function renderContent(lang) {
-    var t = translations[lang];
-    if (!t) return;
-    document.getElementById("headerTagline").innerText = t.headerTag;
-
-    var featuresHtml = t.features.map(function(f) {
-      return '<div class="feature-card"><div class="feature-icon">' + f.icon + '</div><div class="feature-title">' + f.title + '</div><div class="feature-desc">' + f.desc + '</div></div>';
-    }).join('');
-
-    var statsHtml = t.stats.map(function(s) {
-      return '<div class="stat-card"><div class="stat-number">' + s.num + '</div><div class="stat-label">' + s.label + '</div></div>';
-    }).join('');
-
-    var blogHtml = '<div class="blog-section">' +
-      '<div class="blog-title">📘 ' + t.blogTitle + '</div>' +
-      '<div class="blog-sub">' + t.blogSub + '</div>' +
-      '<div class="blog-grid">';
-    t.articles.forEach(function(article) {
-      blogHtml += '<div class="blog-card">' +
-        '<h4>' + article.title + '</h4>' +
-        '<p>' + article.desc + '</p>' +
-        '<a href="' + article.link + '" class="blog-link">' + (lang === 'de' ? 'Mehr erfahren →' : (lang === 'tr' ? 'Daha fazla →' : 'Read more →')) + '</a>' +
-        '</div>';
-    });
-    blogHtml += '</div></div>';
-
-    // Alle Artikel Liste
-    var allArticlesHtml = '<div class="all-articles">' +
-      '<h3>' + (lang === 'de' ? '📖 Alle Ratgeber im Überblick' : (lang === 'tr' ? '📖 Tüm Rehberlere Genel Bakış' : '📖 All guides at a glance')) + '</h3>' +
-      '<div class="article-list">';
-    t.allArticles.forEach(function(article) {
-      allArticlesHtml += '<a href="' + article.link + '">' + article.title + ' →</a>';
-    });
-    allArticlesHtml += '</div></div>';
-
-    var roleOptionsHtml = t.roleOptions.map(function(r) {
-      return '<option value="' + r + '">' + r + '</option>';
-    }).join('');
-
-    document.getElementById("mainContent").innerHTML =
-      '<div class="hero">' +
-        '<div class="badge">' + t.badge + '</div>' +
-        '<h1>' + t.h1 + '</h1>' +
-        '<div class="hero-sub">' + t.sub + '</div>' +
-      '</div>' +
-      '<div class="features">' + featuresHtml + '</div>' +
-      '<div class="stats">' + statsHtml + '</div>' +
-      blogHtml +
-      allArticlesHtml +
-      '<div class="waitlist">' +
-        '<h3>📬 ' + t.waitlistTitle + '</h3>' +
-        '<p>' + t.waitlistDesc + '</p>' +
-        '<form id="waitlistForm">' +
-          '<div class="form-group"><input type="text" name="name" id="fullname" placeholder="' + t.namePlace + '" required></div>' +
-          '<div class="form-group"><input type="email" name="email" id="email" placeholder="' + t.emailPlace + '" required></div>' +
-          '<div class="form-group"><select name="role" id="role" required>' + roleOptionsHtml + '</select></div>' +
-          '<input type="hidden" name="source" value="betreuerpro.io">' +
-          '<button type="submit" class="btn-primary" id="submitBtn">' + t.btnText + '</button>' +
-          '<div class="form-note">' + t.note + '</div>' +
-          '<div id="formMessage"></div>' +
-        '</form>' +
-      '</div>';
-
-    document.getElementById("waitlistForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      submitWaitlist();
-    });
-
-    document.querySelectorAll('.lang-btn').forEach(function(btn) {
-      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-    });
-  }
-
-  async function submitWaitlist() {
-    var t = translations[currentLang];
-    var btn = document.getElementById('submitBtn');
-    var messageDiv = document.getElementById('formMessage');
-    btn.textContent = t.sending;
-    btn.disabled = true;
-    try {
-      var res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        body: new FormData(document.getElementById('waitlistForm')),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        messageDiv.innerHTML = '<div class="form-success">✓ ' + t.successMsg + '</div>';
-        document.getElementById('waitlistForm').reset();
-      } else {
-        messageDiv.innerHTML = '<div class="form-error">⚠ ' + t.errorMsg + '</div>';
-        btn.textContent = translations[currentLang].btnText;
-        btn.disabled = false;
+  (function() {
+    // ----- INTERNATIONALISATION (DE/TR) -----
+    const translations = {
+      de: {
+        step1Title: "👤 Vasi (Betreuer) Angaben",
+        step2Title: "🧑‍🦱 Betreute Person",
+        step3Title: "📄 Dokument auswählen",
+        step4Title: "📄 Dokumentenvorschau",
+        lblName: "Vollständiger Name *",
+        lblAddress: "Adresse *",
+        lblPhone: "Telefon",
+        lblEmail: "E-Mail",
+        lblBetreuungsnummer: "Betreuungsnummer / Aktenzeichen",
+        lblCareName: "Name *",
+        lblBirth: "Geburtsdatum",
+        lblCareAddress: "Adresse",
+        lblBetreuungsbeginn: "Betreuungsbeginn",
+        lblAufgabenkreise: "Aufgabenkreise (mehrere möglich)",
+        nextBtn: "Weiter →",
+        backBtn: "← Zurück",
+        previewBtn: "Vorschau →",
+        downloadBtn: "📥 PDF / Drucken (Print)",
+        newDocBtn: "🔄 Neues Dokument",
+        editBtn: "← Bearbeiten",
+        step1Nav: "1. Betreuer",
+        step2Nav: "2. Betreuter",
+        step3Nav: "3. Dokument",
+        step4Nav: "4. Vorschau & Download"
+      },
+      tr: {
+        step1Title: "👤 Vasi (Kayyım) Bilgileri",
+        step2Title: "🧑‍🦱 Bakım Alan Kişi",
+        step3Title: "📄 Belge Seçimi",
+        step4Title: "📄 Belge Önizleme",
+        lblName: "Ad Soyad *",
+        lblAddress: "Adres *",
+        lblPhone: "Telefon",
+        lblEmail: "E-posta",
+        lblBetreuungsnummer: "Vasi Dosya No",
+        lblCareName: "Ad Soyad *",
+        lblBirth: "Doğum Tarihi",
+        lblCareAddress: "Adres",
+        lblBetreuungsbeginn: "Vasi Başlangıç Tarihi",
+        lblAufgabenkreise: "Görev Alanları (birden fazla seçilebilir)",
+        nextBtn: "İleri →",
+        backBtn: "← Geri",
+        previewBtn: "Önizleme →",
+        downloadBtn: "📥 PDF / Yazdır (Print)",
+        newDocBtn: "🔄 Yeni Belge",
+        editBtn: "← Düzenle",
+        step1Nav: "1. Vasi",
+        step2Nav: "2. Bakılan Kişi",
+        step3Nav: "3. Belge",
+        step4Nav: "4. Önizleme & İndir"
       }
-    } catch(err) {
-      messageDiv.innerHTML = '<div class="form-error">⚠ Verbindungsfehler / Bağlantı hatası</div>';
-      btn.disabled = false;
+    };
+
+    let currentLang = 'de';
+    let selectedDocType = 'bericht';
+    let currentStep = 1;
+    const totalSteps = 4;
+
+    const stepPanels = {
+      1: document.getElementById('step1'),
+      2: document.getElementById('step2'),
+      3: document.getElementById('step3'),
+      4: document.getElementById('step4')
+    };
+    const progressSteps = document.querySelectorAll('.step-indicator');
+
+    function updateUILanguage() {
+      const t = translations[currentLang];
+      if (!t) return;
+      document.getElementById('step1Title').innerText = t.step1Title;
+      document.getElementById('step2Title').innerText = t.step2Title;
+      document.getElementById('step3Title').innerText = t.step3Title;
+      document.getElementById('step4Title').innerText = t.step4Title;
+      document.getElementById('lblName').innerText = t.lblName;
+      document.getElementById('lblAddress').innerText = t.lblAddress;
+      document.getElementById('lblPhone').innerText = t.lblPhone;
+      document.getElementById('lblEmail').innerText = t.lblEmail;
+      document.getElementById('lblBetreuungsnummer').innerText = t.lblBetreuungsnummer;
+      document.getElementById('lblCareName').innerText = t.lblCareName;
+      document.getElementById('lblBirth').innerText = t.lblBirth;
+      document.getElementById('lblCareAddress').innerText = t.lblCareAddress;
+      document.getElementById('lblBetreuungsbeginn').innerText = t.lblBetreuungsbeginn;
+      document.getElementById('lblAufgabenkreise').innerText = t.lblAufgabenkreise;
+      
+      const step1El = document.querySelector('[data-step="1"]');
+      const step2El = document.querySelector('[data-step="2"]');
+      const step3El = document.querySelector('[data-step="3"]');
+      const step4El = document.querySelector('[data-step="4"]');
+      if (step1El) step1El.innerText = t.step1Nav;
+      if (step2El) step2El.innerText = t.step2Nav;
+      if (step3El) step3El.innerText = t.step3Nav;
+      if (step4El) step4El.innerText = t.step4Nav;
+      
+      const nextButtons = document.querySelectorAll('.next');
+      const prevButtons = document.querySelectorAll('.prev');
+      nextButtons.forEach(btn => btn.innerText = t.nextBtn);
+      prevButtons.forEach(btn => btn.innerText = t.backBtn);
+      const goPreview = document.getElementById('goToPreview');
+      if (goPreview) goPreview.innerText = t.previewBtn;
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      if (downloadBtn) downloadBtn.innerText = t.downloadBtn;
+      const newBtn = document.getElementById('newDocBtn');
+      if (newBtn) newBtn.innerText = t.newDocBtn;
+      const editBtnStep4 = document.querySelector('#step4 .button-group .prev');
+      if (editBtnStep4) editBtnStep4.innerText = t.editBtn;
     }
-  }
 
-  function setLanguage(lang) {
-    currentLang = lang;
-    renderContent(lang);
-  }
+    function showStep(step) {
+      for (let i = 1; i <= totalSteps; i++) {
+        if (stepPanels[i]) stepPanels[i].style.display = (i === step) ? 'block' : 'none';
+      }
+      progressSteps.forEach((el, idx) => {
+        const stepNum = idx + 1;
+        el.classList.remove('active', 'done');
+        if (stepNum === step) el.classList.add('active');
+        else if (stepNum < step) el.classList.add('done');
+      });
+      currentStep = step;
+      if (step === 4) {
+        // beim ersten Betreten Schritt 4: Mock anzeigen (falls noch nichts generiert)
+        if (!document.getElementById('previewText').innerText.trim()) {
+          generateMockDocument();
+        }
+      }
+    }
 
-  currentLang = detectLanguage();
-  renderContent(currentLang);
+    function isStepValid(step) {
+      if (step === 1) {
+        const name = document.getElementById('guardianName').value.trim();
+        const addr = document.getElementById('guardianAddress').value.trim();
+        return !!(name && addr);
+      }
+      if (step === 2) {
+        const careName = document.getElementById('careName').value.trim();
+        return !!careName;
+      }
+      if (step === 3) return selectedDocType !== null;
+      return true;
+    }
 
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      setLanguage(this.getAttribute('data-lang'));
-    });
-  });
+    // MOCK (fallback) – original mock content
+    function generateMockDocument() {
+      const guardianName = document.getElementById('guardianName').value.trim() || "[Vasi Name]";
+      const guardianAddress = document.getElementById('guardianAddress').value.trim() || "[Adresse]";
+      const betreuungsnummer = document.getElementById('betreuungsnummer').value.trim() || "[Aktenzeichen]";
+      const careName = document.getElementById('careName').value.trim() || "[Betreuter Name]";
+      const careBirth = document.getElementById('careBirth').value || "[Geburtsdatum]";
+      const careAddress = document.getElementById('careAddress').value.trim() || "[Adresse betreute Person]";
+      const betreuungsbeginn = document.getElementById('betreuungsbeginn').value || "[Datum]";
+      const checkboxes = document.querySelectorAll('#aufgabenkreiseGroup input[type="checkbox"]:checked');
+      const aufgaben = Array.from(checkboxes).map(cb => cb.value).join(', ') || "[keine Aufgabenkreise]";
+      const lang = currentLang;
+      let title = "", body = "";
+      if (selectedDocType === 'bericht') {
+        title = lang === 'de' ? "Jahresbericht gemäß § 1868 BGB (MOCK)" : "Yıllık Faaliyet Raporu (MOCK)";
+        body = `(MOCK) Bericht für ${careName} ...\nAktenzeichen: ${betreuungsnummer}\nAufgaben: ${aufgaben}`;
+      } else if (selectedDocType === 'vermoegen') {
+        title = "Vermögensverzeichnis (MOCK)";
+        body = `MOCK: Vermögen für ${careName} ...`;
+      } else if (selectedDocType === 'rechnung') {
+        title = "Jahresrechnung (MOCK)";
+        body = `MOCK: Vergütung für ${guardianName} ...`;
+      } else if (selectedDocType === 'erstbericht') {
+        title = "Erstbericht (MOCK)";
+        body = `MOCK: Erstbericht für ${careName} ...`;
+      } else {
+        title = "Arztanfrage (MOCK)";
+        body = `MOCK: Anfrage an Arzt für ${careName} ...`;
+      }
+      const fullPreview = `${title}\n\n${body}\n\n---\nMOCK-Dokument – Für echte Dokumente verwenden Sie bitte den Claude API Button.`;
+      document.getElementById('previewText').innerText = fullPreview;
+    }
+
+    // ---- Claude API Integration ----
+    function getSystemPromptForDocType() {
+      switch(selectedDocType) {
+        case 'bericht':
+          return `Du bist ein erfahrener Rechtsbeistand für gesetzliche Betreuer in Deutschland. 
+Erstelle einen professionellen Betreuungsbericht für das Amtsgericht. Der Bericht soll formal, vollständig und gerichtstauglich sein.
+Struktur: 1. Persönliche Verhältnisse 2. Gesundheitlicher Zustand 3. Wohn- und Lebenssituation 4. Vermögensverhältnisse 5. Ausgeübte Betreuungstätigkeiten 6. Besondere Vorkommnisse.`;
+        case 'vermoegen':
+          return `Erstelle ein vollständiges Vermögensverzeichnis gemäß § 1802 BGB für das Amtsgericht.
+Struktur: Aktiva (Bankkonten, Immobilien, Fahrzeuge, Wertgegenstände) / Passiva (Schulden, laufende Verpflichtungen).`;
+        case 'rechnung':
+          return `Erstelle eine Jahresrechnung gemäß § 1840 BGB.
+Struktur: Einnahmen / Ausgaben / Saldo / Erläuterungen.`;
+        case 'erstbericht':
+          return `Erstelle einen Erstbericht nach Betreuungsübernahme.
+Struktur: Kennenlernphase / Aktuelle Lebenssituation / Geplante Maßnahmen / Besonderheiten.`;
+        case 'arztanfrage':
+          return `Erstelle ein formelles Anschreiben an den behandelnden Arzt zur Anforderung eines ärztlichen Attests.`;
+        default:
+          return `Erstelle ein professionelles Dokument gemäß den übergebenen Daten.`;
+      }
+    }
+
+    function buildUserPrompt() {
+      const guardianName = document.getElementById('guardianName').value.trim() || "[Vasi Name]";
+      const guardianAddress = document.getElementById('guardianAddress').value.trim() || "[Adresse]";
+      const guardianPhone = document.getElementById('guardianPhone').value.trim() || "[Telefon]";
+      const guardianEmail = document.getElementById('guardianEmail').value.trim() || "[E-Mail]";
+      const betreuungsnummer = document.getElementById('betreuungsnummer').value.trim() || "[Aktenzeichen]";
+      const careName = document.getElementById('careName').value.trim() || "[Betreuter Name]";
+      const careBirth = document.getElementById('careBirth').value || "[Geburtsdatum]";
+      const careAddress = document.getElementById('careAddress').value.trim() || "[Adresse betreute Person]";
+      const betreuungsbeginn = document.getElementById('betreuungsbeginn').value || "[Datum]";
+      const checkboxes = document.querySelectorAll('#aufgabenkreiseGroup input[type="checkbox"]:checked');
+      const aufgaben = Array.from(checkboxes).map(cb => cb.value).join(', ') || "[keine Aufgabenkreise]";
+      const currentDate = new Date().toLocaleDateString('de-DE');
+      
+      let promptData = `Betreuer: ${guardianName}, ${guardianAddress}, Tel: ${guardianPhone}, Email: ${guardianEmail}
+Aktenzeichen: ${betreuungsnummer}
+Betreute Person: ${careName}, geboren ${careBirth}, wohnhaft ${careAddress}
+Betreuungsbeginn: ${betreuungsbeginn}
+Aufgabenkreise: ${aufgaben}
+Aktuelles Datum: ${currentDate}
+Dokumenttyp: ${selectedDocType}`;
+      return promptData;
+    }
+
+    async function generateWithClaude() {
+      const apiKey = document.getElementById('claudeApiKey').value.trim();
+      if (!apiKey) {
+        alert(currentLang === 'de' ? 'Bitte geben Sie Ihren Claude API Key ein.' : 'Lütfen Claude API anahtarınızı girin.');
+        return;
+      }
+      const button = document.getElementById('generateWithAI');
+      const originalText = button.innerText;
+      button.disabled = true;
+      button.innerHTML = '<span class="spinner"></span> Generiere...';
+      
+      const systemPrompt = getSystemPromptForDocType();
+      const userPrompt = buildUserPrompt();
+      
+      try {
+        const response = await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": apiKey,
+            "anthropic-version": "2023-06-01",
+            "anthropic-dangerous-direct-browser-access": "true"
+          },
+          body: JSON.stringify({
+            model: "claude-3-5-sonnet-20241022",
+            max_tokens: 2000,
+            system: systemPrompt,
+            messages: [{ role: "user", content: userPrompt }]
+          })
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(`API Fehler ${response.status}: ${errorData.error?.message || response.statusText}`);
+        }
+        
+        const data = await response.json();
+        const generatedText = data.content?.[0]?.text || "Keine Antwort von Claude erhalten.";
+        
+        // Voranzeige aktualisieren
+        const previewDiv = document.getElementById('previewText');
+        previewDiv.innerText = generatedText;
+        
+      } catch (error) {
+        console.error(error);
+        const errorMsg = currentLang === 'de' ? `Fehler: ${error.message}` : `Hata: ${error.message}`;
+        const previewDiv = document.getElementById('previewText');
+        previewDiv.innerText = `⚠️ ${errorMsg}\n\nBitte überprüfen Sie Ihren API Key oder versuchen Sie es später erneut.`;
+      } finally {
+        button.disabled = false;
+        button.innerHTML = originalText;
+      }
+    }
+    
+    // Event binding for doc selection
+    function bindDocCards() {
+      const cards = document.querySelectorAll('.doc-card');
+      cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          cards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          selectedDocType = card.getAttribute('data-doc');
+        });
+        if (card.getAttribute('data-doc') === 'bericht') {
+          card.classList.add('selected');
+          selectedDocType = 'bericht';
+        }
+      });
+    }
+
+    function resetAndNew() {
+      document.getElementById('guardianName').value = '';
+      document.getElementById('guardianAddress').value = '';
+      document.getElementById('guardianPhone').value = '';
+      document.getElementById('guardianEmail').value = '';
+      document.getElementById('betreuungsnummer').value = '';
+      document.getElementById('careName').value = '';
+      document.getElementById('careBirth').value = '';
+      document.getElementById('careAddress').value = '';
+      document.getElementById('betreuungsbeginn').value = '';
+      document.querySelectorAll('#aufgabenkreiseGroup input[type="checkbox"]').forEach(cb => cb.checked = false);
+      const cards = document.querySelectorAll('.doc-card');
+      cards.forEach(c => c.classList.remove('selected'));
+      const berichtCard = Array.from(cards).find(c => c.getAttribute('data-doc') === 'bericht');
+      if (berichtCard) berichtCard.classList.add('selected');
+      selectedDocType = 'bericht';
+      document.getElementById('claudeApiKey').value = '';
+      showStep(1);
+    }
+
+    function initEventListeners() {
+      document.querySelectorAll('.next').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const targetStep = parseInt(btn.getAttribute('data-next'), 10);
+          if (isStepValid(currentStep)) {
+            showStep(targetStep);
+          } else {
+            alert(currentLang === 'de' ? 'Bitte alle Pflichtfelder ausfüllen.' : 'Lütfen tüm zorunlu alanları doldurun.');
+          }
+        });
+      });
+      document.querySelectorAll('.prev').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const prevStep = parseInt(btn.getAttribute('data-prev'), 10);
+          showStep(prevStep);
+        });
+      });
+      const goPreviewBtn = document.getElementById('goToPreview');
+      if (goPreviewBtn) {
+        goPreviewBtn.addEventListener('click', () => {
+          if (isStepValid(3)) {
+            generateMockDocument();
+            showStep(4);
+          } else {
+            alert(currentLang === 'de' ? 'Bitte wählen Sie einen Dokumententyp aus.' : 'Lütfen bir belge türü seçin.');
+          }
+        });
+      }
+      const newDoc = document.getElementById('newDocBtn');
+      if (newDoc) newDoc.addEventListener('click', resetAndNew);
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+          window.print();
+        });
+      }
+      const generateBtn = document.getElementById('generateWithAI');
+      if (generateBtn) {
+        generateBtn.addEventListener('click', generateWithClaude);
+      }
+    }
+
+    function initLanguage() {
+      const btns = document.querySelectorAll('.lang-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          if (lang === 'de' || lang === 'tr') {
+            currentLang = lang;
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateUILanguage();
+            if (currentStep === 4) {
+              if (document.getElementById('previewText').innerText.includes('MOCK') === false) {
+                // wenn kein Mock, lassen wir es; sonst mock regenerieren
+              } else {
+                generateMockDocument();
+              }
+            }
+          }
+        });
+      });
+      updateUILanguage();
+    }
+
+    showStep(1);
+    bindDocCards();
+    initEventListeners();
+    initLanguage();
+  })();
 </script>
 </body>
 </html>
