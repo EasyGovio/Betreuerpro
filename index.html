@@ -9,7 +9,6 @@
   <style>
     :root {
       --navy: #0B1E35;
-      --navy-light: #132840;
       --gold: #F0D080;
       --gold-dark: #C9A84C;
       --gold-dim: rgba(240,208,128,0.12);
@@ -23,594 +22,204 @@
       --gray-800: #1e293b;
       --text-light: rgba(255,255,255,0.75);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      background: var(--white);
-      color: var(--gray-800);
-      line-height: 1.6;
-    }
-
-    /* NAV */
-    nav {
-      background: var(--navy);
-      padding: 1rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--gold-border);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
-      text-decoration: none;
-    }
-
-    .nav-logo-text {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--white);
-      letter-spacing: -0.3px;
-    }
-
+    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: var(--white); color: var(--gray-800); line-height: 1.6; }
+    nav { background: var(--navy); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--gold-border); }
+    .nav-logo { display: flex; align-items: baseline; gap: 0.4rem; text-decoration: none; }
+    .nav-logo-text { font-weight: 700; font-size: 1.3rem; color: var(--white); letter-spacing: -0.3px; }
     .nav-logo-text span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
+    .nav-right { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .nav-links { display: flex; gap: 1.2rem; align-items: center; }
+    .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: var(--gold); }
-
-    .nav-cta {
-      background: var(--gold) !important;
-      color: var(--navy) !important;
-      padding: 0.4rem 1.1rem;
-      border-radius: 2rem;
-      font-weight: 700 !important;
-      font-size: 0.85rem !important;
-    }
-
-    .nav-cta:hover { background: var(--gold-dark) !important; }
-
-    /* HERO */
-    .hero {
-      background: var(--navy);
-      padding: 4rem 1.5rem 3.5rem;
-      text-align: center;
-      background-image: radial-gradient(ellipse at 70% 20%, rgba(240,208,128,0.07) 0%, transparent 55%);
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: var(--gold-dim);
-      border: 1px solid var(--gold-border);
-      color: var(--gold);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.9rem;
-      border-radius: 2rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.15;
-      margin-bottom: 1rem;
-      letter-spacing: -0.5px;
-    }
-
+    .nav-cta { background: var(--gold) !important; color: var(--navy) !important; padding: 0.4rem 1.1rem; border-radius: 2rem; font-weight: 700 !important; }
+    .lang-toggle { display: flex; background: rgba(255,255,255,0.1); border-radius: 2rem; padding: 0.15rem; gap: 0.1rem; }
+    .lang-btn { background: transparent; border: none; color: var(--text-light); font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 2rem; cursor: pointer; transition: all 0.2s; font-family: system-ui; }
+    .lang-btn.active { background: var(--gold); color: var(--navy); }
+    .hero { background: var(--navy); padding: 4rem 1.5rem 3.5rem; text-align: center; background-image: radial-gradient(ellipse at 70% 20%, rgba(240,208,128,0.07) 0%, transparent 55%); }
+    .hero-badge { display: inline-block; background: var(--gold-dim); border: 1px solid var(--gold-border); color: var(--gold); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 2rem; margin-bottom: 1.2rem; }
+    .hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.5px; }
     .hero h1 span { color: var(--gold); }
-
-    .hero-sub {
-      font-size: 1rem;
-      color: var(--text-light);
-      max-width: 520px;
-      margin: 0 auto 2rem;
-      font-weight: 300;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--navy);
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.85rem 2rem;
-      border-radius: 2rem;
-      text-decoration: none;
-      transition: all 0.2s;
-      box-shadow: 0 4px 20px rgba(240,208,128,0.25);
-    }
-
-    .hero-cta:hover {
-      background: var(--gold-dark);
-      transform: translateY(-2px);
-    }
-
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      margin-top: 2.5rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-stat {
-      text-align: center;
-    }
-
-    .hero-stat-num {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--gold);
-      display: block;
-    }
-
-    .hero-stat-label {
-      font-size: 0.72rem;
-      color: var(--text-light);
-      letter-spacing: 0.05em;
-    }
-
-    /* FEATURES */
-    .features {
-      padding: 3.5rem 1.5rem;
-      background: var(--gray-50);
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 0.4rem;
-    }
-
-    .section-sub {
-      text-align: center;
-      font-size: 0.88rem;
-      color: var(--gray-600);
-      margin-bottom: 2.5rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .feature-card {
-      background: var(--white);
-      border-radius: 1.2rem;
-      padding: 1.5rem;
-      border: 1px solid var(--gray-200);
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .feature-card:hover {
-      border-color: var(--gold-dark);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    }
-
-    .feature-icon {
-      font-size: 1.8rem;
-      margin-bottom: 0.7rem;
-      display: block;
-    }
-
-    .feature-title {
-      font-weight: 700;
-      color: var(--navy);
-      font-size: 0.95rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .feature-desc {
-      font-size: 0.82rem;
-      color: var(--gray-600);
-      line-height: 1.55;
-    }
-
-    /* DOCUMENTS */
-    .documents {
-      padding: 3.5rem 1.5rem;
-      background: var(--white);
-    }
-
-    .doc-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .doc-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      padding: 1rem;
-      background: var(--gray-50);
-      border-radius: 0.8rem;
-      border: 1px solid var(--gray-200);
-    }
-
+    .hero-sub { font-size: 1rem; color: var(--text-light); max-width: 520px; margin: 0 auto 2rem; font-weight: 300; }
+    .hero-cta { display: inline-block; background: var(--gold); color: var(--navy); font-weight: 700; font-size: 1rem; padding: 0.85rem 2rem; border-radius: 2rem; text-decoration: none; transition: all 0.2s; box-shadow: 0 4px 20px rgba(240,208,128,0.25); }
+    .hero-cta:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .hero-stats { display: flex; justify-content: center; gap: 2.5rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .hero-stat-num { font-size: 1.6rem; font-weight: 800; color: var(--gold); display: block; }
+    .hero-stat-label { font-size: 0.72rem; color: var(--text-light); letter-spacing: 0.05em; }
+    .section { padding: 3.5rem 1.5rem; }
+    .section-alt { background: var(--gray-50); }
+    .section-title { text-align: center; font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .section-sub { text-align: center; font-size: 0.88rem; color: var(--gray-600); margin-bottom: 2.5rem; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; max-width: 900px; margin: 0 auto; }
+    .feature-card { background: var(--white); border-radius: 1.2rem; padding: 1.5rem; border: 1px solid var(--gray-200); transition: border-color 0.2s, box-shadow 0.2s; }
+    .feature-card:hover { border-color: var(--gold-dark); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 0.7rem; display: block; }
+    .feature-title { font-weight: 700; color: var(--navy); font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .feature-desc { font-size: 0.82rem; color: var(--gray-600); line-height: 1.55; }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto 2.5rem; }
+    .article-card { background: var(--white); border-radius: 1.2rem; padding: 1.5rem; border: 1px solid var(--gray-200); transition: box-shadow 0.2s; display: flex; flex-direction: column; }
+    .article-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
+    .article-tag { display: inline-block; background: var(--gold-dim); color: var(--gold-dark); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 2rem; margin-bottom: 0.7rem; border: 1px solid var(--gold-border); align-self: flex-start; }
+    .article-title { font-weight: 700; color: var(--navy); font-size: 0.95rem; line-height: 1.4; margin-bottom: 0.5rem; }
+    .article-excerpt { font-size: 0.8rem; color: var(--gray-600); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
+    .article-link { display: inline-block; font-size: 0.8rem; font-weight: 700; color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.1rem; transition: color 0.2s; align-self: flex-start; }
+    .article-link:hover { color: var(--navy); }
+    .all-articles-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; text-align: center; }
+    .article-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.5rem; }
+    .article-list-item { display: flex; align-items: center; gap: 0.8rem; padding: 0.7rem 1rem; background: var(--white); border: 1px solid var(--gray-200); border-radius: 0.8rem; text-decoration: none; color: var(--gray-700); font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+    .article-list-item:hover { border-color: var(--gold-dark); color: var(--navy); background: var(--gray-50); }
+    .article-list-item::before { content: "→"; color: var(--gold-dark); font-weight: 700; flex-shrink: 0; }
+    .doc-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 900px; margin: 0 auto; }
+    .doc-item { display: flex; align-items: flex-start; gap: 0.8rem; padding: 1rem; background: var(--white); border-radius: 0.8rem; border: 1px solid var(--gray-200); }
     .doc-item-icon { font-size: 1.4rem; flex-shrink: 0; }
-
-    .doc-item-title {
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--navy);
-    }
-
-    .doc-item-desc {
-      font-size: 0.75rem;
-      color: var(--gray-600);
-      margin-top: 0.15rem;
-    }
-
-    /* ARTICLES */
-    .articles {
-      padding: 3.5rem 1.5rem;
-      background: var(--gray-50);
-    }
-
-    .articles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .article-card {
-      background: var(--white);
-      border-radius: 1.2rem;
-      padding: 1.5rem;
-      border: 1px solid var(--gray-200);
-      transition: box-shadow 0.2s;
-    }
-
-    .article-card:hover {
-      box-shadow: 0 6px 20px rgba(0,0,0,0.07);
-    }
-
-    .article-tag {
-      display: inline-block;
-      background: var(--gold-dim);
-      color: var(--gold-dark);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 2rem;
-      margin-bottom: 0.7rem;
-      border: 1px solid var(--gold-border);
-    }
-
-    .article-title {
-      font-weight: 700;
-      color: var(--navy);
-      font-size: 0.95rem;
-      line-height: 1.4;
-      margin-bottom: 0.5rem;
-    }
-
-    .article-excerpt {
-      font-size: 0.8rem;
-      color: var(--gray-600);
-      line-height: 1.55;
-    }
-
-    /* CTA BANNER */
-    .cta-banner {
-      background: var(--navy);
-      padding: 3rem 1.5rem;
-      text-align: center;
-      background-image: radial-gradient(ellipse at 30% 50%, rgba(240,208,128,0.08) 0%, transparent 60%);
-    }
-
-    .cta-banner h2 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 0.6rem;
-    }
-
-    .cta-banner p {
-      color: var(--text-light);
-      font-size: 0.9rem;
-      margin-bottom: 1.8rem;
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--gray-800);
-      color: rgba(255,255,255,0.5);
-      padding: 2rem 1.5rem;
-      font-size: 0.75rem;
-    }
-
-    .footer-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .footer-brand {
-      font-weight: 700;
-      color: var(--gold);
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
+    .doc-item-title { font-weight: 600; font-size: 0.85rem; color: var(--navy); }
+    .doc-item-desc { font-size: 0.75rem; color: var(--gray-600); margin-top: 0.15rem; }
+    .cta-banner { background: var(--navy); padding: 3rem 1.5rem; text-align: center; background-image: radial-gradient(ellipse at 30% 50%, rgba(240,208,128,0.08) 0%, transparent 60%); }
+    .cta-banner h2 { font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 0.6rem; }
+    .cta-banner p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.8rem; }
+    footer { background: var(--gray-800); color: rgba(255,255,255,0.5); padding: 2rem 1.5rem; font-size: 0.75rem; }
+    .footer-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { font-weight: 700; color: var(--gold); font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; cursor: pointer; transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold); }
-
-    /* MODALS */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
-
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 1.5rem; }
     .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: var(--white);
-      border-radius: 1.5rem;
-      padding: 2rem;
-      max-width: 560px;
-      width: 100%;
-      max-height: 80vh;
-      overflow-y: auto;
-      position: relative;
-    }
-
-    .modal h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 1rem;
-      border-left: 4px solid var(--gold);
-      padding-left: 0.8rem;
-    }
-
-    .modal p, .modal li {
-      font-size: 0.85rem;
-      color: var(--gray-700);
-      line-height: 1.6;
-      margin-bottom: 0.6rem;
-    }
-
+    .modal { background: var(--white); border-radius: 1.5rem; padding: 2rem; max-width: 560px; width: 100%; max-height: 80vh; overflow-y: auto; position: relative; }
+    .modal h3 { font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; border-left: 4px solid var(--gold); padding-left: 0.8rem; }
+    .modal p, .modal li { font-size: 0.85rem; color: var(--gray-700); line-height: 1.6; margin-bottom: 0.6rem; }
     .modal ul { padding-left: 1.2rem; }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: var(--gray-100);
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gray-700);
-    }
-
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: var(--gray-100); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--gray-700); }
     .modal-close:hover { background: var(--gray-200); }
-
-    @media (max-width: 640px) {
-      .nav-links { gap: 1rem; }
-      .hero { padding: 3rem 1rem 2.5rem; }
-      .hero-stats { gap: 1.5rem; }
-    }
+    @media (max-width: 640px) { .nav-links { display: none; } .hero { padding: 3rem 1rem 2.5rem; } .hero-stats { gap: 1.5rem; } }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="/">
-    <span class="nav-logo-text">Betreuer<span>Pro</span></span>
-  </a>
-  <div class="nav-links">
-    <a href="#ratgeber">Ratgeber</a>
-    <a href="#dokumente">Dokumente</a>
-    <a href="/tool.html" class="nav-cta">✨ Tool starten</a>
+  <a class="nav-logo" href="/"><span class="nav-logo-text">Betreuer<span>Pro</span></span></a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#ratgeber" data-i18n="nav-ratgeber">Ratgeber</a>
+      <a href="#dokumente" data-i18n="nav-dokumente">Dokumente</a>
+      <a href="/tool.html" class="nav-cta" data-i18n="nav-tool">✨ Tool starten</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang-btn="de">DE</button>
+      <button class="lang-btn" data-lang-btn="tr">TR</button>
+      <button class="lang-btn" data-lang-btn="en">EN</button>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">KI-gestützt · Gerichtstauglich · Kostenlos testen</div>
-  <h1>Betreuungsdokumente<br>in <span>Minuten</span> — nicht Stunden</h1>
-  <p class="hero-sub">BetreuerPro erstellt professionelle Berichte, Vermögensverzeichnisse und Anschreiben für gesetzliche Betreuer — automatisiert mit Claude AI.</p>
-  <a href="/tool.html" class="hero-cta">✨ Jetzt Dokument erstellen →</a>
+  <div class="hero-badge" data-i18n="hero-badge">KI-gestützt · Gerichtstauglich · Kostenlos testen</div>
+  <h1 data-i18n="hero-h1">Betreuungsdokumente<br>in <span>Minuten</span> — nicht Stunden</h1>
+  <p class="hero-sub" data-i18n="hero-sub">BetreuerPro erstellt professionelle Berichte, Vermögensverzeichnisse und Anschreiben für gesetzliche Betreuer — automatisiert mit Claude AI.</p>
+  <a href="/tool.html" class="hero-cta" data-i18n="hero-cta">✨ Jetzt Dokument erstellen →</a>
   <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="hero-stat-num">5</span>
-      <span class="hero-stat-label">Dokumenttypen</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">1,3M+</span>
-      <span class="hero-stat-label">Betreute in Deutschland</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">§ BGB</span>
-      <span class="hero-stat-label">Rechtskonform</span>
-    </div>
+    <div class="hero-stat"><span class="hero-stat-num">5</span><span class="hero-stat-label" data-i18n="stat-docs">Dokumenttypen</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">1,3M+</span><span class="hero-stat-label" data-i18n="stat-cases">Betreute in Deutschland</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">§ BGB</span><span class="hero-stat-label" data-i18n="stat-legal">Rechtskonform</span></div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="features">
-  <h2 class="section-title">Warum BetreuerPro?</h2>
-  <p class="section-sub">Entwickelt für die tägliche Praxis gesetzlicher Betreuer</p>
+<section class="section section-alt">
+  <h2 class="section-title" data-i18n="feat-title">Warum BetreuerPro?</h2>
+  <p class="section-sub" data-i18n="feat-sub">Entwickelt für die tägliche Praxis gesetzlicher Betreuer</p>
   <div class="features-grid">
-    <div class="feature-card">
-      <span class="feature-icon">⚡</span>
-      <div class="feature-title">Schnell & präzise</div>
-      <div class="feature-desc">Dokumente in unter 2 Minuten — mit Ihren echten Daten, nicht mit Lückentext.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">⚖️</span>
-      <div class="feature-title">Rechtlich fundiert</div>
-      <div class="feature-desc">Alle Vorlagen basieren auf BGB §§ 1802, 1840, 1868 und aktueller Rechtspraxis.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🔒</span>
-      <div class="feature-title">Datenschutz first</div>
-      <div class="feature-desc">Keine Datenspeicherung. Alles läuft lokal in Ihrem Browser — DSGVO-konform.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🌐</span>
-      <div class="feature-title">Deutsch & Türkisch</div>
-      <div class="feature-desc">Vollständige Benutzeroberfläche auf Deutsch und Türkisch — für alle Betreuer.</div>
-    </div>
+    <div class="feature-card"><span class="feature-icon">⚡</span><div class="feature-title" data-i18n="feat1-title">Schnell & präzise</div><div class="feature-desc" data-i18n="feat1-desc">Dokumente in unter 2 Minuten — mit Ihren echten Daten, nicht mit Lückentext.</div></div>
+    <div class="feature-card"><span class="feature-icon">⚖️</span><div class="feature-title" data-i18n="feat2-title">Rechtlich fundiert</div><div class="feature-desc" data-i18n="feat2-desc">Alle Vorlagen basieren auf BGB §§ 1802, 1840, 1868 und aktueller Rechtspraxis.</div></div>
+    <div class="feature-card"><span class="feature-icon">🔒</span><div class="feature-title" data-i18n="feat3-title">Datenschutz first</div><div class="feature-desc" data-i18n="feat3-desc">Keine Datenspeicherung. Alles läuft lokal in Ihrem Browser — DSGVO-konform.</div></div>
+    <div class="feature-card"><span class="feature-icon">🌐</span><div class="feature-title" data-i18n="feat4-title">Mehrsprachig</div><div class="feature-desc" data-i18n="feat4-desc">Vollständige Oberfläche auf Deutsch, Türkisch und Englisch — für alle Betreuer.</div></div>
   </div>
 </section>
 
-<!-- DOCUMENTS -->
-<section class="documents" id="dokumente">
-  <h2 class="section-title">Alle Dokumenttypen</h2>
-  <p class="section-sub">Fünf praxiserprobte Vorlagen — sofort einsatzbereit</p>
-  <div class="doc-list">
-    <div class="doc-item">
-      <span class="doc-item-icon">📄</span>
-      <div>
-        <div class="doc-item-title">Betreuungsbericht</div>
-        <div class="doc-item-desc">Jahresbericht ans Amtsgericht gem. § 1868 BGB</div>
-      </div>
-    </div>
-    <div class="doc-item">
-      <span class="doc-item-icon">💰</span>
-      <div>
-        <div class="doc-item-title">Vermögensverzeichnis</div>
-        <div class="doc-item-desc">Vollständige Vermögensaufstellung gem. § 1802 BGB</div>
-      </div>
-    </div>
-    <div class="doc-item">
-      <span class="doc-item-icon">📊</span>
-      <div>
-        <div class="doc-item-title">Jahresrechnung</div>
-        <div class="doc-item-desc">Vergütungsabrechnung gem. § 1840 BGB</div>
-      </div>
-    </div>
-    <div class="doc-item">
-      <span class="doc-item-icon">📝</span>
-      <div>
-        <div class="doc-item-title">Erstbericht</div>
-        <div class="doc-item-desc">Bericht nach Betreuerbestellung</div>
-      </div>
-    </div>
-    <div class="doc-item">
-      <span class="doc-item-icon">✉️</span>
-      <div>
-        <div class="doc-item-title">Arztanfrage</div>
-        <div class="doc-item-desc">Formelles Anschreiben zur Schweigepflichtentbindung</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ARTICLES -->
-<section class="articles" id="ratgeber">
-  <h2 class="section-title">Ratgeber für Betreuer</h2>
-  <p class="section-sub">Praxiswissen für den Betreuungsalltag</p>
+<section class="section" id="ratgeber">
+  <h2 class="section-title" data-i18n="art-title">Ratgeber für Betreuer</h2>
+  <p class="section-sub" data-i18n="art-sub">Praxiswissen für den Betreuungsalltag</p>
   <div class="articles-grid">
     <div class="article-card">
-      <span class="article-tag">Recht</span>
-      <div class="article-title">Betreuungsbericht richtig schreiben: Was das Gericht erwartet</div>
-      <div class="article-excerpt">Der jährliche Betreuungsbericht ist Pflicht — aber viele Betreuer wissen nicht, was genau hineingehört. Wir erklären Aufbau, Fristen und häufige Fehler.</div>
+      <span class="article-tag" data-i18n="tag-recht">Recht</span>
+      <div class="article-title" data-i18n="art1-title">Betreuungsbericht richtig schreiben: Was das Gericht erwartet</div>
+      <div class="article-excerpt" data-i18n="art1-exc">Der jährliche Betreuungsbericht ist Pflicht. Wir erklären Aufbau, Fristen und häufige Fehler.</div>
+      <a href="/betreuungsbericht-schreiben.html" class="article-link" data-i18n="art-more">Mehr erfahren →</a>
     </div>
     <div class="article-card">
-      <span class="article-tag">Finanzen</span>
-      <div class="article-title">Vermögensverzeichnis § 1802 BGB: Schritt für Schritt erklärt</div>
-      <div class="article-excerpt">Das Vermögensverzeichnis beim Betreuungsbeginn ist eine der wichtigsten Pflichten. Erfahren Sie, was Aktiva und Passiva enthalten müssen.</div>
+      <span class="article-tag" data-i18n="tag-finanzen">Finanzen</span>
+      <div class="article-title" data-i18n="art2-title">Vermögensverzeichnis § 1802 BGB: Schritt für Schritt</div>
+      <div class="article-excerpt" data-i18n="art2-exc">Das Vermögensverzeichnis beim Betreuungsbeginn ist eine der wichtigsten Pflichten.</div>
+      <a href="/was-ist-gesetzliche-betreuung.html" class="article-link" data-i18n="art-more">Mehr erfahren →</a>
     </div>
     <div class="article-card">
-      <span class="article-tag">Vergütung</span>
-      <div class="article-title">Betreuer-Vergütung 2024/2025: Stundensätze und Abrechnung</div>
-      <div class="article-excerpt">Seit der BtOG-Reform gelten neue Stundensätze. Wir zeigen, wie Sie Ihre Vergütung korrekt berechnen und beim Gericht einreichen.</div>
+      <span class="article-tag" data-i18n="tag-verguetung">Vergütung</span>
+      <div class="article-title" data-i18n="art3-title">Betreuer-Vergütung 2025: Stundensätze & Abrechnung</div>
+      <div class="article-excerpt" data-i18n="art3-exc">Seit der BtOG-Reform gelten neue Stundensätze. So berechnen Sie Ihre Vergütung korrekt.</div>
+      <a href="/betreuervergutung-abrechnung.html" class="article-link" data-i18n="art-more">Mehr erfahren →</a>
     </div>
     <div class="article-card">
-      <span class="article-tag">Praxis</span>
-      <div class="article-title">Aufgabenkreise im Überblick: Was darf der Betreuer?</div>
-      <div class="article-excerpt">Gesundheitssorge, Vermögenssorge, Aufenthaltsbestimmung — die Aufgabenkreise definieren Ihren Handlungsspielraum. Eine praktische Übersicht.</div>
+      <span class="article-tag" data-i18n="tag-praxis">Praxis</span>
+      <div class="article-title" data-i18n="art4-title">Aufgabenkreise: Was darf der Betreuer?</div>
+      <div class="article-excerpt" data-i18n="art4-exc">Gesundheitssorge, Vermögenssorge, Aufenthaltsbestimmung — eine praktische Übersicht.</div>
+      <a href="/betreuer-aufgaben-und-pflichten.html" class="article-link" data-i18n="art-more">Mehr erfahren →</a>
     </div>
     <div class="article-card">
-      <span class="article-tag">DSGVO</span>
-      <div class="article-title">Datenschutz in der Betreuung: Was Betreuer beachten müssen</div>
-      <div class="article-excerpt">Als gesetzlicher Betreuer verwalten Sie hochsensible Daten. Welche DSGVO-Pflichten gelten, und wie Sie rechtssicher vorgehen.</div>
+      <span class="article-tag" data-i18n="tag-recht">Recht</span>
+      <div class="article-title" data-i18n="art5-title">Betreuungsgericht: Ablauf des Verfahrens</div>
+      <div class="article-excerpt" data-i18n="art5-exc">Von der Antragstellung bis zur Bestellung — das Betreuungsverfahren komplett erklärt.</div>
+      <a href="/betreuungsgericht-verfahren.html" class="article-link" data-i18n="art-more">Mehr erfahren →</a>
     </div>
     <div class="article-card">
-      <span class="article-tag">Tipps</span>
-      <div class="article-title">Arztanfrage korrekt formulieren: Schweigepflichtentbindung</div>
-      <div class="article-excerpt">Für die Gesundheitssorge brauchen Betreuer Zugang zu Arztinformationen. So stellen Sie die Anfrage rechtssicher und vollständig.</div>
+      <span class="article-tag" data-i18n="tag-vorsorge">Vorsorge</span>
+      <div class="article-title" data-i18n="art6-title">Betreuungsverfügung & Vorsorgevollmacht</div>
+      <div class="article-excerpt" data-i18n="art6-exc">Wann braucht man eine Betreuungsverfügung, wann reicht eine Vollmacht? Eine klare Abgrenzung.</div>
+      <a href="/betreuungsverfuegung-vorsorgevollmacht.html" class="article-link" data-i18n="art-more">Mehr erfahren →</a>
     </div>
+  </div>
+
+  <h3 class="all-articles-title" data-i18n="art-all-title">Alle Ratgeber-Artikel</h3>
+  <div class="article-list">
+    <a href="/was-ist-gesetzliche-betreuung.html" class="article-list-item" data-i18n="list-1">Was ist gesetzliche Betreuung?</a>
+    <a href="/betreuer-aufgaben-und-pflichten.html" class="article-list-item" data-i18n="list-2">Betreuer: Aufgaben und Pflichten</a>
+    <a href="/betreuungsrecht-deutschland.html" class="article-list-item" data-i18n="list-3">Betreuungsrecht in Deutschland</a>
+    <a href="/betreuervergutung-abrechnung.html" class="article-list-item" data-i18n="list-4">Betreuervergütung & Abrechnung</a>
+    <a href="/betreuungsbericht-schreiben.html" class="article-list-item" data-i18n="list-5">Betreuungsbericht schreiben</a>
+    <a href="/vormundschaft-vs-betreuung.html" class="article-list-item" data-i18n="list-6">Vormundschaft vs. Betreuung</a>
+    <a href="/betreuung-demenz-alzheimer.html" class="article-list-item" data-i18n="list-7">Betreuung bei Demenz & Alzheimer</a>
+    <a href="/digitale-tools-betreuer.html" class="article-list-item" data-i18n="list-8">Digitale Tools für Betreuer</a>
+    <a href="/betreuerwechsel-abloesung.html" class="article-list-item" data-i18n="list-9">Betreuerwechsel & Ablösung</a>
+    <a href="/ehrenamtliche-betreuung.html" class="article-list-item" data-i18n="list-10">Ehrenamtliche Betreuung</a>
+    <a href="/betreuungsverfuegung-vorsorgevollmacht.html" class="article-list-item" data-i18n="list-11">Betreuungsverfügung & Vorsorgevollmacht</a>
+    <a href="/betreuungsgericht-verfahren.html" class="article-list-item" data-i18n="list-12">Betreuungsgericht: Verfahren</a>
+    <a href="/selbstbestimmung-betreuung.html" class="article-list-item" data-i18n="list-13">Selbstbestimmung in der Betreuung</a>
+    <a href="/betreuer-pflegegrad-zusammenarbeit.html" class="article-list-item" data-i18n="list-14">Betreuer & Pflegegrad</a>
+    <a href="/betreuung-vs-pflegetestament.html" class="article-list-item" data-i18n="list-15">Betreuung vs. Pflegetestament</a>
+    <a href="/betreuer-behinderte-erwachsene.html" class="article-list-item" data-i18n="list-16">Betreuung behinderter Erwachsener</a>
+    <a href="/betreuer-patientenverfuegung.html" class="article-list-item" data-i18n="list-17">Betreuer & Patientenverfügung</a>
+    <a href="/betreuungsverfahren-widerspruch.html" class="article-list-item" data-i18n="list-18">Widerspruch im Betreuungsverfahren</a>
+    <a href="/betreuer-schweigepflicht-entbindung.html" class="article-list-item" data-i18n="list-19">Schweigepflichtentbindung</a>
+    <a href="/betreuer-ethische-grundsaetze.html" class="article-list-item" data-i18n="list-20">Ethische Grundsätze in der Betreuung</a>
   </div>
 </section>
 
-<!-- CTA BANNER -->
-<section class="cta-banner">
-  <h2>Jetzt kostenlos ausprobieren</h2>
-  <p>Kein Account. Keine Anmeldung. Sofort loslegen.</p>
-  <a href="/tool.html" class="hero-cta">✨ Zum Dokumenten-Generator →</a>
+<section class="section section-alt" id="dokumente">
+  <h2 class="section-title" data-i18n="doc-title">Alle Dokumenttypen</h2>
+  <p class="section-sub" data-i18n="doc-sub">Fünf praxiserprobte Vorlagen — sofort einsatzbereit</p>
+  <div class="doc-list">
+    <div class="doc-item"><span class="doc-item-icon">📄</span><div><div class="doc-item-title" data-i18n="doc1-title">Betreuungsbericht</div><div class="doc-item-desc" data-i18n="doc1-desc">Jahresbericht gem. § 1868 BGB</div></div></div>
+    <div class="doc-item"><span class="doc-item-icon">💰</span><div><div class="doc-item-title" data-i18n="doc2-title">Vermögensverzeichnis</div><div class="doc-item-desc" data-i18n="doc2-desc">Aufstellung gem. § 1802 BGB</div></div></div>
+    <div class="doc-item"><span class="doc-item-icon">📊</span><div><div class="doc-item-title" data-i18n="doc3-title">Jahresrechnung</div><div class="doc-item-desc" data-i18n="doc3-desc">Vergütung gem. § 1840 BGB</div></div></div>
+    <div class="doc-item"><span class="doc-item-icon">📝</span><div><div class="doc-item-title" data-i18n="doc4-title">Erstbericht</div><div class="doc-item-desc" data-i18n="doc4-desc">Nach Betreuerbestellung</div></div></div>
+    <div class="doc-item"><span class="doc-item-icon">✉️</span><div><div class="doc-item-title" data-i18n="doc5-title">Arztanfrage</div><div class="doc-item-desc" data-i18n="doc5-desc">Schweigepflichtentbindung</div></div></div>
+  </div>
 </section>
 
-<!-- FOOTER -->
+<section class="cta-banner">
+  <h2 data-i18n="cta-h2">Jetzt kostenlos ausprobieren</h2>
+  <p data-i18n="cta-p">Kein Account. Keine Anmeldung. Sofort loslegen.</p>
+  <a href="/tool.html" class="hero-cta" data-i18n="cta-btn">✨ Zum Dokumenten-Generator →</a>
+</section>
+
 <footer>
   <div class="footer-inner">
     <div>
@@ -626,68 +235,176 @@
   </div>
 </footer>
 
-<!-- IMPRESSUM MODAL -->
 <div class="modal-overlay" id="modal-impressum">
   <div class="modal">
     <button class="modal-close" onclick="document.getElementById('modal-impressum').classList.remove('open')">✕</button>
     <h3>Impressum</h3>
     <p><strong>Angaben gemäß § 5 TMG</strong></p>
-    <p>AskMeAI Teknoloji Ltd. Şti.<br>
-    Bernauerstr. 115<br>
-    13507 Berlin<br>
-    Deutschland</p>
-    <p><strong>Kontakt:</strong><br>
-    E-Mail: mehmet@askmeai.io</p>
-    <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
-    Mehmet Aydınlı, Bernauerstr. 115, 13507 Berlin</p>
-    <p><strong>Haftungsausschluss:</strong><br>
-    Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernehmen wir keine Gewähr. Die mit BetreuerPro erstellten Dokumente sind Entwürfe und ersetzen keine Rechtsberatung.</p>
+    <p>AskMeAI Teknoloji Ltd. Şti.<br>Bernauerstr. 115, 13507 Berlin · Deutschland</p>
+    <p><strong>Kontakt:</strong> mehmet@askmeai.io</p>
+    <p><strong>Verantwortlich nach § 55 Abs. 2 RStV:</strong> Mehmet Aydınlı, Bernauerstr. 115, 13507 Berlin</p>
+    <p><strong>Haftungsausschluss:</strong> Die mit BetreuerPro erstellten Dokumente sind KI-generierte Entwürfe und ersetzen keine Rechtsberatung.</p>
   </div>
 </div>
 
-<!-- DATENSCHUTZ MODAL -->
 <div class="modal-overlay" id="modal-datenschutz">
   <div class="modal">
     <button class="modal-close" onclick="document.getElementById('modal-datenschutz').classList.remove('open')">✕</button>
     <h3>Datenschutzerklärung</h3>
-    <p><strong>Verantwortlicher:</strong><br>
-    AskMeAI Teknoloji Ltd. Şti., Mehmet Aydınlı — Bernauerstr. 115, 13507 Berlin<br>
-    E-Mail: mehmet@askmeai.io</p>
-    <p><strong>Erhobene Daten:</strong><br>
-    BetreuerPro speichert keine personenbezogenen Daten auf unseren Servern. Alle Eingaben im Dokumenten-Generator verbleiben ausschließlich in Ihrem Browser und werden nicht übertragen oder gespeichert.</p>
-    <p><strong>Claude AI:</strong><br>
-    Wenn Sie den KI-Dokumentengenerator nutzen, werden die von Ihnen eingegebenen Daten über Ihren eigenen Anthropic API Key direkt an die Anthropic API übertragen. Es gilt die Datenschutzerklärung von Anthropic (anthropic.com/privacy).</p>
-    <p><strong>Cookies:</strong><br>
-    Diese Website verwendet keine Tracking-Cookies. Google AdSense kann technische Cookies setzen — weitere Informationen finden Sie unter policies.google.com/privacy.</p>
-    <p><strong>Ihre Rechte:</strong><br>
-    Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten gemäß DSGVO Art. 15–17. Kontakt: mehmet@askmeai.io</p>
+    <p><strong>Verantwortlicher:</strong> AskMeAI Teknoloji Ltd. Şti., Mehmet Aydınlı — Bernauerstr. 115, 13507 Berlin · mehmet@askmeai.io</p>
+    <p><strong>Datenspeicherung:</strong> BetreuerPro speichert keine personenbezogenen Daten. Alle Eingaben verbleiben in Ihrem Browser.</p>
+    <p><strong>Claude AI:</strong> Bei Nutzung des Generators werden Daten über Ihren Anthropic API Key an Anthropic übertragen (anthropic.com/privacy).</p>
+    <p><strong>Cookies:</strong> Keine Tracking-Cookies. Google AdSense kann technische Cookies setzen (policies.google.com/privacy).</p>
+    <p><strong>Ihre Rechte:</strong> Auskunft, Berichtigung, Löschung gem. DSGVO Art. 15–17. Kontakt: mehmet@askmeai.io</p>
   </div>
 </div>
 
-<!-- DISCLAIMER MODAL -->
 <div class="modal-overlay" id="modal-disclaimer">
   <div class="modal">
     <button class="modal-close" onclick="document.getElementById('modal-disclaimer').classList.remove('open')">✕</button>
     <h3>Rechtlicher Hinweis</h3>
-    <p>Die mit BetreuerPro erstellten Dokumente sind <strong>KI-generierte Entwürfe</strong> und dienen ausschließlich als Arbeitshilfe.</p>
+    <p>Die mit BetreuerPro erstellten Dokumente sind <strong>KI-generierte Entwürfe</strong> und dienen als Arbeitshilfe.</p>
     <ul>
       <li>Sie ersetzen keine Rechtsberatung durch einen Fachanwalt.</li>
-      <li>Vor Einreichung beim Gericht sollten alle Dokumente sorgfältig geprüft werden.</li>
+      <li>Vor Einreichung beim Gericht sollten alle Dokumente geprüft werden.</li>
       <li>BetreuerPro übernimmt keine Haftung für die rechtliche Korrektheit der generierten Inhalte.</li>
       <li>Die Nutzung erfolgt auf eigene Verantwortung.</li>
     </ul>
-    <p style="margin-top:0.8rem;">Bei rechtlichen Fragen wenden Sie sich an einen zugelassenen Rechtsanwalt oder Ihre zuständige Betreuungsbehörde.</p>
   </div>
 </div>
 
 <script>
-  // Close modals on overlay click
-  document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', function(e) {
-      if (e.target === this) this.classList.remove('open');
-    });
-  });
-</script>
+const i18n = {
+  de: {
+    "nav-ratgeber":"Ratgeber","nav-dokumente":"Dokumente","nav-tool":"✨ Tool starten",
+    "hero-badge":"KI-gestützt · Gerichtstauglich · Kostenlos testen",
+    "hero-h1":"Betreuungsdokumente<br>in <span>Minuten</span> — nicht Stunden",
+    "hero-sub":"BetreuerPro erstellt professionelle Berichte, Vermögensverzeichnisse und Anschreiben für gesetzliche Betreuer — automatisiert mit Claude AI.",
+    "hero-cta":"✨ Jetzt Dokument erstellen →","stat-docs":"Dokumenttypen","stat-cases":"Betreute in Deutschland","stat-legal":"Rechtskonform",
+    "feat-title":"Warum BetreuerPro?","feat-sub":"Entwickelt für die tägliche Praxis gesetzlicher Betreuer",
+    "feat1-title":"Schnell & präzise","feat1-desc":"Dokumente in unter 2 Minuten — mit Ihren echten Daten, nicht mit Lückentext.",
+    "feat2-title":"Rechtlich fundiert","feat2-desc":"Alle Vorlagen basieren auf BGB §§ 1802, 1840, 1868 und aktueller Rechtspraxis.",
+    "feat3-title":"Datenschutz first","feat3-desc":"Keine Datenspeicherung. Alles läuft lokal in Ihrem Browser — DSGVO-konform.",
+    "feat4-title":"Mehrsprachig","feat4-desc":"Vollständige Oberfläche auf Deutsch, Türkisch und Englisch — für alle Betreuer.",
+    "art-title":"Ratgeber für Betreuer","art-sub":"Praxiswissen für den Betreuungsalltag",
+    "tag-recht":"Recht","tag-finanzen":"Finanzen","tag-verguetung":"Vergütung","tag-praxis":"Praxis","tag-vorsorge":"Vorsorge",
+    "art1-title":"Betreuungsbericht richtig schreiben: Was das Gericht erwartet","art1-exc":"Der jährliche Betreuungsbericht ist Pflicht. Wir erklären Aufbau, Fristen und häufige Fehler.",
+    "art2-title":"Vermögensverzeichnis § 1802 BGB: Schritt für Schritt","art2-exc":"Das Vermögensverzeichnis beim Betreuungsbeginn ist eine der wichtigsten Pflichten.",
+    "art3-title":"Betreuer-Vergütung 2025: Stundensätze & Abrechnung","art3-exc":"Seit der BtOG-Reform gelten neue Stundensätze. So berechnen Sie Ihre Vergütung korrekt.",
+    "art4-title":"Aufgabenkreise: Was darf der Betreuer?","art4-exc":"Gesundheitssorge, Vermögenssorge, Aufenthaltsbestimmung — eine praktische Übersicht.",
+    "art5-title":"Betreuungsgericht: Ablauf des Verfahrens","art5-exc":"Von der Antragstellung bis zur Bestellung — das Betreuungsverfahren komplett erklärt.",
+    "art6-title":"Betreuungsverfügung & Vorsorgevollmacht","art6-exc":"Wann braucht man eine Betreuungsverfügung, wann reicht eine Vollmacht?",
+    "art-more":"Mehr erfahren →","art-all-title":"Alle Ratgeber-Artikel",
+    "list-1":"Was ist gesetzliche Betreuung?","list-2":"Betreuer: Aufgaben und Pflichten","list-3":"Betreuungsrecht in Deutschland",
+    "list-4":"Betreuervergütung & Abrechnung","list-5":"Betreuungsbericht schreiben","list-6":"Vormundschaft vs. Betreuung",
+    "list-7":"Betreuung bei Demenz & Alzheimer","list-8":"Digitale Tools für Betreuer","list-9":"Betreuerwechsel & Ablösung",
+    "list-10":"Ehrenamtliche Betreuung","list-11":"Betreuungsverfügung & Vorsorgevollmacht","list-12":"Betreuungsgericht: Verfahren",
+    "list-13":"Selbstbestimmung in der Betreuung","list-14":"Betreuer & Pflegegrad","list-15":"Betreuung vs. Pflegetestament",
+    "list-16":"Betreuung behinderter Erwachsener","list-17":"Betreuer & Patientenverfügung","list-18":"Widerspruch im Betreuungsverfahren",
+    "list-19":"Schweigepflichtentbindung","list-20":"Ethische Grundsätze in der Betreuung",
+    "doc-title":"Alle Dokumenttypen","doc-sub":"Fünf praxiserprobte Vorlagen — sofort einsatzbereit",
+    "doc1-title":"Betreuungsbericht","doc1-desc":"Jahresbericht gem. § 1868 BGB",
+    "doc2-title":"Vermögensverzeichnis","doc2-desc":"Aufstellung gem. § 1802 BGB",
+    "doc3-title":"Jahresrechnung","doc3-desc":"Vergütung gem. § 1840 BGB",
+    "doc4-title":"Erstbericht","doc4-desc":"Nach Betreuerbestellung",
+    "doc5-title":"Arztanfrage","doc5-desc":"Schweigepflichtentbindung",
+    "cta-h2":"Jetzt kostenlos ausprobieren","cta-p":"Kein Account. Keine Anmeldung. Sofort loslegen.","cta-btn":"✨ Zum Dokumenten-Generator →"
+  },
+  tr: {
+    "nav-ratgeber":"Rehber","nav-dokumente":"Belgeler","nav-tool":"✨ Araca Git",
+    "hero-badge":"Yapay Zeka Destekli · Mahkeme Uyumlu · Ücretsiz Dene",
+    "hero-h1":"Vasi Belgelerini<br><span>Dakikalar</span> İçinde Oluştur",
+    "hero-sub":"BetreuerPro, yasal vasiler için profesyonel raporlar ve belgeler üretir — Claude AI ile otomatik olarak.",
+    "hero-cta":"✨ Hemen Belge Oluştur →","stat-docs":"Belge Türü","stat-cases":"Almanya'daki Vasilik Davası","stat-legal":"BGB Uyumlu",
+    "feat-title":"Neden BetreuerPro?","feat-sub":"Yasal vasilerin günlük pratiği için geliştirildi",
+    "feat1-title":"Hızlı & Doğru","feat1-desc":"2 dakika içinde belge — gerçek verilerinizle.",
+    "feat2-title":"Hukuki Dayanak","feat2-desc":"Tüm şablonlar BGB §§ 1802, 1840, 1868'e dayanır.",
+    "feat3-title":"Gizlilik Önce","feat3-desc":"Veri depolamıyoruz. Her şey tarayıcınızda kalır — DSGVO uyumlu.",
+    "feat4-title":"Çok Dilli","feat4-desc":"Almanca, Türkçe ve İngilizce tam arayüz.",
+    "art-title":"Vasiler İçin Rehber","art-sub":"Vasilik günlüğü için pratik bilgiler",
+    "tag-recht":"Hukuk","tag-finanzen":"Finans","tag-verguetung":"Ücret","tag-praxis":"Pratik","tag-vorsorge":"Önlem",
+    "art1-title":"Vasilik Raporu Nasıl Yazılır?","art1-exc":"Yıllık vasilik raporu zorunludur. Yapısını ve sık yapılan hataları açıklıyoruz.",
+    "art2-title":"§ 1802 BGB Mal Varlığı Envanteri","art2-exc":"Vasilik başlangıcında mal varlığı envanteri en önemli yükümlülüklerden biridir.",
+    "art3-title":"Vasi Ücreti 2025: Saatlik Ücretler","art3-exc":"BtOG reformundan bu yana yeni saatlik ücretler geçerli.",
+    "art4-title":"Görev Alanları: Vasi Ne Yapabilir?","art4-exc":"Sağlık, mal varlığı, ikamet belirleme — yetkilerinizin pratik özeti.",
+    "art5-title":"Vasilik Mahkemesi: Süreç Nasıl İşler?","art5-exc":"Başvurudan vasinin atanmasına kadar tüm süreç.",
+    "art6-title":"Vasilik Direktifi ve Vekaletname","art6-exc":"Vasilik direktifi mi, vekaletname mi? Net bir karşılaştırma.",
+    "art-more":"Devamını oku →","art-all-title":"Tüm Rehber Makaleleri",
+    "list-1":"Yasal vasilik nedir?","list-2":"Vasi: Görevler ve yükümlülükler","list-3":"Almanya'da vasilik hukuku",
+    "list-4":"Vasi ücreti ve hesaplama","list-5":"Vasilik raporu yazmak","list-6":"Vasi vs. veli",
+    "list-7":"Demans & Alzheimer'da vasilik","list-8":"Vasiler için dijital araçlar","list-9":"Vasi değişimi",
+    "list-10":"Gönüllü vasilik","list-11":"Vasilik direktifi & vekaletname","list-12":"Vasilik mahkemesi süreci",
+    "list-13":"Vasilikte öz belirleme","list-14":"Vasi & bakım derecesi","list-15":"Vasilik vs. bakım vasiyeti",
+    "list-16":"Engelli yetişkinlerde vasilik","list-17":"Vasi & hasta vasiyeti","list-18":"Vasilik davasına itiraz",
+    "list-19":"Gizlilik muafiyeti","list-20":"Vasilikte etik ilkeler",
+    "doc-title":"Tüm Belge Türleri","doc-sub":"Beş pratik şablon — hemen kullanıma hazır",
+    "doc1-title":"Vasilik Raporu","doc1-desc":"§ 1868 BGB'ye göre yıllık mahkeme raporu",
+    "doc2-title":"Mal Varlığı Envanteri","doc2-desc":"§ 1802 BGB'ye göre tam liste",
+    "doc3-title":"Yıllık Hesap","doc3-desc":"§ 1840 BGB'ye göre ücret hesabı",
+    "doc4-title":"İlk Rapor","doc4-desc":"Vasi atanmasından sonraki ilk rapor",
+    "doc5-title":"Doktor Talebi","doc5-desc":"Resmi gizlilik muafiyeti mektubu",
+    "cta-h2":"Ücretsiz Deneyin","cta-p":"Hesap yok. Kayıt yok. Hemen başlayın.","cta-btn":"✨ Belge Oluşturucuya Git →"
+  },
+  en: {
+    "nav-ratgeber":"Guides","nav-dokumente":"Documents","nav-tool":"✨ Open Tool",
+    "hero-badge":"AI-powered · Court-ready · Free to try",
+    "hero-h1":"Legal Guardianship Documents<br>in <span>Minutes</span> — not Hours",
+    "hero-sub":"BetreuerPro generates professional reports, asset inventories and letters for legal guardians — automated with Claude AI.",
+    "hero-cta":"✨ Create Document Now →","stat-docs":"Document Types","stat-cases":"Guardianship Cases in Germany","stat-legal":"BGB Compliant",
+    "feat-title":"Why BetreuerPro?","feat-sub":"Built for the daily practice of legal guardians",
+    "feat1-title":"Fast & Accurate","feat1-desc":"Documents in under 2 minutes — with your real data.",
+    "feat2-title":"Legally Sound","feat2-desc":"All templates based on BGB §§ 1802, 1840, 1868 and current legal practice.",
+    "feat3-title":"Privacy First","feat3-desc":"No data storage. Everything runs locally in your browser — GDPR compliant.",
+    "feat4-title":"Multilingual","feat4-desc":"Full interface in German, Turkish and English.",
+    "art-title":"Guardian Guides","art-sub":"Practical knowledge for daily guardianship",
+    "tag-recht":"Law","tag-finanzen":"Finance","tag-verguetung":"Fees","tag-praxis":"Practice","tag-vorsorge":"Planning",
+    "art1-title":"How to Write a Guardianship Report","art1-exc":"The annual guardianship report is mandatory. Structure, deadlines and common mistakes explained.",
+    "art2-title":"Asset Inventory § 1802 BGB: Step by Step","art2-exc":"The asset inventory at the start of guardianship is one of the most important duties.",
+    "art3-title":"Guardian Fees 2025: Hourly Rates Explained","art3-exc":"New hourly rates since the BtOG reform. How to calculate and file correctly.",
+    "art4-title":"Areas of Responsibility: What Can a Guardian Do?","art4-exc":"Healthcare, asset management, residence — a practical overview of your authority.",
+    "art5-title":"Guardianship Court: How the Process Works","art5-exc":"From application to appointment — the complete guardianship procedure explained.",
+    "art6-title":"Guardianship Directive vs. Power of Attorney","art6-exc":"When do you need a guardianship directive, when is a power of attorney enough?",
+    "art-more":"Read more →","art-all-title":"All Guide Articles",
+    "list-1":"What is legal guardianship?","list-2":"Guardian: Tasks and duties","list-3":"Guardianship law in Germany",
+    "list-4":"Guardian fees & billing","list-5":"Writing guardianship reports","list-6":"Guardianship vs. custody",
+    "list-7":"Guardianship for dementia & Alzheimer's","list-8":"Digital tools for guardians","list-9":"Change of guardian",
+    "list-10":"Volunteer guardianship","list-11":"Guardianship directive & power of attorney","list-12":"Guardianship court proceedings",
+    "list-13":"Self-determination in guardianship","list-14":"Guardian & care level","list-15":"Guardianship vs. care testament",
+    "list-16":"Guardianship for disabled adults","list-17":"Guardian & advance directive","list-18":"Objection in guardianship proceedings",
+    "list-19":"Medical confidentiality waiver","list-20":"Ethical principles in guardianship",
+    "doc-title":"All Document Types","doc-sub":"Five proven templates — ready to use",
+    "doc1-title":"Guardianship Report","doc1-desc":"Annual court report per § 1868 BGB",
+    "doc2-title":"Asset Inventory","doc2-desc":"Complete listing per § 1802 BGB",
+    "doc3-title":"Annual Account","doc3-desc":"Fee statement per § 1840 BGB",
+    "doc4-title":"Initial Report","doc4-desc":"Report after guardian appointment",
+    "doc5-title":"Doctor Request","doc5-desc":"Formal confidentiality waiver letter",
+    "cta-h2":"Try It Free Now","cta-p":"No account. No sign-up. Start instantly.","cta-btn":"✨ Go to Document Generator →"
+  }
+};
 
+function applyLang(lang) {
+  const t = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+  });
+  document.documentElement.lang = lang;
+}
+
+document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang-btn')));
+});
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+});
+
+applyLang('de');
+</script>
 </body>
 </html>
