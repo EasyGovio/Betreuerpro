@@ -468,7 +468,7 @@
 
 <script>
   (function() {
-    // ----- INTERNATIONALISATION (DE/TR) -----
+    // ----- INTERNATIONALISATION (DE/TR) with step navigation texts -----
     const translations = {
       de: {
         step1Title: "👤 Vasi (Betreuer) Angaben",
@@ -490,7 +490,11 @@
         previewBtn: "Vorschau →",
         downloadBtn: "📥 PDF / Drucken (Print)",
         newDocBtn: "🔄 Neues Dokument",
-        editBtn: "← Bearbeiten"
+        editBtn: "← Bearbeiten",
+        step1Nav: "1. Betreuer",
+        step2Nav: "2. Betreuter",
+        step3Nav: "3. Dokument",
+        step4Nav: "4. Vorschau & Download"
       },
       tr: {
         step1Title: "👤 Vasi (Kayyım) Bilgileri",
@@ -512,7 +516,11 @@
         previewBtn: "Önizleme →",
         downloadBtn: "📥 PDF / Yazdır (Print)",
         newDocBtn: "🔄 Yeni Belge",
-        editBtn: "← Düzenle"
+        editBtn: "← Düzenle",
+        step1Nav: "1. Vasi",
+        step2Nav: "2. Bakılan Kişi",
+        step3Nav: "3. Belge",
+        step4Nav: "4. Önizleme & İndir"
       }
     };
 
@@ -548,6 +556,17 @@
       document.getElementById('lblCareAddress').innerText = t.lblCareAddress;
       document.getElementById('lblBetreuungsbeginn').innerText = t.lblBetreuungsbeginn;
       document.getElementById('lblAufgabenkreise').innerText = t.lblAufgabenkreise;
+      
+      // Update progress step texts
+      const step1El = document.querySelector('[data-step="1"]');
+      const step2El = document.querySelector('[data-step="2"]');
+      const step3El = document.querySelector('[data-step="3"]');
+      const step4El = document.querySelector('[data-step="4"]');
+      if (step1El) step1El.innerText = t.step1Nav;
+      if (step2El) step2El.innerText = t.step2Nav;
+      if (step3El) step3El.innerText = t.step3Nav;
+      if (step4El) step4El.innerText = t.step4Nav;
+      
       // Buttons (static texts inside next/prev)
       const nextButtons = document.querySelectorAll('.next');
       const prevButtons = document.querySelectorAll('.prev');
@@ -559,7 +578,7 @@
       if (downloadBtn) downloadBtn.innerText = t.downloadBtn;
       const newBtn = document.getElementById('newDocBtn');
       if (newBtn) newBtn.innerText = t.newDocBtn;
-      // optional edit button inside step4
+      // edit button inside step4
       const editBtnStep4 = document.querySelector('#step4 .button-group .prev');
       if (editBtnStep4) editBtnStep4.innerText = t.editBtn;
     }
