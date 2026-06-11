@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>BetreuerPro — Dokumenten Generator</title>
+  <meta name="description" content="Smartes Tool für gesetzliche Betreuer: Berichte, Vermögensverzeichnis, Rechnungen – automatisiert generieren.">
+  <link rel="canonical" href="https://betreuerpro.io/tool">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #0B1E35;
+      --gold: #F0D080;
+      --gold-dark: #C9A84C;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --red-500: #ef4444;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      line-height: 1.5;
+      padding: 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      font-size: 1.8rem;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+    }
+
+    .logo-text span {
+      color: var(--gold-dark);
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--gray-200);
+      padding: 0.2rem;
+      border-radius: 2rem;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: system-ui;
+    }
+
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* Steps / Progress */
+    .progress {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .step-indicator {
+      flex: 1;
+      text-align: center;
+      padding: 0.6rem;
+      background: var(--gray-200);
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      transition: all 0.2s;
+    }
+
+    .step-indicator.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .step-indicator.done {
+      background: var(--gold-dark);
+      color: white;
+    }
+
+    /* Panels */
+    .panel {
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--navy);
+      border-left: 5px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--gray-600);
+    }
+
+    input, select, textarea {
+      padding: 0.7rem 0.8rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 0.8rem;
+      font-family: system-ui;
+      font-size: 0.9rem;
+      background: var(--gray-50);
+      transition: 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(240, 208, 128, 0.2);
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: normal;
+      text-transform: none;
+      font-size: 0.85rem;
+      background: var(--gray-100);
+      padding: 0.4rem 0.8rem;
+      border-radius: 2rem;
+    }
+
+    /* Document cards */
+    .doc-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .doc-card {
+      background: var(--gray-100);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      text-align: center;
+    }
+
+    .doc-card.selected {
+      border-color: var(--gold);
+      background: white;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+    }
+
+    .doc-card .doc-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .doc-title {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    button {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button.next, button.submit {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    button.next:hover, button.submit:hover {
+      background: var(--gold-dark);
+      transform: translateY(-1px);
+    }
+
+    button.prev {
+      background: var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    /* Preview panel */
+    .preview-panel {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+    }
+
+    .preview-content {
+      max-height: 500px;
+      overflow-y: auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      margin-top: 1rem;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--gray-200);
+      color: var(--gray-600);
+      font-size: 0.75rem;
+    }
+
+    .error {
+      color: var(--red-500);
+      font-size: 0.7rem;
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      .panel { padding: 1.2rem; }
+      .progress { flex-direction: column; gap: 0.5rem; }
+      .step-indicator { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">
+      <span class="logo-icon">🧭</span>
+      <span class="logo-text">Betreuer<span>Pro</span></span>
+    </div>
+    <div class="lang-toggle" id="langToggle">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+    </div>
+  </div>
+
+  <!-- PROGRESS STEPS -->
+  <div class="progress" id="progressSteps">
+    <div class="step-indicator" data-step="1">1. Vasi</div>
+    <div class="step-indicator" data-step="2">2. Betreuter</div>
+    <div class="step-indicator" data-step="3">3. Dokument</div>
+    <div class="step-indicator" data-step="4">4. Vorschau & Download</div>
+  </div>
+
+  <!-- STEP 1: Betreuer (Guardian) -->
+  <div id="step1" class="panel step-panel">
+    <h2 id="step1Title">👤 Vasi (Betreuer) Angaben</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label id="lblName">Vollständiger Name *</label>
+        <input type="text" id="guardianName" placeholder="z.B. Max Mustermann">
+      </div>
+      <div class="form-group">
+        <label id="lblAddress">Adresse *</label>
+        <input type="text" id="guardianAddress" placeholder="Straße, Nr., PLZ Ort">
+      </div>
+      <div class="form-group">
+        <label id="lblPhone">Telefon</label>
+        <input type="tel" id="guardianPhone" placeholder="+49 123 456789">
+      </div>
+      <div class="form-group">
+        <label id="lblEmail">E-Mail</label>
+        <input type="email" id="guardianEmail" placeholder="kontakt@example.de">
+      </div>
+      <div class="form-group">
+        <label id="lblBetreuungsnummer">Betreuungsnummer / Aktenzeichen</label>
+        <input type="text" id="betreuungsnummer" placeholder="z.B. XVII 123/24">
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="next" data-next="2" id="next1">Weiter →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Betreuter (care recipient) -->
+  <div id="step2" class="panel step-panel" style="display:none;">
+    <h2 id="step2Title">🧑‍🦱 Betreute Person</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label id="lblCareName">Name *</label>
+        <input type="text" id="careName" placeholder="Vorname Nachname">
+      </div>
+      <div class="form-group">
+        <label id="lblBirth">Geburtsdatum</label>
+        <input type="date" id="careBirth">
+      </div>
+      <div class="form-group">
+        <label id="lblCareAddress">Adresse</label>
+        <input type="text" id="careAddress" placeholder="Straße, Nr., PLZ Ort">
+      </div>
+      <div class="form-group">
+        <label id="lblBetreuungsbeginn">Betreuungsbeginn</label>
+        <input type="date" id="betreuungsbeginn">
+      </div>
+    </div>
+    <div class="form-group">
+      <label id="lblAufgabenkreise">Aufgabenkreise (mehrere möglich)</label>
+      <div class="checkbox-group" id="aufgabenkreiseGroup">
+        <label><input type="checkbox" value="Gesundheitssorge"> Gesundheitssorge</label>
+        <label><input type="checkbox" value="Vermögenssorge"> Vermögenssorge</label>
+        <label><input type="checkbox" value="Aufenthaltsbestimmung"> Aufenthaltsbestimmung</label>
+        <label><input type="checkbox" value="Behördenangelegenheiten"> Behördenangelegenheiten</label>
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="prev" data-prev="1">← Zurück</button>
+      <button class="next" data-next="3">Weiter →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Document type selection -->
+  <div id="step3" class="panel step-panel" style="display:none;">
+    <h2 id="step3Title">📄 Dokument auswählen</h2>
+    <div class="doc-cards" id="docCards">
+      <div class="doc-card" data-doc="bericht">
+        <span class="doc-icon">📄</span>
+        <div class="doc-title">Betreuungsbericht</div>
+        <div style="font-size:0.7rem; color:#666;">Jahresbericht ans Gericht</div>
+      </div>
+      <div class="doc-card" data-doc="vermoegen">
+        <span class="doc-icon">💰</span>
+        <div class="doc-title">Vermögensverzeichnis</div>
+        <div style="font-size:0.7rem; color:#666;">Auflistung Einnahmen/Ausgaben</div>
+      </div>
+      <div class="doc-card" data-doc="rechnung">
+        <span class="doc-icon">📊</span>
+        <div class="doc-title">Jahresrechnung</div>
+        <div style="font-size:0.7rem; color:#666;">Übersicht Vergütung</div>
+      </div>
+      <div class="doc-card" data-doc="erstbericht">
+        <span class="doc-icon">📝</span>
+        <div class="doc-title">Erstbericht</div>
+        <div style="font-size:0.7rem; color:#666;">nach Betreuerbestellung</div>
+      </div>
+      <div class="doc-card" data-doc="arztanfrage">
+        <span class="doc-icon">✉️</span>
+        <div class="doc-title">Arztanfrage</div>
+        <div style="font-size:0.7rem; color:#666;">ärztliche Schweigepflichtentbindung</div>
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="prev" data-prev="2">← Zurück</button>
+      <button class="next" data-next="4" id="goToPreview">Vorschau →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Preview + download (mock content) -->
+  <div id="step4" class="panel step-panel preview-panel" style="display:none;">
+    <h2 id="step4Title">📄 Dokumentenvorschau</h2>
+    <div class="preview-content" id="previewText">
+      <!-- dynamisch befüllt -->
+    </div>
+    <div class="action-buttons">
+      <button id="newDocBtn" class="prev">🔄 Neues Dokument</button>
+      <button id="downloadPdfBtn" class="submit">📥 PDF / Drucken (Print)</button>
+    </div>
+    <div class="button-group" style="margin-top:1rem;">
+      <button class="prev" data-prev="3">← Bearbeiten</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 AskMeAI Teknoloji Ltd. Şti.
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ----- INTERNATIONALISATION (DE/TR) -----
+    const translations = {
+      de: {
+        step1Title: "👤 Vasi (Betreuer) Angaben",
+        step2Title: "🧑‍🦱 Betreute Person",
+        step3Title: "📄 Dokument auswählen",
+        step4Title: "📄 Dokumentenvorschau",
+        lblName: "Vollständiger Name *",
+        lblAddress: "Adresse *",
+        lblPhone: "Telefon",
+        lblEmail: "E-Mail",
+        lblBetreuungsnummer: "Betreuungsnummer / Aktenzeichen",
+        lblCareName: "Name *",
+        lblBirth: "Geburtsdatum",
+        lblCareAddress: "Adresse",
+        lblBetreuungsbeginn: "Betreuungsbeginn",
+        lblAufgabenkreise: "Aufgabenkreise (mehrere möglich)",
+        nextBtn: "Weiter →",
+        backBtn: "← Zurück",
+        previewBtn: "Vorschau →",
+        downloadBtn: "📥 PDF / Drucken (Print)",
+        newDocBtn: "🔄 Neues Dokument",
+        editBtn: "← Bearbeiten"
+      },
+      tr: {
+        step1Title: "👤 Vasi (Kayyım) Bilgileri",
+        step2Title: "🧑‍🦱 Bakım Alan Kişi",
+        step3Title: "📄 Belge Seçimi",
+        step4Title: "📄 Belge Önizleme",
+        lblName: "Ad Soyad *",
+        lblAddress: "Adres *",
+        lblPhone: "Telefon",
+        lblEmail: "E-posta",
+        lblBetreuungsnummer: "Vasi Dosya No",
+        lblCareName: "Ad Soyad *",
+        lblBirth: "Doğum Tarihi",
+        lblCareAddress: "Adres",
+        lblBetreuungsbeginn: "Vasi Başlangıç Tarihi",
+        lblAufgabenkreise: "Görev Alanları (birden fazla seçilebilir)",
+        nextBtn: "İleri →",
+        backBtn: "← Geri",
+        previewBtn: "Önizleme →",
+        downloadBtn: "📥 PDF / Yazdır (Print)",
+        newDocBtn: "🔄 Yeni Belge",
+        editBtn: "← Düzenle"
+      }
+    };
+
+    let currentLang = 'de';
+    let selectedDocType = 'bericht';
+    let currentStep = 1;
+    const totalSteps = 4;
+
+    // DOM references
+    const stepPanels = {
+      1: document.getElementById('step1'),
+      2: document.getElementById('step2'),
+      3: document.getElementById('step3'),
+      4: document.getElementById('step4')
+    };
+    const progressSteps = document.querySelectorAll('.step-indicator');
+
+    // Helper: update UI language
+    function updateUILanguage() {
+      const t = translations[currentLang];
+      if (!t) return;
+      document.getElementById('step1Title').innerText = t.step1Title;
+      document.getElementById('step2Title').innerText = t.step2Title;
+      document.getElementById('step3Title').innerText = t.step3Title;
+      document.getElementById('step4Title').innerText = t.step4Title;
+      document.getElementById('lblName').innerText = t.lblName;
+      document.getElementById('lblAddress').innerText = t.lblAddress;
+      document.getElementById('lblPhone').innerText = t.lblPhone;
+      document.getElementById('lblEmail').innerText = t.lblEmail;
+      document.getElementById('lblBetreuungsnummer').innerText = t.lblBetreuungsnummer;
+      document.getElementById('lblCareName').innerText = t.lblCareName;
+      document.getElementById('lblBirth').innerText = t.lblBirth;
+      document.getElementById('lblCareAddress').innerText = t.lblCareAddress;
+      document.getElementById('lblBetreuungsbeginn').innerText = t.lblBetreuungsbeginn;
+      document.getElementById('lblAufgabenkreise').innerText = t.lblAufgabenkreise;
+      // Buttons (static texts inside next/prev)
+      const nextButtons = document.querySelectorAll('.next');
+      const prevButtons = document.querySelectorAll('.prev');
+      nextButtons.forEach(btn => btn.innerText = t.nextBtn);
+      prevButtons.forEach(btn => btn.innerText = t.backBtn);
+      const goPreview = document.getElementById('goToPreview');
+      if (goPreview) goPreview.innerText = t.previewBtn;
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      if (downloadBtn) downloadBtn.innerText = t.downloadBtn;
+      const newBtn = document.getElementById('newDocBtn');
+      if (newBtn) newBtn.innerText = t.newDocBtn;
+      // optional edit button inside step4
+      const editBtnStep4 = document.querySelector('#step4 .button-group .prev');
+      if (editBtnStep4) editBtnStep4.innerText = t.editBtn;
+    }
+
+    // Step navigation
+    function showStep(step) {
+      for (let i = 1; i <= totalSteps; i++) {
+        if (stepPanels[i]) stepPanels[i].style.display = (i === step) ? 'block' : 'none';
+      }
+      // update progress indicators
+      progressSteps.forEach((el, idx) => {
+        const stepNum = idx + 1;
+        el.classList.remove('active', 'done');
+        if (stepNum === step) el.classList.add('active');
+        else if (stepNum < step) el.classList.add('done');
+      });
+      currentStep = step;
+    }
+
+    // Validate steps (simple mandatory fields)
+    function isStepValid(step) {
+      if (step === 1) {
+        const name = document.getElementById('guardianName').value.trim();
+        const addr = document.getElementById('guardianAddress').value.trim();
+        if (!name) return false;
+        if (!addr) return false;
+        return true;
+      }
+      if (step === 2) {
+        const careName = document.getElementById('careName').value.trim();
+        if (!careName) return false;
+        return true;
+      }
+      if (step === 3) {
+        return selectedDocType !== null;
+      }
+      return true;
+    }
+
+    // Generate mock document content based on selections
+    function generateDocument() {
+      const guardianName = document.getElementById('guardianName').value.trim() || "[Vasi Name]";
+      const guardianAddress = document.getElementById('guardianAddress').value.trim() || "[Adresse]";
+      const guardianPhone = document.getElementById('guardianPhone').value.trim() || "[Telefon]";
+      const guardianEmail = document.getElementById('guardianEmail').value.trim() || "[E-Mail]";
+      const betreuungsnummer = document.getElementById('betreuungsnummer').value.trim() || "[Aktenzeichen]";
+      const careName = document.getElementById('careName').value.trim() || "[Betreuter Name]";
+      const careBirth = document.getElementById('careBirth').value || "[Geburtsdatum]";
+      const careAddress = document.getElementById('careAddress').value.trim() || "[Adresse betreute Person]";
+      const betreuungsbeginn = document.getElementById('betreuungsbeginn').value || "[Datum]";
+      const checkboxes = document.querySelectorAll('#aufgabenkreiseGroup input[type="checkbox"]:checked');
+      const aufgaben = Array.from(checkboxes).map(cb => cb.value).join(', ') || "[keine Aufgabenkreise]";
+
+      const lang = currentLang;
+      let title = "";
+      let body = "";
+
+      if (selectedDocType === 'bericht') {
+        title = lang === 'de' ? "Jahresbericht gemäß § 1868 BGB" : "Yıllık Faaliyet Raporu (BGB § 1868)";
+        body = `
+An das Betreuungsgericht – Az: ${betreuungsnummer}
+
+Berichtszeitraum: ${new Date().toLocaleDateString('de-DE')} bis heute
+
+1. Persönliche Situation:
+Die betreute Person, ${careName} (geb. ${careBirth}), wohnt in ${careAddress}. Gesundheitszustand und Alltagsbewältigung sind unverändert / stabil. Es wurde regelmäßig Kontakt durch den Betreuer aufgenommen.
+
+2. Durchgeführte Maßnahmen:
+- Aufgabenkreise: ${aufgaben}
+- Vermögensverwaltung: laufende Kontoführung, Beantragung von Sozialleistungen geprüft.
+- Gesundheit: Koordination mit Hausarzt, Sicherstellung der medizinischen Versorgung.
+- Wohnen: Die Wohnsituation ist angemessen.
+
+3. Wünsche des Betreuten:
+Der Betreute äußerte keine abweichenden Wünsche.
+
+4. Ausblick:
+Die Betreuung wird wie bisher fortgeführt.
+
+[generiert mit BetreuerPro – unverbindlicher Entwurf]
+        `;
+      } else if (selectedDocType === 'vermoegen') {
+        title = lang === 'de' ? "Vermögensverzeichnis zum " + new Date().toLocaleDateString('de-DE') : "Mal Varlığı Envanteri";
+        body = `
+Vermögensverzeichnis für ${careName}, Az: ${betreuungsnummer}
+
+Einnahmen (monatlich):
+- Rente / Sozialleistungen: 1.200,00 €
+- Sonstige: 0,00 €
+
+Ausgaben (monatlich):
+- Miete / Hausgeld: 650,00 €
+- Kranken-/Pflegeversicherung: 180,00 €
+- Medikamente / Behandlung: 70,00 €
+- Sonstiges (Telefon, Kleidung): 100,00 €
+
+Kontostand (Girokonto): 4.230,50 €
+Sparguthaben: 2.100,00 €
+Immobilien / sonstiges Vermögen: keine
+
+Die Aufstellung wurde durch den Betreuer geprüft.
+        `;
+      } else if (selectedDocType === 'rechnung') {
+        title = lang === 'de' ? "Jahresrechnung Betreuervergütung" : "Yıllık Ücret Hesabı";
+        body = `
+Abrechnung für den Zeitraum 01.01.2026 – 31.12.2026
+Betreuer: ${guardianName}, Aktenzeichen: ${betreuungsnummer}
+
+Stundensatz gemäß § 4 BtBG: 44,00 €
+abrechenbare Stunden: 36,5 Std.
+Zwischensumme: 1.606,00 €
+Auslagen (Porto, Telefon, Fahrtkosten): 87,50 €
+
+Gesamtbetrag: 1.693,50 €
+
+Die Vergütung wird aus der Staatskasse beantragt.
+        `;
+      } else if (selectedDocType === 'erstbericht') {
+        title = lang === 'de' ? "Erstbericht nach Betreuerbestellung" : "Vasi Atama Sonrası İlk Rapor";
+        body = `
+Erstbericht für ${careName} (geb. ${careBirth})
+Betreuungsbeginn: ${betreuungsbeginn}
+Bestellte Aufgabenkreise: ${aufgaben}
+
+Nach Erstkontakt und Sichtung der Unterlagen wurde folgendes veranlasst:
+- Bankvollmacht eingeholt
+- Antrag auf Pflegegrad gestellt
+- Wohnsituation überprüft
+
+Der Betreute ist mit der Betreuung einverstanden. Weitere Schritte werden im Jahresbericht dokumentiert.
+        `;
+      } else if (selectedDocType === 'arztanfrage') {
+        title = lang === 'de' ? "Antrag auf ärztliche Schweigepflichtsentbindung" : "Doktor Bilgi Talep Mektubu (Sır Saklama Yükümlülüğü Kaldırma)";
+        body = `
+Sehr geehrte Damen und Herren,
+
+hiermit bitte ich, ${guardianName} (Betreuer), um Übersendung der aktuellen Behandlungsunterlagen für ${careName} (geb. ${careBirth}, wohnhaft ${careAddress}).
+
+Eine Schweigepflichtsentbindung durch den Betreuten liegt vor bzw. wird auf Anforderung nachgereicht.
+Aktenzeichen des Betreuungsgerichts: ${betreuungsnummer}
+
+Mit freundlichen Grüßen
+${guardianName}
+        `;
+      }
+
+      let fullPreview = `${title}\n\n${body}\n\n---\nErstellt mit BetreuerPro (Demo-Modus) – ${new Date().toLocaleString()}\nFür verbindliche Dokumente bitte anwaltlich prüfen.`;
+      return fullPreview;
+    }
+
+    function refreshPreviewAndShow() {
+      const previewDiv = document.getElementById('previewText');
+      if (previewDiv) {
+        previewDiv.innerText = generateDocument();
+      }
+    }
+
+    // Event binding for doc selection
+    function bindDocCards() {
+      const cards = document.querySelectorAll('.doc-card');
+      cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          cards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          selectedDocType = card.getAttribute('data-doc');
+        });
+        // default select first (bericht)
+        if (card.getAttribute('data-doc') === 'bericht') {
+          card.classList.add('selected');
+          selectedDocType = 'bericht';
+        }
+      });
+    }
+
+    // reset to step1 (new document)
+    function resetAndNew() {
+      // reset form fields (optional but user-friendly)
+      document.getElementById('guardianName').value = '';
+      document.getElementById('guardianAddress').value = '';
+      document.getElementById('guardianPhone').value = '';
+      document.getElementById('guardianEmail').value = '';
+      document.getElementById('betreuungsnummer').value = '';
+      document.getElementById('careName').value = '';
+      document.getElementById('careBirth').value = '';
+      document.getElementById('careAddress').value = '';
+      document.getElementById('betreuungsbeginn').value = '';
+      document.querySelectorAll('#aufgabenkreiseGroup input[type="checkbox"]').forEach(cb => cb.checked = false);
+      // reset doc selection to bericht
+      const cards = document.querySelectorAll('.doc-card');
+      cards.forEach(c => c.classList.remove('selected'));
+      const berichtCard = Array.from(cards).find(c => c.getAttribute('data-doc') === 'bericht');
+      if (berichtCard) berichtCard.classList.add('selected');
+      selectedDocType = 'bericht';
+      // go to step1
+      showStep(1);
+    }
+
+    // navigation listeners
+    function initEventListeners() {
+      // next buttons (step1 -> step2, etc)
+      document.querySelectorAll('.next').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const targetStep = parseInt(btn.getAttribute('data-next'), 10);
+          if (isStepValid(currentStep)) {
+            showStep(targetStep);
+          } else {
+            alert(currentLang === 'de' ? 'Bitte alle Pflichtfelder ausfüllen.' : 'Lütfen tüm zorunlu alanları doldurun.');
+          }
+        });
+      });
+      document.querySelectorAll('.prev').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const prevStep = parseInt(btn.getAttribute('data-prev'), 10);
+          showStep(prevStep);
+        });
+      });
+      const goPreviewBtn = document.getElementById('goToPreview');
+      if (goPreviewBtn) {
+        goPreviewBtn.addEventListener('click', () => {
+          if (isStepValid(3)) {
+            refreshPreviewAndShow();
+            showStep(4);
+          } else {
+            alert(currentLang === 'de' ? 'Bitte wählen Sie einen Dokumententyp aus.' : 'Lütfen bir belge türü seçin.');
+          }
+        });
+      }
+      const newDoc = document.getElementById('newDocBtn');
+      if (newDoc) newDoc.addEventListener('click', resetAndNew);
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+          window.print(); // triggers browser print / save as PDF
+        });
+      }
+    }
+
+    // language toggle
+    function initLanguage() {
+      const btns = document.querySelectorAll('.lang-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          if (lang === 'de' || lang === 'tr') {
+            currentLang = lang;
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateUILanguage();
+            // also re-render preview if step4 active and regenerate texts
+            if (currentStep === 4) {
+              refreshPreviewAndShow();
+            }
+          }
+        });
+      });
+      updateUILanguage();
+    }
+
+    // set default visible step
+    showStep(1);
+    bindDocCards();
+    initEventListeners();
+    initLanguage();
+  })();
+</script>
+</body>
+</html>
