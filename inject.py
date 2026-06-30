@@ -43,7 +43,6 @@ LANG_DETECT_SCRIPT = """<script>
 </script>
 """
 
-# ── FIXED: tek tırnak kaçışı düzgün, daha önce defalarca tespit edilen bug giderildi ──
 PWA_SCRIPT = """<script>
 (function() {
   if ('serviceWorker' in navigator) {
@@ -55,6 +54,7 @@ PWA_SCRIPT = """<script>
   var shown = sessionStorage.getItem('pwa-banner-shown');
   if (shown || isInStandalone) return;
 
+  // iOS Safari — manuel yönlendirme
   if (isIOS) {
     setTimeout(function() {
       var bar = document.createElement('div');
@@ -64,10 +64,14 @@ PWA_SCRIPT = """<script>
         '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">' +
           '<div>' +
             '<div style="color:#F6B45F;font-size:0.82rem;font-weight:700;margin-bottom:4px;">📲 Ana ekrana ekle</div>' +
-            '<div style="color:#b0b5bf;font-size:0.75rem;line-height:1.5;">Safari\\'de <strong style="color:#eaf2fb;">&#11015; Paylaş</strong> butonuna bas, ardından <strong style="color:#eaf2fb;">Ana Ekrana Ekle</strong> seçeneğini seç.</div>' +
-            '<div style="color:#4a6a88;font-size:0.68rem;margin-top:4px;">&#9432; iOS\\'ta otomatik kurulum desteklenmiyor — bu adım gerekli.</div>' +
+            '<div style="color:#b0b5bf;font-size:0.75rem;line-height:1.5;">' +
+              'Safari'de <strong style="color:#eaf2fb;">&#11015; Paylaş</strong> butonuna bas, ' +
+              'ardından <strong style="color:#eaf2fb;">Ana Ekrana Ekle</strong> seçeneğini seç.' +
+            '</div>' +
+            '<div style="color:#4a6a88;font-size:0.68rem;margin-top:4px;">&#9432; iOS'ta otomatik kurulum desteklenmiyor — bu adım gerekli.</div>' +
           '</div>' +
-          '<button onclick="document.getElementById(\\'pwa-banner\\').remove();sessionStorage.setItem(\\'pwa-banner-shown\\',\\'1\\')" style="background:transparent;border:none;color:#7a9ab8;font-size:1.2rem;cursor:pointer;padding:0 4px;flex-shrink:0;">✕</button>' +
+          '<button onclick="document.getElementById('pwa-banner').remove();sessionStorage.setItem('pwa-banner-shown','1')" ' +
+            'style="background:transparent;border:none;color:#7a9ab8;font-size:1.2rem;cursor:pointer;padding:0 4px;flex-shrink:0;">✕</button>' +
         '</div>';
       document.body.appendChild(bar);
       sessionStorage.setItem('pwa-banner-shown', '1');
@@ -75,6 +79,7 @@ PWA_SCRIPT = """<script>
     return;
   }
 
+  // Android / Desktop Chrome — otomatik install prompt
   var deferredPrompt = null;
   window.addEventListener('beforeinstallprompt', function(e) {
     e.preventDefault();
@@ -88,7 +93,7 @@ PWA_SCRIPT = """<script>
         '<span style="color:#eaf2fb;font-size:0.85rem;">📲 Ana ekrana ekle &mdash; daha hızlı aç!</span>' +
         '<div style="display:flex;gap:8px;">' +
           '<button onclick="installPWA()" style="background:#F6B45F;border:none;color:#04162E;padding:6px 16px;border-radius:20px;font-weight:700;cursor:pointer;font-size:0.82rem;">Ekle</button>' +
-          '<button onclick="document.getElementById(\\'pwa-banner\\').remove();sessionStorage.setItem(\\'pwa-banner-shown\\',\\'1\\')" style="background:transparent;border:1px solid rgba(246,180,95,0.3);color:#7a9ab8;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;">Sonra</button>' +
+          '<button onclick="document.getElementById(\'pwa-banner\').remove();sessionStorage.setItem(\'pwa-banner-shown\',\'1\')" style="background:transparent;border:1px solid rgba(246,180,95,0.3);color:#7a9ab8;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;">Sonra</button>' +
         '</div>';
       document.body.appendChild(bar);
     }, 3000);
@@ -103,7 +108,7 @@ PWA_SCRIPT = """<script>
 </script>
 """
 
-FSEK_FOOTER = """<div id="pacdi-fsek" style="clear:both;width:100%;flex-basis:100%;text-align:center;padding:28px 16px 20px;border-top:1px solid rgba(212,175,55,0.15);margin-top:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-sizing:border-box;">
+FSEK_FOOTER = """<div id="pacdi-fsek" style="clear:both;width:100%;display:block;text-align:center;padding:28px 16px 20px;border-top:1px solid rgba(212,175,55,0.15);margin-top:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-sizing:border-box;">
   <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.25);border-radius:24px;padding:8px 20px;margin-bottom:12px;flex-wrap:wrap;justify-content:center;">
     <span style="font-size:1rem;">\U0001f6e1\ufe0f</span>
     <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;color:#D4AF37;text-transform:uppercase;">FSEK Registered \u00b7 PACDI Framework</span>
@@ -205,6 +210,7 @@ SKIP_FOOTER = ['legal.html','impressum.html','datenschutz.html','404.html','mast
 if domain != 'pacdi.store':
     legal_content = LEGAL_HTML.format()
     legal_path = 'legal.html'
+    # Always overwrite to keep standard
     with open(legal_path, 'w', encoding='utf-8') as f:
         f.write(legal_content)
     print('Legal updated: legal.html')
@@ -291,33 +297,6 @@ for root, dirs, files in os.walk('.'):
                 insert += PWA_HEAD
             if 'autoLang' not in content and fname not in SKIP:
                 insert += '    ' + LANG_DETECT_SCRIPT
-
-            # ── ÖZEL: index.html giriş butonu CSS düzeltmesi ──
-            if fname == 'index.html' and '#userPanel .btn-sm' not in content:
-                insert += '    <style>#userPanel .btn-sm { background: transparent !important; color: var(--gold) !important; border: 1px solid var(--gold) !important; } #userPanel .btn-sm:hover { background: rgba(246,180,95,0.1) !important; }</style>\n'
-
-            # ── ÖZEL: pruefprotokoll.html beta override ──
-            if fname == 'pruefprotokoll.html':
-                override_script = '''
-    <script>
-    (function() {
-      var origHandle = window.handlePDF;
-      if (origHandle) {
-        window.handlePDF = function() {
-          var params = new URLSearchParams(window.location.search);
-          if (params.get("beta") === "pacdi2026") {
-            if (typeof generatePDF === "function") generatePDF();
-            return;
-          }
-          origHandle();
-        };
-      }
-    })();
-    </script>
-    '''
-                if 'beta' not in content:
-                    insert += override_script
-
             if insert:
                 content = content.replace('</head>', insert + '</head>', 1)
 
@@ -332,6 +311,7 @@ for root, dirs, files in os.walk('.'):
 
             # ── FSEK footer eski versiyon güncelle ──
             if 'pacdi-fsek' in content:
+                # Eski tek satırlı versiyon → yeni iki şirketli versiyon
                 content = content.replace(
                     '<div style="font-size:0.78rem;color:#8A8F9A;margin-bottom:4px;">\u00a9 2026 PACDI Global Yaz\u0131l\u0131m Ltd. \u015eti.</div>\n  <div style="font-size:0.72rem;color:#6B7280;margin-bottom:10px;">Protected under FSEK Copyright Registration No: <a href="https://pacdi.eu" style="color:#D4AF37;text-decoration:none;">2026/18897</a></div>',
                     '<div style="font-size:0.78rem;color:#8A8F9A;margin-bottom:4px;">Operated by AskMeAI Teknoloji Ltd. \u015eti. (TR: 23837)</div>\n  <div style="font-size:0.72rem;color:#6B7280;margin-bottom:10px;">Intellectual property owned by \u00a9 2026 PACDI Global Yaz\u0131l\u0131m Ltd. \u015eti. &mdash; FSEK No: <a href="https://pacdi.eu/legal.html" style="color:#D4AF37;text-decoration:none;">2026/18897</a></div>'
@@ -351,20 +331,26 @@ for root, dirs, files in os.walk('.'):
                     'Ein Service von AskMeAI Teknoloji Ltd. \u015eti.'
                 )
 
-            # ── Body flex fix ──
+            # ── Body flex fix: mevcut FSEK yanlış yerdeyse düzelt ──
             import re as _re2
             if 'pacdi-fsek' in content:
                 body_flex2 = _re2.search(r'body\s*\{[^}]*display\s*:\s*flex', content)
                 if body_flex2 and 'flex-direction:column' not in content:
+                    # body'ye flex-direction:column ekle
                     content = _re2.sub(
                         r'(body\s*\{[^}]*)(display\s*:\s*flex)',
                         r'\1flex-direction:column;\2',
                         content, count=1
                     )
+
+            # ── Body flex fix: FSEK footer yan kaymasın ──
+            if 'pacdi-fsek' in content and 'display:flex' in content:
+                # Yeni versiyon
                 content = content.replace(
                     'id="pacdi-fsek" style="clear:both;width:100%;display:block;',
                     'id="pacdi-fsek" style="clear:both;width:100%;flex-basis:100%;display:block;'
                 )
+                # Eski versiyon — padding ile başlayan
                 import re
                 content = re.sub(
                     r'id="pacdi-fsek" style="([^"]*?)"',
@@ -376,9 +362,11 @@ for root, dirs, files in os.walk('.'):
 
             # ── FSEK visible footer ──
             if 'pacdi-fsek' not in content and '</body>' in content and fname not in SKIP_FOOTER:
+                # Body display:flex varsa son </div> öncesine ekle (layout fix)
                 import re as _re
                 body_flex = _re.search(r'body\s*\{[^}]*display\s*:\s*flex', content)
                 if body_flex:
+                    # Son </div> + </body> pattern'ı bul
                     last_div = content.rfind('</div>')
                     if last_div > 0:
                         content = content[:last_div] + FSEK_FOOTER + '\n' + content[last_div:]
